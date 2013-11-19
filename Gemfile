@@ -23,7 +23,7 @@ gem 'font-awesome-sass-rails'
 gem 'silk-bootstrap-rails'
 
 gem "paperclip", "3.4.2"
-gem 'slim'
+gem 'slim-rails'
 gem 'ancestry'
 gem 'simple_form'
 gem "remotipart", "~> 1.2.1"
