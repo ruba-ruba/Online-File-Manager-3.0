@@ -10,7 +10,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'device'
+gem 'devise'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'jquery-rails', "2.1.3"
