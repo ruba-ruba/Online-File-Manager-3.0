@@ -11,5 +11,13 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery.ui.all
 //= require jquery_ujs
+//= require jquery-fileupload
+//= require bootstrap
+//= require bootstrap-modal
+//= require bootstrap-tooltip
+//= require bootstrap-popover
+//= require bootstrap-tooltip.js
+//= require bootstrap-popover.js
 //= require_tree .
