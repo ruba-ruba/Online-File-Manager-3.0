@@ -43,7 +43,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-addons-rails (0.1.2)
       rails
-    bootstrap-sass (2.3.2.2)
+    bootstrap-sass (3.0.2.1)
       sass (~> 3.2)
     builder (3.0.4)
     capybara (2.1.0)
@@ -367,7 +367,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   shoulda-matchers
   silk-bootstrap-rails
-  simple_form
+  simple_form (= 2.1.0)
   simplecov
   simplecov-rcov
   slim-rails

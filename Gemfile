@@ -12,6 +12,7 @@ end
 
 gem 'devise'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'simple_form', '2.1.0'
 
 gem 'jquery-rails', "2.1.3"
 gem "jquery-ui-rails"
@@ -25,7 +26,6 @@ gem 'silk-bootstrap-rails'
 gem "paperclip", "3.4.2"
 gem 'slim-rails'
 gem 'ancestry'
-gem 'simple_form'
 gem "remotipart", "~> 1.2.1"
 gem 'grape'
 
