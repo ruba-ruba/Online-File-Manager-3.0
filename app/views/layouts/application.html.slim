@@ -6,5 +6,8 @@ html
     = javascript_include_tag "application"
     = csrf_meta_tags
   body
-    = yield
+    wrapper
+      header
+        = render 'shared/header'
+      = yield
 
