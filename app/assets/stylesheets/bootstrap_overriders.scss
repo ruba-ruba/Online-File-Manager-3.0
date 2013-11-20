@@ -1,0 +1,24 @@
+@import "bootstrap-responsive";
+@import "compass/reset.scss";
+@import "compass/layout.scss";
+
+@include sticky-footer(72px, ".container-fluid", ".row-fluid",".footer");
+
+
+[class*="span"]{
+  margin-left: 0px !important;
+};
+
+.alert{
+  background-color: orange;
+  color: wihte;
+  text-align: center;
+};
+
+.alert-error{
+
+};
+
+.alert-notice{
+
+};

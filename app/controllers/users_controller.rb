@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
   include UsersHelper
   before_filter :authenticate_user!
-  before_filter :check_if_admin, only: [:edit, :destroy]
+  before_filter :check_if_admin, only: [:destroy]
+  before_filter :correct_user, only: :show
 
   def index
     @users = User.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.json { render json: @users }
     end
   end
@@ -16,11 +17,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @user }
     end
   end
-
   
   def update
     @user = User.find(params[:id])
@@ -46,7 +46,15 @@ class UsersController < ApplicationController
   def check_if_admin
     unless admin?
       redirect_to root_path
-      flash[:error] = "only admin can delete users"
+      flash[:error] = "you are not allowed to this action"
+    end
+  end
+
+  def correct_user
+    user = User.find(params[:id])
+    unless admin? || current_user == user  
+      redirect_to root_path
+      flash[:error] = "you are not allowed to this action"
     end
   end
 end

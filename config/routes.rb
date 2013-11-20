@@ -1,13 +1,13 @@
 FileManager::Application.routes.draw do
-  
-  resources :folders
-
+  root :to => 'folders#index'
 
   devise_for :users
 
+  resources :folders
+
   resources :users
 
-  root :to => 'home#index'
+
 
 
   # The priority is based upon order of creation:

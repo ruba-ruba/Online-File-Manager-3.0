@@ -1,3 +1,7 @@
 .flash
   - flash.each do |key, value|
-    = content_tag(:div, value, class: "alert alert-#{key}")
+    = content_tag(:div, class: "alert alert-#{key}") do
+      div  
+        = value
+        .pull-right 
+          span.glyphicon.glyphicon-star
