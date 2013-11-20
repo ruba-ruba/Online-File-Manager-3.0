@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(:version => 20131120110558) do
     t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "ancestry"
   end
 
+  add_index "folders", ["ancestry"], :name => "index_folders_on_ancestry"
   add_index "folders", ["user_id"], :name => "index_folders_on_user_id"
 
   create_table "users", :force => true do |t|

@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require silk-icons
+ *= require bootstrap
  *= require_tree .
  */
