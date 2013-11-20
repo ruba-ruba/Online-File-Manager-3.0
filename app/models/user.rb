@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   validates :role, :inclusion => { :in => ROLES }
 
-  before_validation :default_role
+  before_validation :default_role, :on => :create
 
   private
 

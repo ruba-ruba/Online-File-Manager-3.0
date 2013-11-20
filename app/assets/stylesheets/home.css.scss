@@ -1,3 +1,16 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+*{
+  padding: 0px;
+  margin: 0px;
+}
+
+
+header {
+  background-color: #007FFF;
+  .current_user{
+    color: white;
+  };
+};
