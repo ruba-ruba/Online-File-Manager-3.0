@@ -1,4 +1,4 @@
-= link_to 'Home', root_path
+= link_to 'Home', root_path, class: 'btn btn-warning'
 
 - if user_signed_in?
   span.current_user
@@ -6,6 +6,8 @@
     = current_user.email
     = link_to 'edit profile', edit_user_registration_path
     = link_to 'Sign Out', destroy_user_session_path, method: :delete
+    - if admin?
+      = link_to 'users', users_path
 - else
   = link_to 'Sign In', new_user_session_path
   | or 
