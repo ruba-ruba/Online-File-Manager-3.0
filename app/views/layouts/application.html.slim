@@ -7,7 +7,22 @@ html
     = csrf_meta_tags
   body
     wrapper
-      header
-        = render 'shared/header'
-      = yield
+      .container-fluid
+        .row-fluid
+          header.span12
+            = render 'shared/header'
+            = render 'shared/flash_message'
+          .navigation.span12
+            | navigation buttons here
+          .controls.span12
+            | control buttons here
+          .content
+            .span2
+              .favourite
+              .tree_menu
+            .span10
+              = yield
 
+
+
+    

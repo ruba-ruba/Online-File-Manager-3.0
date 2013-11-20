@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+  include UsersHelper
   before_filter :authenticate_user!
+  before_filter :check_if_admin, only: [:edit, :destroy]
 
   def index
     @users = User.all
@@ -22,7 +24,7 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user], :as => :admin)
+    if @user.update_attributes(params[:user])
       redirect_to users_path, :notice => "User updated."
     else
       redirect_to users_path, :alert => "Unable to update user."
@@ -36,6 +38,15 @@ class UsersController < ApplicationController
       redirect_to users_path, :notice => "User deleted."
     else
       redirect_to users_path, :notice => "Can't delete yourself."
+    end
+  end
+
+  protected
+
+  def check_if_admin
+    unless admin?
+      redirect_to root_path
+      flash[:error] = "only admin can delete users"
     end
   end
 end
