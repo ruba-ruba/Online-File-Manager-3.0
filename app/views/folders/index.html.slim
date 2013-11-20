@@ -1,0 +1,23 @@
+h1 Listing folders
+
+table
+  tr
+    th Title
+    th Description
+    th User
+    th
+    th
+    th
+
+  - @folders.each do |folder|
+    tr
+      td = folder.title
+      td = folder.description
+      td = folder.user
+      td = link_to 'Show', folder
+      td = link_to 'Edit', edit_folder_path(folder)
+      td = link_to 'Destroy', folder, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Folder', new_folder_path
