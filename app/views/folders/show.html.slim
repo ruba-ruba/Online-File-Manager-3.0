@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @folder.title
+p
+  strong Description:
+  = @folder.description
+p
+  strong User:
+  = @folder.user
+
+= link_to 'Edit', edit_folder_path(@folder)
+'|
+= link_to 'Back', folders_path
