@@ -2,9 +2,12 @@ class FoldersController < ApplicationController
   # GET /folders
   # GET /folders.json
 
+  helper_method :folder_sort_column, :sort_direction
+
 
   def index
-    show_roots
+    #show_roots
+    @folders = Folders.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,6 +16,14 @@ class FoldersController < ApplicationController
   end
 
   def show_roots
+    folders = Folder.order(folder_sort_column + ' ' + sort_direction)
+    #@items = Item.without_folder.order(item_sort_column + ' ' + sort_direction)
+    @folders = []
+    folders.each do |folder|
+      if folder.root? 
+        @folders << folder
+      end
+    end
   end
 
   # GET /folders/1
@@ -86,4 +97,13 @@ class FoldersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    end
+
+    def folder_sort_column
+      Folder.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    end
+
 end
