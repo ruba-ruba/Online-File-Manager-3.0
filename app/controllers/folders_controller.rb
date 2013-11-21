@@ -15,7 +15,7 @@ class FoldersController < ApplicationController
   # GET /folders/1.json
   def show
     @folder = Folder.find(params[:id])
-    @folders = Folder.children
+    @folders = @folder.children
 
 
     respond_to do |format|
