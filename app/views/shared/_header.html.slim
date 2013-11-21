@@ -10,6 +10,7 @@ span.pull-right
     = link_to 'edit profile', edit_user_registration_path, class: 'btn btn-primary'
     = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-primary'
   - else
+    = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: 'btn btn-primary'
     = link_to 'Sign In', new_user_session_path, class: 'btn btn-primary'
     | or 
     = link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary'
