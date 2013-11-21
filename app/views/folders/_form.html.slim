@@ -5,7 +5,7 @@
       ul
         - @folder.errors.full_messages.each do |message|
           li = message
-  = f.hidden_field :parent_id
+  = f.hidden_field :parent_id, :value => params[:folder_id]
 
   .field
     = f.label :title
