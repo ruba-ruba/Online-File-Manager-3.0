@@ -4,6 +4,5 @@ FactoryGirl.define do
   factory :folder do
     title "MyString"
     description "MyString"
-    user nil
   end
 end
