@@ -1,13 +1,18 @@
 class FoldersController < ApplicationController
   # GET /folders
   # GET /folders.json
+
+
   def index
-    @folders = Folder.all
+    show_roots
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @folders }
     end
+  end
+
+  def show_roots
   end
 
   # GET /folders/1
@@ -25,8 +30,8 @@ class FoldersController < ApplicationController
   # GET /folders/new
   # GET /folders/new.json
   def new
-    @folder = Folder.new
-
+    @folder = Folder.new(:parent_id => params[:parent_id])
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @folder }
