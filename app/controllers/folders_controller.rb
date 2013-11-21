@@ -27,7 +27,7 @@ class FoldersController < ApplicationController
   # GET /folders/new
   # GET /folders/new.json
   def new
-    @folder = Folder.new(:parent_id => params[:parent_id])
+    @folder = Folder.new
     
     respond_to do |format|
       format.html # new.html.erb
@@ -43,7 +43,7 @@ class FoldersController < ApplicationController
   # POST /folders
   # POST /folders.json
   def create
-    @folder = Folder.new(params[:folder])
+    @folder = current_user.folders.build(params[:folder])
 
     respond_to do |format|
       if @folder.save

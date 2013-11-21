@@ -8,8 +8,11 @@ p
   = @folder.description
 p
   strong User:
-  = @folder.user
+  = @folder.user_id
+  = @folder.ancestry
 
 = link_to 'Edit', edit_folder_path(@folder)
 '|
 = link_to 'Back', folders_path
+'|
+= link_to 'New Folder', new_folder_path(:folder_id => params[:id] || nil)

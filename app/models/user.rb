@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :provider, :uid, :name
 
+  has_many :folders
+
   ROLES = %w[user admin]
 
   before_validation :default_role, :on => :create
