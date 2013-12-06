@@ -34,7 +34,6 @@ gem 'remotipart', '~> 1.2.1'
 gem 'grape'
 
 
-
 group :development do
   gem 'annotate', '2.5.0'
   gem 'sqlite3'
