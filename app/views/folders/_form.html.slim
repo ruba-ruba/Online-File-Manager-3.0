@@ -7,12 +7,13 @@
           li = message
   = f.hidden_field :parent_id, :value => params[:folder_id]
 
-  .field
+  .form-group
     = f.label :title
     = f.text_field :title
-  .field
+  .form-group
     = f.label :description
     = f.text_field :description
-  .actions = f.submit 'Save'
+  .actions 
+    = f.submit 'Save', class: 'btn btn-primary'
 
 = debug params
