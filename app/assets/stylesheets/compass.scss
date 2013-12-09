@@ -5,11 +5,6 @@
 
 @include sticky-footer(72px, ".container-fluid", ".row-fluid",".footer");
 
-
-[class*="span"]{
-  margin-left: 0px !important;
-};
-
 .alert{
   background-color: orange;
   color: wihte;

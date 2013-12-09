@@ -17,9 +17,8 @@ html
           .controls.col-xs-12
             | control buttons here
           .content.row
-            .col-xs-2
-              .favourite
-              .tree_menu
+            .menu.col-xs-2
+              = yield :menu
             .col-xs-10
               = yield
       footer.footer
