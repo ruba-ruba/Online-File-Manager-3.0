@@ -23,7 +23,6 @@ gem 'jquery-fileupload-rails'
 
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
-gem 'bootstrap-addons-rails'
 gem 'font-awesome-sass-rails'
 gem 'silk-bootstrap-rails'
 
