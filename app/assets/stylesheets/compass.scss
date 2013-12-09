@@ -1,6 +1,6 @@
-@import "cosmo/base";
+// this file resets all default bootstrap settigs fonts etc;
+// @import "compass/reset.scss"; 
 
-// @import "compass/reset.scss"; // this file resets all default bootstrap settigs fonts etc;
 @import "compass/layout.scss";
 
 @include sticky-footer(72px, ".container-fluid", ".row-fluid",".footer");

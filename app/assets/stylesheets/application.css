@@ -12,6 +12,6 @@
  *= require silk-icons
  *= require bootstrap
  *= require cosmo.css
- *= require bootstrap_overriders.scss
+ *= require compass.scss
  *= require home.css.scss
  */

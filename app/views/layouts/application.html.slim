@@ -8,19 +8,19 @@ html
   body
     wrapper
       .container-fluid
-        .row-fluid
-          header.span12
+        .row
+          header.col-xs-12
             = render 'shared/header'
             = render 'shared/flash_message'
-          .navigation.span12
+          .navigation.col-xs-12
             = render 'shared/navigation'
-          .controls.span12
+          .controls.col-xs-12
             | control buttons here
-          .content.row-fluid
-            .span2
+          .content.row
+            .col-xs-2
               .favourite
               .tree_menu
-            .span10
+            .col-xs-10
               = yield
       footer.footer
         = render 'shared/footer'
