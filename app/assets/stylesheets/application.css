@@ -11,5 +11,7 @@
  *= require_self
  *= require silk-icons
  *= require bootstrap
- *= require_tree .
+ *= require cosmo.css
+ *= require bootstrap_overriders.scss
+ *= require home.css.scss
  */

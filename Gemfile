@@ -26,6 +26,10 @@ gem 'bootswatch-rails'
 gem 'font-awesome-sass-rails'
 gem 'silk-bootstrap-rails'
 
+gem 'therubyracer'
+gem 'twitter-bootswatch-rails', '~> 3.0.2'
+gem 'twitter-bootswatch-rails-helpers'
+
 gem 'paperclip', '3.4.2'
 gem 'slim-rails'
 gem 'ancestry'
