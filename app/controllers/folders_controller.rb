@@ -1,8 +1,8 @@
 class FoldersController < ApplicationController
-  # GET /folders
-  # GET /folders.json
+  
+  before_filter :authenticate_user!, except: :index
 
-    def index
+  def index
     @folders = Folder.roots
 
     respond_to do |format|
@@ -11,8 +11,6 @@ class FoldersController < ApplicationController
     end
   end
 
-  # GET /folders/1
-  # GET /folders/1.json
   def show
     @folder = Folder.find(params[:id])
     @folders = @folder.children
