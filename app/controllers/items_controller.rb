@@ -19,11 +19,9 @@ class ItemsController < ApplicationController
     @item =  current_user.items.build(params[:item])
     respond_to do |format|
       if @item.save
-        format.html { render :nothing => true }
-        format.js { render :layout => false }
+        format.html { redirect_to @item }
       else
         format.html { render action: "new" }
-        format.js
       end
     end
   end
