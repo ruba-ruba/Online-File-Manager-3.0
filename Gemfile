@@ -11,6 +11,7 @@ group :assets do
   gem 'compass-rails'
 end
 
+
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'

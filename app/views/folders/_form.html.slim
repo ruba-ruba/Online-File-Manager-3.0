@@ -13,6 +13,10 @@
   .form-group
     = f.label :description
     = f.text_field :description
+  .form-group
+    = f.label :parent_id
+    = f.collection_select :parent_id, Folder.all(:order => "title"), :id, :title, :include_blank => true
+
   .actions 
     = f.submit 'Save', class: 'btn btn-primary'
 
