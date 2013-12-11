@@ -5,7 +5,7 @@ class Folder < ActiveRecord::Base
 
   has_ancestry
 
-  #has_many :items, dependent: :destroy
+  has_many :items, dependent: :destroy
   belongs_to :user
 
   validates :title, presence: true
