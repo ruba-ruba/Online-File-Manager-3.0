@@ -12,6 +12,10 @@ p
 p 
   strong Ancestry:
   = @folder.ancestry
+p
+  strong Folders:
+  - @folder.children.each do |folder|
+    p= link_to folder.title, folder_path(folder)
 
 = link_to 'Edit', edit_folder_path(@folder)
 '|
