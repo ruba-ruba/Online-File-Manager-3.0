@@ -13,9 +13,6 @@ class FoldersController < ApplicationController
 
   def show
     @folder = Folder.find(params[:id])
-    # @folders = @folder.children
-
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @folder }
@@ -45,12 +42,6 @@ class FoldersController < ApplicationController
 
     respond_to do |format|
       if @folder.save
-         # if @folder.ancestry.present?
-         #    @folder = @folder.parent
-         #    @folders = @folder.children
-         # else
-         #   @folder = Folder.new
-         # end
         format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
         format.json { render json: @folder, status: :created, location: @folder }
       else
