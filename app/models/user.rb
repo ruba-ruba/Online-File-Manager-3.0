@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :provider, :uid, :name
 
   has_many :folders
+  has_many :items
 
   ROLES = %w[user admin]
 

@@ -1,4 +1,4 @@
-= simple_form_for @folder do |f|
+= simple_form_for @folder, :html => { :multipart => true } do |f|
   - if @folder.errors.any?
     #error_explanation
       h2 = "#{pluralize(@folder.errors.count, "error")} prohibited this folder from being saved:"
@@ -15,6 +15,5 @@
     = f.text_field :description
   
   .actions 
-    = f.submit 'Save', class: 'btn btn-primary'
-
-= debug params
+    = f.file_field :file
+    = 

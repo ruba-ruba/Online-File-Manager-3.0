@@ -1,0 +1,29 @@
+p#notice = notice
+
+
+p
+  strong Title:
+  = @item.title
+p
+  strong Description:
+  = @item.description
+p
+  strong Folder:
+  = @item.folder_id
+p 
+  strong Date of creation:
+  = @item.created_at
+p 
+  strong Attachments:
+  = image_tag @item.file.url(:thumb)
+p
+  strong Size of attached file:
+  = @item.file_file_size
+
+
+= link_to 'Edit', edit_item_path(@item)
+'|
+= link_to 'Back', items_path
+'|
+= link_to 'New Item', new_item_path(:item_id => params[:id] || nil)
+

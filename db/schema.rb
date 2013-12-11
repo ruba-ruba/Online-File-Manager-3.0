@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121092803) do
+ActiveRecord::Schema.define(:version => 20131211100906) do
 
   create_table "folders", :force => true do |t|
     t.string   "title"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(:version => 20131121092803) do
 
   add_index "folders", ["ancestry"], :name => "index_folders_on_ancestry"
   add_index "folders", ["user_id"], :name => "index_folders_on_user_id"
+
+  create_table "items", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "folder_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
