@@ -19,11 +19,12 @@ class ItemsController < ApplicationController
     end
   end
 
-  def create
+  def create    
     @item =  current_user.items.build(params[:item])
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item }
+        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.json { render json: @item, status: :created, location: @item }
       else
         format.html { render action: "new" }
       end
@@ -69,7 +70,3 @@ class ItemsController < ApplicationController
     end
   end
 end
-
-
-
-
