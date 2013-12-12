@@ -36,6 +36,7 @@ gem 'slim-rails'
 gem 'ancestry'
 gem 'remotipart', '~> 1.2.1'
 gem 'grape'
+gem 'httparty'
 
 
 group :development do

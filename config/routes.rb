@@ -7,7 +7,11 @@ FileManager::Application.routes.draw do
 
   resources :users
 
-  resources :items
+  resources :items do 
+    collection do
+      match 'import_page', to: 'items#import_page', as: 'import_page'
+    end
+  end
 
 
 
