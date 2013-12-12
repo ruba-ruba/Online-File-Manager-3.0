@@ -41,8 +41,8 @@ class ItemsController < ApplicationController
 
 
   def import_page
-    if params['/items/import_page']
-      link = params['/items/import_page'][:url]
+    if params[:import]
+      link = params[:import][:url]
       name = "#{link.gsub('/','').gsub(':','')}.html"
       host = URI.parse(link).host
       response = HTTParty.get(link)
@@ -57,7 +57,6 @@ class ItemsController < ApplicationController
     end
     data = data.encode "UTF-8"
     file = File.new("#{Rails.root}/public/stystem/web_pages/#{host}/#{name}", 'wb+')
-    binding.pry
     File.open("#{Rails.root}/public/stystem/web_pages/#{host}/#{name}", 'w+')  { |f| f.write(data)  }
     respond_to do |format|
       @folder = Folder.find(params[:folder_id]) if params[:folder_id]
