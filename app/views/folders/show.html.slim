@@ -16,9 +16,14 @@ p
   strong Folders:
   = render 'subfolders'
 
+p
+ strong Items:
+  = render 'items'
+
 = link_to 'Edit', edit_folder_path(@folder)
 '|
 = link_to 'Back', folders_path
 '|
 = link_to 'New Folder', new_folder_path(:folder_id => params[:id] || nil)
-
+'|
+= link_to 'New Item', new_item_path
