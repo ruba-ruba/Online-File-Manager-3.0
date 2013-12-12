@@ -1,0 +1,9 @@
+- content_for :menu do
+  = render 'shared/menu'
+
+h1 Listing items
+
+
+
+= link_to 'New Item', new_item_path(:item_id => params[:id] || nil)
+
