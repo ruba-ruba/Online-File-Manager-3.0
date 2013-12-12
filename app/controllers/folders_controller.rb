@@ -22,6 +22,11 @@ class FoldersController < ApplicationController
   # GET /folders/new
   # GET /folders/new.json
   def new
+    p '='*80
+    p '='*80
+    p params
+    p '='*80
+    p '='*80
     @folder = Folder.new
     
     respond_to do |format|
