@@ -47,19 +47,24 @@
     height: 50px;
     color: white;
     .nav-tabs{
-      margin: 0px;
-      height: 50px;
-
+      ul{
+        margin: 0px;
+        padding: 10px 0 10px 15px;
+        height: 50px;
+      };  
     };
   };
 
   .menu{
-    padding-left: 60px;
+    padding-left: 60px;    
     .tree_menu{
+      ul{
+        list-style-type: none;
+      };      
       li > ul{
-          margin-left: 20px;
+        margin-left: 20px;
+        list-style-type: none;
       };
     };
-  };
-    
+  };    
 };
