@@ -14,4 +14,5 @@ config/database.yml
 /log/*.log
 /coverage
 public/system/
+/public/system/
 .idea/

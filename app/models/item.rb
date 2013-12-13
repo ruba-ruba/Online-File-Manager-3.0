@@ -2,7 +2,9 @@ class Item < ActiveRecord::Base
   attr_accessible :description, :folder_id, :title, :file, :file_file_name, :file_content_type, :file_file_size, :file_updated_at, :created_at, :updated_at, :user_id
   
 
-  has_attached_file :file, :default_style => :thumb
+  has_attached_file :file,
+                    :url  => "/system/:attachment/:id/:style_:filename",
+                    :path => ":rails_root/public/system/:attachment/:id/:style_:filename"
 
   belongs_to :folder
   belongs_to :user

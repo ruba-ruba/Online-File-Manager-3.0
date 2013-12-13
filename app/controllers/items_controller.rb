@@ -56,7 +56,9 @@ class ItemsController < ApplicationController
   end
 
   def create_file(user, folder, name, host, data)
-    path = "public/stystem/web_pages/#{host}"
+    file_params = {user_id: user, folder_id: folder, file_name: name}
+    id = Item.last.id+1
+    path = "public/stystem/#{id}"
     dirname = ("#{Rails.root}/#{path}")
     unless File.directory?(dirname)
       FileUtils.mkdir_p(dirname)
@@ -64,7 +66,6 @@ class ItemsController < ApplicationController
     data = data.encode "UTF-8"
     file = File.new("#{Rails.root}/#{path}/#{name}", 'wb+')
     File.open("#{Rails.root}/#{path}/#{name}", 'w+')  { |f| f.write(data)  }
-    file_params = {user_id: user, folder_id: folder, file_name: name}
     Item.create_record(file_params, file)
     respond_to do |format|
       @folder = Folder.find(params[:folder_id]) if params[:folder_id]
