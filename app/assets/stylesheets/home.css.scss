@@ -30,12 +30,16 @@
     background-color: #0D2033;
     .nav-buttons{
       float: left;
-      height: 30px;      
+      height: 30px;
+      min-width: 50px;     
       width: 8%;
       display: inline-block;
       .pager{
         margin: 0;
-        padding: 0;                
+        padding: 0;
+        #wrapper{
+          min-width: 50px;
+        };      
       };
     };
     .nav-path{ 
@@ -46,16 +50,14 @@
     };
   };
 
-  .controls{
+  .control_panel{
     @include control_buttons_background;
     padding: 10px 0 10px 15px;
     height: 50px;
     color: white;
-    .nav-tabs{
+    .control_buttons {        
       ul{
-        margin: 0px;
-        padding: 10px 0 10px 15px;
-        height: 50px;
+        margin: 0px;           
       };  
     };
   };
@@ -71,5 +73,5 @@
         list-style-type: none;
       };
     };
-  };    
+  };  
 };
