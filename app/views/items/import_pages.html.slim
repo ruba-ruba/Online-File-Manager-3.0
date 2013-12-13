@@ -1,0 +1,6 @@
+= simple_form_for :import, url: import_page_items_path do |f|
+  = f.input :folder, as: :hidden, :input_html => { :value => params[:folder_id] }
+  = f.input :user, as: :hidden, :input_html => { :value => current_user.id }
+
+  = f.input :url
+  = f.submit 'submit'

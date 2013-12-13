@@ -6,4 +6,7 @@ class Item < ActiveRecord::Base
 
   belongs_to :folder
   belongs_to :user
+
+  def self.create_record(params)
+  end
 end

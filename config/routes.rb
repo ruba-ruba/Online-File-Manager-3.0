@@ -9,7 +9,8 @@ FileManager::Application.routes.draw do
 
   resources :items do 
     collection do
-      match 'import_page', to: 'items#import_page', as: 'import_page'
+      get 'import_pages', to: 'items#import_pages', as: 'import_pages'
+      post 'import_page', to: 'items#import_page', as: 'import_page'
     end
   end
 

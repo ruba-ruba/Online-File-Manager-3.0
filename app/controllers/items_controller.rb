@@ -38,26 +38,34 @@ class ItemsController < ApplicationController
   def update
   end
 
-
+  def import_pages 
+  end
 
   def import_page
-    if params[:import]
-      link = params[:import][:url]
-      name = "#{link.gsub('/','').gsub(':','')}.html"
-      host = URI.parse(link).host
+    user = params[:import][:user_id]
+    folder = params[:import][:folder_id]
+    link = params[:import][:url]
+    name = "#{link.gsub('/','').gsub(':','')}.html"
+    host = URI.parse(link).host
+    begin
       response = HTTParty.get(link)
-      create_file(name, host, response.body)
+      create_file(user, folder, name, host, response.body)
+    rescue Errno::ECONNREFUSED
+       redirect_to import_pages_items_path, notice: 'url not correct'
     end
   end
 
-  def create_file(name, host, data)
-    dirname = ("#{Rails.root}/public/stystem/web_pages/#{host}")
+  def create_file(user, folder, name, host, data)
+    path = "public/stystem/web_pages/#{host}"
+    dirname = ("#{Rails.root}/#{path}")
     unless File.directory?(dirname)
       FileUtils.mkdir_p(dirname)
     end
     data = data.encode "UTF-8"
-    file = File.new("#{Rails.root}/public/stystem/web_pages/#{host}/#{name}", 'wb+')
-    File.open("#{Rails.root}/public/stystem/web_pages/#{host}/#{name}", 'w+')  { |f| f.write(data)  }
+    file = File.new("#{Rails.root}/#{path}/#{name}", 'wb+')
+    File.open("#{Rails.root}/#{path}/#{name}", 'w+')  { |f| f.write(data)  }
+    file_params = []
+    Item.create_record(file_params)
     respond_to do |format|
       @folder = Folder.find(params[:folder_id]) if params[:folder_id]
       message = "#{host}/#{name} was successfully created"
