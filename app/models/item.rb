@@ -13,6 +13,8 @@ class Item < ActiveRecord::Base
     case
     when link.split('/').last == host
       "#{link.gsub('/','').gsub(':','')}.html"
+    when link.split('/').last.index('.') != nil
+      "#{link.gsub('/','').gsub(':','')}"
     else
       "#{link.gsub('/','').gsub(':','')}.html"
     end
@@ -36,9 +38,9 @@ class Item < ActiveRecord::Base
     unless File.directory?(dirname)
       FileUtils.mkdir_p(dirname)
     end
-    data = data.encode "UTF-8"
-    file = File.new("#{Rails.root}/#{path}/#{name}", 'wb+')
-    File.open("#{Rails.root}/#{path}/#{name}", 'w+')  { |f| f.write(data)  }
+    #data = data.encode "UTF-8"
+    file = File.new("#{Rails.root}/#{path}/#{name}", 'wb:ASCII-8BIT')
+    File.open("#{Rails.root}/#{path}/#{name}", 'wb:ASCII-8BIT')  { |f| f.write(data)  }
     Item.create_record(file_params, file)
   end
 

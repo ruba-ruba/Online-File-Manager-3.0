@@ -50,8 +50,8 @@ class ItemsController < ApplicationController
     begin
       response = HTTParty.get(link)
       create_file(user, folder, name, host, response.body)
-    rescue Errno::ECONNREFUSED
-       redirect_to import_pages_items_path, alert: 'url not correct'
+    rescue Exception => exc
+       redirect_to import_pages_items_path, alert: "url not correct #{exc}"
     end
   end
 
