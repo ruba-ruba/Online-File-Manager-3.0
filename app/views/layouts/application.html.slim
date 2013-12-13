@@ -14,12 +14,11 @@ html
             = render 'shared/flash_message'
           .navigation.col-xs-12
             = render 'shared/navigation'            
-          .controls.col-xs-12
+          .control_panel.col-xs-12
             = render 'shared/control_buttons'            
           .content.row
             .menu.col-xs-2
-              = render 'shared/menu'
-              / = yield :menu
+              = render 'shared/menu'              
             .col-xs-10
               = yield
       footer.footer

@@ -30,12 +30,13 @@
     background-color: #0D2033;
     .nav-buttons{
       float: left;
-      height: 30px;      
+      height: 30px;
+      min-width: 50px;      
       width: 8%;
       display: inline-block;
       .pager{
         margin: 0;
-        padding: 0;                
+        padding: 0;      
       };
     };
     .nav-path{ 
@@ -46,7 +47,7 @@
     };
   };
 
-  .controls{
+  .control_panel{
     @include control_buttons_background;
     padding: 10px 0 10px 15px;
     height: 50px;
