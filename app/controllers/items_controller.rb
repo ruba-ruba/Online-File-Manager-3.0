@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
       response = HTTParty.get(link)
       create_file(user, folder, name, host, response.body)
     rescue Errno::ECONNREFUSED
-       redirect_to import_pages_items_path, notice: 'url not correct'
+       redirect_to import_pages_items_path, alert: 'url not correct'
     end
   end
 
@@ -64,8 +64,8 @@ class ItemsController < ApplicationController
     data = data.encode "UTF-8"
     file = File.new("#{Rails.root}/#{path}/#{name}", 'wb+')
     File.open("#{Rails.root}/#{path}/#{name}", 'w+')  { |f| f.write(data)  }
-    file_params = []
-    Item.create_record(file_params)
+    file_params = {user_id: user, folder_id: folder, file_name: name}
+    Item.create_record(file_params, file)
     respond_to do |format|
       @folder = Folder.find(params[:folder_id]) if params[:folder_id]
       message = "#{host}/#{name} was successfully created"
