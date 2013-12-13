@@ -1,5 +1,4 @@
-div.catalog_tree
-  ul
-    - Folder.roots.each do |folder|
-      = render 'shared/tree_element', :folder => folder
+ul
+  - Folder.roots.each do |folder|
+    = render 'shared/tree_element', :folder => folder
       
