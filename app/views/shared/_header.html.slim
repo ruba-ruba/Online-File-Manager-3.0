@@ -4,8 +4,7 @@
   - if admin?
     = link_to 'Users', users_path, class: 'btn btn-primary'
   .btn-group.pull-right
-    button.btn.btn-primary.dropdown-toggle.pull-right data-toggle="dropdown"
-      | Welcome  
+    button.btn.btn-primary.dropdown-toggle.pull-right data-toggle="dropdown" 
       = current_user.email
       '&nbsp
       span.caret
@@ -14,6 +13,9 @@
       li.divider
       li= link_to 'Edit profile', edit_user_registration_path
       li= link_to 'Sign Out', destroy_user_session_path, method: :delete
+  .pull-right.quota
+    = @taken
+    = number_to_human_size current_user.quota
 - else
   .btn-group.pull-right
     button.btn.btn-primary.dropdown-toggle.pull-right data-toggle="dropdown"

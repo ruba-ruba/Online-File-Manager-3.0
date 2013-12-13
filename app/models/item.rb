@@ -28,7 +28,7 @@ class Item < ActiveRecord::Base
 
   def self.create_file(user, folder, name, host, data)
     file_params = {user_id: user, folder_id: folder, file_name: name}
-    id = Item.last.id + 1
+    id = Item.last ? Item.last.id + 1 : 1
     path = "public/stystem/#{id}"
     dirname = ("#{Rails.root}/#{path}")
     unless File.directory?(dirname)
