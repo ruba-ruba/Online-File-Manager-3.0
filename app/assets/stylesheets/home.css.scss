@@ -55,5 +55,11 @@
 
   .menu{
     padding-left: 60px;
+    .tree_menu{
+      li > ul{
+          margin-left: 20px;
+      };
+    };
   };
+    
 };
