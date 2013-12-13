@@ -51,11 +51,9 @@
     padding: 10px 0 10px 15px;
     height: 50px;
     color: white;
-    .nav-tabs{
+    .control_buttons {        
       ul{
-        margin: 0px;
-        padding: 10px 0 10px 15px;
-        height: 50px;
+        margin: 0px;           
       };  
     };
   };
@@ -71,5 +69,5 @@
         list-style-type: none;
       };
     };
-  };    
+  };  
 };
