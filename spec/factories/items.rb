@@ -1,9 +1,9 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :item do
-    title "MyString"
-    description "MyString"
-    folder_id 1
+    association :folder, :factory => :folder
+    file_file_name {generate(:item_name)}
+    file_content_type "application/x-msdownload"
+    file_file_size "7766"
+    file_updated_at "#{Time.now}"
   end
 end

@@ -45,8 +45,8 @@ class ItemsController < ApplicationController
     user = params[:import][:user_id]
     folder = params[:import][:folder_id]
     link = params[:import][:url]
-    name = "#{link.gsub('/','').gsub(':','')}.html"
     host = URI.parse(link).host
+    name = Item.file_name(link, host)
     begin
       response = HTTParty.get(link)
       create_file(user, folder, name, host, response.body)
@@ -56,17 +56,7 @@ class ItemsController < ApplicationController
   end
 
   def create_file(user, folder, name, host, data)
-    file_params = {user_id: user, folder_id: folder, file_name: name}
-    id = Item.last.id+1
-    path = "public/stystem/#{id}"
-    dirname = ("#{Rails.root}/#{path}")
-    unless File.directory?(dirname)
-      FileUtils.mkdir_p(dirname)
-    end
-    data = data.encode "UTF-8"
-    file = File.new("#{Rails.root}/#{path}/#{name}", 'wb+')
-    File.open("#{Rails.root}/#{path}/#{name}", 'w+')  { |f| f.write(data)  }
-    Item.create_record(file_params, file)
+    Item.create_file(user, folder, name, host, data)
     respond_to do |format|
       @folder = Folder.find(params[:folder_id]) if params[:folder_id]
       message = "#{host}/#{name} was successfully created"
