@@ -1,0 +1,6 @@
+li
+	=link_to folder.title, folder_path(folder)
+	- if folder.has_children? &&  ancestor_ids_for_tree.include?(folder.id)
+		ul
+			-folder.children.each do |subfolder|
+				=render 'shared/tree_element', :folder => subfolder
