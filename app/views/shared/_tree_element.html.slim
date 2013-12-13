@@ -1,7 +1,12 @@
 li
-	=link_to "#{image_tag('folder_002.png', size: '30x30')} #{folder.title}".html_safe, folder_path(folder)
-	- if folder.has_children? &&  ancestor_ids_for_tree.include?(folder.id)
-		ul
-			-folder.children.each do |subfolder|
-				=render 'shared/tree_element', :folder => subfolder
-
+  span
+    - if folder.has_children?
+      =link_to "+", folder_path(folder)
+    - else
+      =link_to "-", folder_path(folder)
+  '&nbsp
+  =link_to "#{image_tag('folder_002.png', size: '30x30')} #{folder.title}".html_safe, folder_path(folder)    
+  - if folder.has_children? &&  ancestor_ids_for_tree.include?(folder.id)
+    ul
+      -folder.children.each do |subfolder|
+        =render 'shared/tree_element', :folder => subfolder
