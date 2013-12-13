@@ -18,7 +18,8 @@ html
             = render 'shared/control_buttons'            
           .content.row
             .menu.col-xs-2
-              = yield :menu
+              = render 'shared/menu'
+              / = yield :menu
             .col-xs-10
               = yield
       footer.footer

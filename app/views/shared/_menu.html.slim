@@ -1,2 +1,66 @@
 .favourite
+  .page-header
+    h4 Favorite Links
+    nav.favorite_links
+      ul.nav.nav.stacked
+        li
+          a href="#"
+            span.glyphicon.glyphicon-file
+            |  Documents
+        li
+          a href="#"
+            span.glyphicon.glyphicon-film
+            |  Videos
+        li
+          a href="#"
+            span.glyphicon.glyphicon-picture
+            |  Pictures
+
+
 .tree_menu
+  .page-header
+    h4 Folders
+    ul.open
+      li
+      = image_tag('folder_002.png', size: "40x40") 
+      | Folder               
+
+
+/ ul.open
+/   li#item1
+/     a onclick="toggle('item1');"
+/       img#img_item1 alt="" border="0" src="closed.gif"
+/     | Item 1
+/     ul#ul_item1.closed
+/       li#item1_1 Item 1.1
+/       li#item1_2 Item 1.2
+/   li#item2
+/     a onclick="toggle('item2');"
+/       img#img_item2 alt="" border="0" src="closed.gif"
+/     | Item 2
+/     ul#ul_item2.closed
+/       li#item2_1
+/         a onclick="toggle('item2_1');"
+/           img#img_item2_1 alt="" border="0" src="closed.gif"
+/         | Item 2.1
+/         ul#ul_item2_1.closed
+/           li#item2_1_1 Item 2.1.1
+/           li#item2_1_2
+/             a onclick="toggle('item2_1_2');"
+/               img#img_item2_1_2 alt="" border="0" src="closed.gif"
+/             | Item 2.1.2
+/             ul#ul_item2_1_2.closed
+/               li#item2_1_2_1 Item 2.1.2.1
+/               li#item2_1_2_2 Item 2.1.2.2
+/           li#item2_2_3 Item 2.1.3
+/       li#item2_2 Item 2.2
+/   li#item3
+/     a onclick="toggle('item3');"
+/       img#img_item3 alt="" border="0" src="closed.gif"
+/     | Item 3
+/     ul#ul_item3.closed
+/       li#item3_1 Item 3.1
+/       li#item3_2 Item 3.2
+/       li#item3_3 Item 3.3
+/       li#item3_4 Item 3.4
+/       li#item3_5 Item 3.5
