@@ -25,9 +25,13 @@
     background-color: #0D2033;
     .nav-buttons{
       float: left;
-      height: 30px;
+      height: 30px;      
       width: 8%;
       display: inline-block;
+      .pager{
+        margin: 0;
+        padding: 0;                
+      };
     };
     .nav-path{ 
       margin-left: 10%;
@@ -42,5 +46,14 @@
     padding: 10px 0 10px 15px;
     height: 50px;
     color: white;
-  }
+    .nav-tabs{
+      margin: 0px;
+      height: 50px;
+
+    };
+  };
+
+  .menu{
+    padding-left: 60px;
+  };
 };
