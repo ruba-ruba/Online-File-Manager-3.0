@@ -10,10 +10,10 @@ describe Item do
       url3 = 'http://railsforum.com/some_path'
       url4 = 'http://railsforum.com/some_path.png'
 
-      Item.file_name(url1, host).should eq("httprailsforum.com.html")
-      Item.file_name(url2, host).should eq("httprailsforum.com.html")
-      Item.file_name(url3, host).should eq("httprailsforum.comsome_path.html")
-      Item.file_name(url4, host).should eq("httprailsforum.comsome_path.png")
+      Item.file_name(url1, host).should eq("index.html")
+      Item.file_name(url2, host).should eq("index.html")
+      Item.file_name(url3, host).should eq("some_path")
+      Item.file_name(url4, host).should eq("some_path.png")
     end
   end
 
