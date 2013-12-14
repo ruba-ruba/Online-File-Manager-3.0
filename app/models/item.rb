@@ -9,6 +9,15 @@ class Item < ActiveRecord::Base
   belongs_to :folder
   belongs_to :user
 
+  #before_save :check_quota
+
+  def check_quota
+    user = self.user_id
+    current_file_size = self.file_file_size
+    previouse_size = Item.where(user_id: user).pluck(:file_file_size).inject{|sum,x| sum + x }
+    return User.find(user).quota <=> previouse_size + current_file_size
+  end
+
   def self.file_name(link, host)
     case
     when link.split('/').last == host
@@ -29,7 +38,7 @@ class Item < ActiveRecord::Base
   def self.create_file(user, folder, name, host, data)
     file_params = {user_id: user, folder_id: folder, file_name: name}
     id = Item.last ? Item.last.id + 1 : 1
-    path = "public/stystem/#{id}"
+    path = "public/system/files/#{id}"
     dirname = ("#{Rails.root}/#{path}")
     unless File.directory?(dirname)
       FileUtils.mkdir_p(dirname)

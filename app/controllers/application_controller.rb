@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  # layout 'cosmo'
+
   helper_method :ancestor_ids_for_tree
 
   before_filter :current_user_quota
