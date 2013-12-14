@@ -11,10 +11,14 @@ class ApplicationController < ActionController::Base
 
 
   def current_user_quota
-    quota = current_user.quota
-    size = Item.where(user_id: current_user.id).pluck(:file_file_size).inject{|sum,x| sum + x }
-    @taken = size*100/quota if size
-    @total = quota
+    if current_user
+      quota = current_user.quota
+      size = Item.where(user_id: current_user.id).pluck(:file_file_size).inject{|sum,x| sum + x }
+      @taken = size*100.to_f/quota if size
+      @taken = @taken.to_s.truncate(4, :omission => "")
+      @total = quota
+    end
   end
+
 end
 
