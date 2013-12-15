@@ -1,14 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :ancestor_ids_for_tree
-
   before_filter :current_user_quota
-
-  def ancestor_ids_for_tree
-  	session[:ancestor_ids] || [] 	
-  end
-
 
   def current_user_quota
     if current_user

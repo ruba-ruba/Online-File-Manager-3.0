@@ -1,3 +1,10 @@
 // Place all the styles related to the Folders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.glyphicon-minus ~ ul {
+  display: block;
+  }
+.glyphicon-plus ~ ul {
+  display: none;
+  }

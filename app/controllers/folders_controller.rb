@@ -1,7 +1,6 @@
 class FoldersController < ApplicationController
   
   before_filter :authenticate_user!, except: :index
-  before_filter :set_tree_target_folder, only: [:show, :index]
 
   def index
     @folders = Folder.roots
@@ -78,15 +77,6 @@ class FoldersController < ApplicationController
       format.html { redirect_to folders_url }
       format.json { head :no_content }
     end
-  end
-
-  protected
-
-  def set_tree_target_folder
-    session[:ancestor_ids] = if params[:id]
-      target_folder = Folder.find(params[:id])
-      target_folder.ancestor_ids + [target_folder.id]
-    end || []
   end
 
 end
