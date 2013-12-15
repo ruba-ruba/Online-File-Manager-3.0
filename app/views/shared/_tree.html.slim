@@ -1,4 +1,9 @@
 ul
-  - Folder.roots.each do |folder|
-    = render 'shared/tree_element', :folder => folder
-      
+  - folders.each do |folder|
+    li
+      span
+        =  link_to "#{folder.has_children? ? '+' : '-'}", folder_path(folder)
+      '&nbsp
+      = link_to "#{image_tag('folder_002.png', size: '30x30')} #{folder.title}".html_safe, folder_path(folder)    
+      - if folder.has_children? &&  ancestor_ids_for_tree.include?(folder.id)
+        = render 'shared/tree', :folders => folder.children
