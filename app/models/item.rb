@@ -14,9 +14,8 @@ class Item < ActiveRecord::Base
 
   def check_quota
     user = User.find(self.user_id)
-    current_file_size = self.file_file_size
+    current_file_size = self.file_file_size || 0
     previouse_size = user.items.sum(:file_file_size) || 0
-    binding.pry
     return user.quota <=> previouse_size + current_file_size
   end
 

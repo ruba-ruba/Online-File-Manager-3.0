@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
 
   def create
     @item =  current_user.items.build(params[:item])
-    if @item.check_quota
+    if @item.check_quota && @item.valid?
       if @item.save
         respond_to do |format|
           format.html { redirect_to @item, notice: 'Item was successfully created.' }
@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to new_item_path, notice: 'you have reached limit of your space' }
+        format.html { redirect_to new_item_path, alert: @item.errors }
       end
     end
   end
