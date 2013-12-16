@@ -18,3 +18,4 @@
 //= require cosmo/bootswatch.js
 //= require items.js.coffee
 //= require folders.js.coffee
+//= require progress.js.coffee
