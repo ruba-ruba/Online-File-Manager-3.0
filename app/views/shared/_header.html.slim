@@ -14,10 +14,11 @@
       li= link_to 'Edit profile', edit_user_registration_path
       li= link_to 'Sign Out', destroy_user_session_path, method: :delete
       
-  .pull-right.progress
-    .progress-bar.progress-bar-success aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style="width: #{@taken.to_i}%"
-    .progress-bar.progress-bar-warning aria-valuemax="100" aria-valuemin="0" aria-valuenow="80" role="progressbar" style="width: #{@taken.to_i}%"
-    .progress-bar.progress-bar-danger aria-valuemax="100" aria-valuemin="0" aria-valuenow="90" role="progressbar" style="width: #{@taken.to_i}%"    
+  .pull-right.progress    
+    #g-gradient.gradient.progress-bar aria-valuemax="30" aria-valuemin="0" aria-valuenow="@taken.to_i" role="progressbar" style="width: #{@taken.to_i}%"
+    #y-gradient.gradient.progress-bar aria-valuemax="60" aria-valuemin="30" aria-valuenow="@taken.to_i" role="progressbar" style="width: #{@taken.to_i}%"
+    #r-gradient.gradient.progress-bar aria-valuemax="100" aria-valuemin="60" aria-valuenow="@taken.to_i" role="progressbar" style="width: #{@taken.to_i}%"
+ 
     span.text
     | used  
     = @taken
