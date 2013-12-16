@@ -19,8 +19,12 @@
   /   | % of  
   /   = number_to_human_size current_user.quota
   .pull-right.quota    
-    .progress-bar-success
+    .progress-bar
       div style="width:#{@taken}%;"
+      
+      / .bar.bar-success style="width: 35%;"
+      / .bar.bar-warning style="width: 20%;"
+      / .bar.bar-danger style="width: 10%;"  
       | used  
       = @taken
       | % of  
