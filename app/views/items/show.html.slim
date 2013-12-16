@@ -15,7 +15,7 @@ p
   = @item.created_at
 p 
   strong Attachments:
-  = image_tag @item.file.url(:thumb)
+  = image_tag @item.file.url
 p
   strong Size of attached file:
   = @item.file_file_size
