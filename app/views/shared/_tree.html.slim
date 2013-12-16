@@ -6,6 +6,6 @@ ul
       - else
         span.glyphicon
       '&nbsp
-      = link_to "#{image_tag('folder_002.png', size: '30x30')} #{folder.title}".html_safe, folder_path(folder)    
+      = link_to "#{image_tag('folder.png', size: '30x30')} #{folder.title}".html_safe, folder_path(folder)    
       - if folder.has_children?
         = render 'shared/tree', :folders => folder.children
