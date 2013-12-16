@@ -21,6 +21,16 @@
         };
       };
     };
+    .pull-right.quota{      
+      display: inline-block;
+      width: 300px;
+      margin-top: 10px;
+      .progress-bar-success{
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+      };               
+    };
   };
 
   .navigation{

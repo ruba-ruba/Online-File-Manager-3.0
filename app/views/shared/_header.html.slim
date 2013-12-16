@@ -13,11 +13,18 @@
       li.divider
       li= link_to 'Edit profile', edit_user_registration_path
       li= link_to 'Sign Out', destroy_user_session_path, method: :delete
-  .pull-right.quota
-    | used  
-    = @taken
-    | % of  
-    = number_to_human_size current_user.quota
+  / .pull-right.quota
+  /   | used  
+  /   = @taken
+  /   | % of  
+  /   = number_to_human_size current_user.quota
+  .pull-right.quota    
+    .progress-bar-success
+      div style="width:#{@taken}%;"
+      | used  
+      = @taken
+      | % of  
+      = number_to_human_size current_user.quota
 - else
   .btn-group.pull-right
     button.btn.btn-primary.dropdown-toggle.pull-right data-toggle="dropdown"
