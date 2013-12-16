@@ -75,6 +75,8 @@ Spork.each_run do
     
     config.include Devise::TestHelpers, :type => :controller
     config.extend ControllerMacros, :type => :controller
+    config.include Warden::Test::Helpers, :type =>:request
+    config.extend RequestMacros, :type => :request
 
     RSpec.configure do |config|
       config.include Paperclip::Shoulda::Matchers

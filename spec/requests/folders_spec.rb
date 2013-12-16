@@ -1,13 +1,9 @@
 require 'spec_helper'
 
 describe "Folders" do
-  include Warden::Test::Helpers
-  Warden.test_mode!
-  before(:each) do
-    user = FactoryGirl.create(:user)
-    login_as(user, :scope => :user)
-  end  
 
+  login_user
+  
   let(:folder){FactoryGirl.create(:folder)}
 
   describe "Index page" do
