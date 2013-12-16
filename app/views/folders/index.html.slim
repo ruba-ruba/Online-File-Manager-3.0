@@ -24,4 +24,13 @@ table
 
 br
 
+- Item.all.each do |item|
+  = item.file_file_name
+  '&nbsp
+  = simple_form_for :file, url: add_recipient_items_path do |f|
+    = f.input :file_name, :as => :hidden, :input_html => { :value => item.file_file_name } 
+    = f.input :file_path, :as => :hidden, :input_html => { :value => item.file.url }
+    = f.submit 'Send' 
+  br/
+
 = link_to 'New Folder', new_folder_path(:folder_id => params[:id] || nil)

@@ -11,6 +11,8 @@ FileManager::Application.routes.draw do
     collection do
       get 'import_pages', to: 'items#import_pages', as: 'import_pages'
       post 'import_page', to: 'items#import_page', as: 'import_page'
+      match 'add_recipient', to: 'items#add_recipient'
+      post 'send_mail', to: 'items#send_mail'
     end
   end
 

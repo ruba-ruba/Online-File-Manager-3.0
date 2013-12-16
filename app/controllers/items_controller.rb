@@ -48,6 +48,14 @@ class ItemsController < ApplicationController
   def update
   end
 
+  def add_recipient
+  end
+
+  def send_mail
+    FileMailer.send_file(recipient, subject, message)
+    render :text => 'Message sent successfully'
+  end
+
   def import_pages 
   end
 
