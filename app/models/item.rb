@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
   belongs_to :folder
   belongs_to :user
 
-  validates_with AttachmentPresenceValidator, :attributes => :file
+   validates :file, :attachment_presence => true
 
 
   def check_quota

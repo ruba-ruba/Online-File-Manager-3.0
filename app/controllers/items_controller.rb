@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to new_item_path}
+        format.html { render action: "new" }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end

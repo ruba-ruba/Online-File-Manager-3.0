@@ -1,9 +1,15 @@
 = simple_form_for @item, :html => { :multipart => true } do |f|
 
-  / = f.hidden_field :parent_id, :value => params[:folder_id]
-  / = f.hidden_field :folder_id, :value => params[:folder_id]
-  / = f.input :title, :as => :hidden, :input_html => { :value => "some value" }
+  - if @item.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@item.errors.count, "error")} prohibited this folder from being saved:"
+      ul
+        - @item.errors.full_messages.each do |message|
+          li = message
+
   = f.input :folder_id, :as => :hidden, :input_html => { :value => params[:folder_id] }
+  = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
+
 
   .form-group
     = f.label :title
