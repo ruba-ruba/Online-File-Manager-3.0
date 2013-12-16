@@ -15,7 +15,6 @@ class Item < ActiveRecord::Base
     current_file_size = self.file_file_size
     previouse_size = Item.where(user_id: user).pluck(:file_file_size).inject{|sum,x| sum + x } || 0
     return User.find(user).quota <=> previouse_size + current_file_size
-
   end
 
   def self.file_name(link, host)

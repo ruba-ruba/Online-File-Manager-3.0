@@ -20,19 +20,16 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.transaction do
-      @item =  current_user.items.build(params[:item])
-      if @item.check_quota
-        if @item.save
-          respond_to do |format|
-            format.html { redirect_to @item, notice: 'Item was successfully created.' }
-          end
-        end
-      else
+    @item =  current_user.items.build(params[:item])
+    if @item.check_quota
+      if @item.save
         respond_to do |format|
-          format.html { redirect_to new_item_path, notice: 'you have reached limit of your space' }
+          format.html { redirect_to @item, notice: 'Item was successfully created.' }
         end
-        raise ActiveRecord::Rollback
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to new_item_path, notice: 'you have reached limit of your space' }
       end
     end
   end
