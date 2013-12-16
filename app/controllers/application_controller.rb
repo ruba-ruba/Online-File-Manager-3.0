@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :current_user_quota
 
-  def current_user_quota
+  def current_user_quota    
     if current_user
       quota = current_user.quota
       size = Item.where(user_id: current_user.id).pluck(:file_file_size).inject{|sum,x| sum + x } if Item.any?
@@ -14,4 +14,3 @@ class ApplicationController < ActionController::Base
   end
 
 end
-

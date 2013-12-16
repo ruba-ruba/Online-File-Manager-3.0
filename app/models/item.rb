@@ -9,6 +9,8 @@ class Item < ActiveRecord::Base
   belongs_to :folder
   belongs_to :user
 
+  validates_with AttachmentPresenceValidator, :attributes => :file
+
 
   def check_quota
     user = self.user_id
