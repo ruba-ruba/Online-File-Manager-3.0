@@ -9,12 +9,10 @@ class Item < ActiveRecord::Base
   belongs_to :folder
   belongs_to :user
 
-  #before_save :check_quota
 
   def check_quota
     user = self.user_id
     current_file_size = self.file_file_size
-    binding.pry
     previouse_size = Item.where(user_id: user).pluck(:file_file_size).inject{|sum,x| sum + x } || 0
     return User.find(user).quota <=> previouse_size + current_file_size
 
