@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :user do
-    email "user#{Random.rand(1000)}@example.com"
+    email {generate(:user_email)}
     password "my_pass"
     role "user"
   end

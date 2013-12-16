@@ -27,6 +27,7 @@ Spork.prefork do
 end
 
 
+
 Spork.each_run do
 
   if ENV['DRB']
@@ -72,6 +73,7 @@ Spork.each_run do
     include Capybara::DSL
     include Capybara::RSpecMatchers
     
+    config.include Devise::TestHelpers, :type => :controller
     config.extend ControllerMacros, :type => :controller
 
     RSpec.configure do |config|
