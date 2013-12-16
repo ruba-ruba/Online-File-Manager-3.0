@@ -13,14 +13,11 @@
       li.divider
       li= link_to 'Edit profile', edit_user_registration_path
       li= link_to 'Sign Out', destroy_user_session_path, method: :delete
-  / .pull-right.quota
-  /   | used  
-  /   = @taken
-  /   | % of  
-  /   = number_to_human_size current_user.quota
-   
+      
   .pull-right.progress
-    .progress-bar.progress-bar-success aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" style="width: #{@taken.to_i}%"
+    .progress-bar.progress-bar-success aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style="width: #{@taken.to_i}%"
+    .progress-bar.progress-bar-warning aria-valuemax="100" aria-valuemin="0" aria-valuenow="80" role="progressbar" style="width: #{@taken.to_i}%"
+    .progress-bar.progress-bar-danger aria-valuemax="100" aria-valuemin="0" aria-valuenow="90" role="progressbar" style="width: #{@taken.to_i}%"    
     span.text
     | used  
     = @taken
