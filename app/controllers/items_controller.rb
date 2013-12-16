@@ -21,15 +21,22 @@ class ItemsController < ApplicationController
 
   def create
     @item =  current_user.items.build(params[:item])
-    if @item.check_quota && @item.valid?
-      if @item.save
+    if @item.valid?
+      if @item.check_quota 
+        if @item.save
+          respond_to do |format|
+            format.html { redirect_to @item, notice: 'Item was successfully created.' }
+          end
+        end
+      else
         respond_to do |format|
-          format.html { redirect_to @item, notice: 'Item was successfully created.' }
+          format.html { redirect_to new_item_path, alert: " limit of space" }
         end
       end
     else
       respond_to do |format|
-        format.html { redirect_to new_item_path, alert: @item.errors }
+        format.html { redirect_to new_item_path}
+        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
