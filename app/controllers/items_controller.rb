@@ -52,8 +52,13 @@ class ItemsController < ApplicationController
   end
 
   def send_mail
-    FileMailer.send_file(recipient, subject, message)
-    render :text => 'Message sent successfully'
+    mail = params[:mail]
+    recipient = mail[:recipient]
+    subject = mail[:subject]
+    file_path = mail[:file_path]
+    file_name = mail[:file_name]
+    FileMailer.send_file(recipient, subject, file_path, file_name).deliver
+    redirect_to root_path, notice: 'emeil sent successfully'
   end
 
   def import_pages 
