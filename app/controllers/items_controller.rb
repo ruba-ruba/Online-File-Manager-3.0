@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
       if @item.check_quota 
         if @item.save
           if @item.folder_id.nil?
-          @items = Item.without_folder
+          @items = Item.root
           else
           @items = Item.where(:folder_id => @item.folder_id)
           end
@@ -67,7 +67,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update_attributes(params[:item])
         if @item.folder_id.nil?
-          @items = Item.without_folder
+          @items = Item.root
         else
           @items = Item.where(:folder_id => @item.folder_id)
         end
@@ -162,7 +162,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.folder_id.nil?
-        @items = Item.without_folder
+        @items = Item.root
       else
         @items = Item.where(:folder_id => @item.folder_id)
       end
@@ -175,7 +175,7 @@ class ItemsController < ApplicationController
     if params[:folder_id]
       @items = Item.where(:folder_id => params[:folder_id])      
     else
-      @items = Item.without_folder
+      @items = Item.root
     end
     respond_to do |format|
       format.js

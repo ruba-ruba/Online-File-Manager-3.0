@@ -14,7 +14,7 @@ class Item < ActiveRecord::Base
 
   delegate :path, :to => :folder, :allow_nil => true
 
-  scope :without_folder, where(:folder_id => nil)
+  scope :root, where(:folder_id => nil)
 
 
   def check_quota
