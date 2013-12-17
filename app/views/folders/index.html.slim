@@ -1,36 +1,7 @@
 - content_for :menu do
   = render 'shared/menu'
 
-table.table.table-striped
-  thead
-    tr
-      th Name
-      th Description
-      th Size
-      th Type
-      th Date
-      th Send
-      th PDF        
-      th Edit
-      th Delete 
-  tbody
-  - @folders.each do |folder|
-    tr
-      td = link_to "#{truncate(folder.title)}".html_safe , folder          
-      td = folder.description
-      td
-      td
-      td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
-      td
-      td    
-      td          
-        = link_to edit_folder_path(folder)
-          span.glyphicon.glyphicon-edit            
-      td         
-        = link_to folder, :confirm => 'Are you sure?', :method => :delete
-          span.glyphicon.glyphicon-trash
-
-  = render 'items/items'
+= render 'table', {:folders => @folders, :items => @items}
 
 = link_to 'New Folder', new_folder_path(:folder_id => params[:id]) 
 ' &nbsp  |  &nbsp  

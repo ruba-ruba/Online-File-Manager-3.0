@@ -12,10 +12,7 @@ class FoldersController < ApplicationController
   end
 
   def show
-    @folder = Folder.find(params[:id])
-    @items = @folder.items
-    @folders = @folder.children
-    render :index    
+    @folder = Folder.find(params[:id])    
   end
 
   # GET /folders/new

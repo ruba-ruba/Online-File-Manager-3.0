@@ -1,25 +1,8 @@
-p#notice = notice
+- content_for :menu do
+  = render 'shared/menu'
 
-p
-  strong Title:
-  = @folder.title
-p
-  strong Description:
-  = @folder.description
-p
-  strong User:
-  = @folder.user_id
-p
-  strong Ancestry:
-  = @folder.ancestry
-p
-  strong Folders:
-  = render 'subfolders'
+= render 'table', {:folders => @folder.children, :items => @folder.items}
 
-= link_to 'Edit', edit_folder_path(@folder)
-'|
-= link_to 'Back', folders_path
-'|
-= link_to 'New Folder', new_folder_path(:folder_id => params[:id] || nil)
-'|
-= link_to 'New Item', new_item_path(:folder_id => params[:id] || nil)
+= link_to 'New Folder', new_folder_path(:folder_id => params[:id]) 
+' &nbsp  |  &nbsp  
+= link_to 'New Item', new_item_path(:folder_id => params[:id])
