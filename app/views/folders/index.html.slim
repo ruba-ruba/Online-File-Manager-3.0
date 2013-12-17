@@ -32,6 +32,6 @@ table.table.table-striped
 
   = render 'items/items'
 
-= link_to 'New Folder', new_folder_path(:folder_id => params[:id] || nil) 
+= link_to 'New Folder', new_folder_path(:folder_id => params[:id]) 
 ' &nbsp  |  &nbsp  
-= link_to 'New Item', new_item_path(:folder_id => params[:id] || nil)
+= link_to 'New Item', new_item_path(:folder_id => params[:id])
