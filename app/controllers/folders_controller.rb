@@ -4,7 +4,7 @@ class FoldersController < ApplicationController
 
   def index
     @folders = Folder.roots
-
+    @items = Item.where(:folder_id => nil).all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @folders }
@@ -13,10 +13,9 @@ class FoldersController < ApplicationController
 
   def show
     @folder = Folder.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @folder }
-    end
+    @items = @folder.items
+    @folders = @folder.children
+    render :index    
   end
 
   # GET /folders/new
