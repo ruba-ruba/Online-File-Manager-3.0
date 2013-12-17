@@ -9,7 +9,12 @@ class Item < ActiveRecord::Base
   belongs_to :folder
   belongs_to :user
 
-  validates :file, :attachment_presence => true
+  #validates :file, :attachment_presence => true
+  validates_uniqueness_of :file_file_name, :scope => :folder_id
+
+  delegate :path, :to => :folder, :allow_nil => true
+
+  scope :without_folder, where(:folder_id => nil)
 
 
   def check_quota

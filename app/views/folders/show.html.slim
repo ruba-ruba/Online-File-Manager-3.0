@@ -22,4 +22,4 @@ p
 '|
 = link_to 'New Folder', new_folder_path(:folder_id => params[:id] || nil)
 '|
-= link_to 'New Item', new_item_path
+= link_to 'New Item', new_item_path(:folder_id => params[:id] || nil)

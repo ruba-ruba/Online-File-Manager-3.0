@@ -1,4 +1,4 @@
-- Item.all.each do |item|
+- @items.each do |item|
   tr.items
     td = item.file_file_name
     td = item.description
@@ -10,6 +10,9 @@
         = f.input :file_path, :as => :hidden, :input_html => { :value => item.file.path }
         = f.submit 'Send'
           span.glyphicon.glyphicon-envelope 
+    td = pdf(item)
+       - if %w(html txt).include?(item.file_file_name.split('.')[1])
+        = link_to 'get pdf', pdf_item_path(item, format: "pdf")
     td 
       = link_to edit_item_path(item)
         span.glyphicon.glyphicon-edit 

@@ -9,7 +9,8 @@ table.table.table-striped
       th Size
       th Type
       th Date
-      th Send        
+      th Send
+      th PDF        
       th Edit
       th Delete 
   tbody
@@ -20,6 +21,7 @@ table.table.table-striped
       td
       td
       td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
+      td
       td    
       td          
         = link_to edit_folder_path(folder)
@@ -30,4 +32,6 @@ table.table.table-striped
 
   = render 'items/items'
 
-/ = link_to 'New Folder', new_folder_path(:folder_id => params[:id] || nil)
+= link_to 'New Folder', new_folder_path(:folder_id => params[:id] || nil) 
+' &nbsp  |  &nbsp  
+= link_to 'New Item', new_item_path(:folder_id => params[:id] || nil)
