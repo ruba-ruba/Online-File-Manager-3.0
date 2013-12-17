@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   ROLES = %w[user admin]
 
   before_validation :default_role, :on => :create
+  before_create :generate_token
+
   validates :role, :inclusion => { :in => ROLES }
 
 
@@ -26,6 +28,15 @@ class User < ActiveRecord::Base
                            )
     end
     user
+  end
+
+  protected
+
+  def generate_token
+    self.token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless User.exists?(token: random_token)
+    end
   end
 
 

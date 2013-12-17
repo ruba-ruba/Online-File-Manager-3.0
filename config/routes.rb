@@ -21,6 +21,8 @@ FileManager::Application.routes.draw do
   end
 
 
+  #grape
+  mount MyApp::API => "/"
 
 
   # The priority is based upon order of creation:
