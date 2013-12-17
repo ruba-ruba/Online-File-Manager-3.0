@@ -107,9 +107,18 @@ class ItemsController < ApplicationController
     output = PDF.new.to_pdf(path)
     respond_to do |format|
       format.pdf { 
-        send_data output, filename: file_name, type: "application/pdf", disposition: "inline"
+        send_data output, filename: file_name, type: "application/pdf"
       }
     end
+  end
+
+  def show_pdf
+    item = Item.find params[:id]
+    path = item.file.path
+    send_file(path,
+              :disposition => 'inline',
+              :type => 'application/pdf',
+              :x_sendfile => true )
   end
 
 end

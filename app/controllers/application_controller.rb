@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
+  
   before_filter :current_user_quota
 
   def current_user_quota    
