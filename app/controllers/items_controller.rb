@@ -102,12 +102,14 @@ class ItemsController < ApplicationController
   def pdf
     file = Item.find params[:id]
     path = file.file.path
+    name = file.file_file_name.split('.')[0]
+    file_name = "#{name}.pdf"
     output = PDF.new.to_pdf(path)
     respond_to do |format|
       format.pdf { 
-        send_data output, filename: "list.pdf", type: "application/pdf", disposition: "inline"
+        send_data output, filename: file_name, type: "application/pdf", disposition: "inline"
       }
     end
   end
-  
+
 end
