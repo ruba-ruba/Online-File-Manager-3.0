@@ -38,6 +38,7 @@ gem 'ancestry'
 gem 'remotipart', '~> 1.2.1'
 gem 'grape'
 gem 'httparty'
+gem 'prawn', '0.12.0'
 
 
 group :development do

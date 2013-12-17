@@ -90,4 +90,24 @@ class ItemsController < ApplicationController
       end
     end
   end
+
+  class PDF < Prawn::Document
+    def to_pdf(path)
+      data = File.read(path)
+      text data
+      render
+    end
+  end
+
+  def pdf
+    file = Item.find params[:id]
+    path = file.file.path
+    output = PDF.new.to_pdf(path)
+    respond_to do |format|
+      format.pdf { 
+        send_data output, filename: "list.pdf", type: "application/pdf", disposition: "inline"
+      }
+    end
+  end
+  
 end

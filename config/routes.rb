@@ -14,9 +14,10 @@ FileManager::Application.routes.draw do
       match 'add_recipient', to: 'items#add_recipient'
       post 'send_mail', to: 'items#send_mail'
     end
+    member do
+      match 'pdf' => 'items#pdf', :as => :pdf 
+    end
   end
-
-  resources :home
 
 
 
