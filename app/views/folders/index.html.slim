@@ -9,7 +9,8 @@ table.table.table-striped
       th Size
       th Type
       th Date
-      th Send        
+      th Send
+      th PDF        
       th Edit
       th Delete 
   tbody
@@ -20,6 +21,7 @@ table.table.table-striped
       td
       td
       td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
+      td
       td    
       td          
         = link_to edit_folder_path(folder)
