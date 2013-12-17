@@ -12,18 +12,18 @@
       li= link_to 'save page from', import_pages_items_path(:folder_id => params[:id])
       li.divider
       li= link_to 'Edit profile', edit_user_registration_path
-      li= link_to 'Sign Out', destroy_user_session_path, method: :delete
-      
-  .pull-right.progress    
-    #g-gradient.gradient.progress-bar aria-valuemax="30" aria-valuemin="0" aria-valuenow="@taken.to_i" role="progressbar" style="width: #{@taken.to_i}%"
-    #y-gradient.gradient.progress-bar aria-valuemax="60" aria-valuemin="30" aria-valuenow="@taken.to_i" role="progressbar" style="width: #{@taken.to_i}%"
-    #r-gradient.gradient.progress-bar aria-valuemax="100" aria-valuemin="60" aria-valuenow="@taken.to_i" role="progressbar" style="width: #{@taken.to_i}%"
- 
-    span.text
+      li= link_to 'Sign Out', destroy_user_session_path, method: :delete      
+          
+  .pull-right.progress  
+    .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style="width: #{@taken.to_i}%"
+      .g-gradient  
+
+  .pull-right.text
     | used  
     = @taken
     | % of  
     = number_to_human_size current_user.quota
+    
 
 - else
   .btn-group.pull-right

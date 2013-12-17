@@ -22,27 +22,37 @@
         };
       };
     };
-    .pull-right.progress{      
+    .pull-right.progress{ 
+      position: relative;     
       display: inline-block;      
-      margin-top: 10px;            
-      max-height: 20px;
-      min-height: 20px;
+      margin-top: 10px;
+      margin-bottom: 0px;            
+      height: 20px;      
       max-width: 300px;
       min-width: 280px;
-      background-color: white;
-      color: #007FFF;
+      background-color: white;      
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
-      border-radius: 4px;      
-    };    
-  #g-gradient.gradient {
-    @include background-image(linear-gradient(left, #5AFF30 30%, #FFEE00));
+      border-radius: 4px; 
+      .progress-bar{
+        height: 20px;
+        width: 300px;
+        color: none;
+        overflow: hidden;
+        .g-gradient {    
+          @include background-image(linear-gradient(left, #5AFF30 30%, #FFEE00 40%, #F7B416 70%, #AD0000));
+          height: 20px;
+          width: 300px;          
+        };
+      };   
     };
-  #y-gradient.gradient {
-    @include background-image(linear-gradient(left, #FFEE00 50%, #F7B416));
-    };
-  #r-gradient.gradient {
-    @include background-image(linear-gradient(left, #F7B416 90%, #AD0000));
+    .pull-right.text{
+      display: inline-block;
+      margin-top: 10px;
+      padding-right: 10px;
+      width: 200px;
+      color: white;
+      text-align: right;      
     };
   };
 
