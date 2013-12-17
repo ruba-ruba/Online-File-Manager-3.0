@@ -1,39 +1,33 @@
 - content_for :menu do
   = render 'shared/menu'
 
-h1 Listing folders
-
-table
-  tr
-    th Title
-    th Description
-    th 
-    th
-    th
-    th
-
-
+table.table.table-striped
+  thead
+    tr
+      th Name
+      th Description
+      th Size
+      th Type
+      th Date
+      th Send        
+      th Edit
+      th Delete 
+  tbody
   - @folders.each do |folder|
     tr
-      td = folder.title
+      td = link_to "#{truncate(folder.title)}".html_safe , folder          
       td = folder.description
-      td = folder.ancestry
-      td = link_to 'Show', folder
-      td = link_to 'Edit', edit_folder_path(folder)
-      td = link_to 'Destroy', folder, :confirm => 'Are you sure?', :method => :delete
+      td
+      td
+      td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
+      td    
+      td          
+        = link_to edit_folder_path(folder)
+          span.glyphicon.glyphicon-edit            
+      td         
+        = link_to folder, :confirm => 'Are you sure?', :method => :delete
+          span.glyphicon.glyphicon-trash
 
-br
+  = render 'items/items'
 
-- Item.all.each do |item|
-  = item.file_file_name
-  '&nbsp
-  = pdf(item)
-  - if %w(html txt).include?(item.file_file_name.split('.')[1])
-    = link_to 'get pdf', pdf_item_path(item, format: "pdf")
-  = simple_form_for :file, url: add_recipient_items_path do |f|
-    = f.input :file_name, :as => :hidden, :input_html => { :value => item.file_file_name } 
-    = f.input :file_path, :as => :hidden, :input_html => { :value => item.file.path }
-    = f.submit 'Send' 
-  br/
-
-= link_to 'New Folder', new_folder_path(:folder_id => params[:id] || nil)
+/ = link_to 'New Folder', new_folder_path(:folder_id => params[:id] || nil)

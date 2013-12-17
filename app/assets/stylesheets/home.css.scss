@@ -106,5 +106,18 @@
         list-style-type: none;
       };
     };
-  };  
+  };
+
+  table.table.table-striped {
+    width: 80%; 
+    border: 1px solid #dddddd;
+    thead {
+      background-color: #007FFF;
+      color: white;      
+    };
+    tbody tr td.folder {
+      background-image: url("/assets/folder_full.png");
+      background-repeat: no-repeat;
+    }
+  };
 };
