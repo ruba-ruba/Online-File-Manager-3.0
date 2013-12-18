@@ -1,23 +1,24 @@
 .favourite
-  .page-header
-    h4 Favorite Links
+  h4 Favorite Links
   nav.favorite_links
     ul.nav.nav.stacked
       li
         a href="#"
-          span.glyphicon.glyphicon-file
+          = icon :page
           |  Documents
       li
         a href="#"
-          span.glyphicon.glyphicon-film
+          = icon :page
           |  Videos
       li
         a href="#"
-          span.glyphicon.glyphicon-picture
+          = icon :page
           |  Pictures
 
 
 .tree_menu
-  .page-header
-    h4 Folders  
-  = render 'shared/tree', :folders => Folder.roots
+  .panel
+    .panel-heading
+      h4 Folders 
+    .list-group 
+      = render 'shared/tree', :folders => Folder.roots

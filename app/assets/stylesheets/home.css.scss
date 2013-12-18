@@ -103,16 +103,33 @@
     };
   };
 
-  .menu{
-    padding-left: 60px;    
-    .tree_menu{
+  .menu{    
+    color: black;  
+    .favourite { 
+      padding-left: 50px;
+      height: 30%;
+      border: 1px solid #dddddd;
+      .nav > li > a {
+        color: black;
+      }
+    };
+      
+    .tree_menu{      
+      padding-left: 50px;
+      border: 1px solid #dddddd;
+      overflow-y: scroll;
       ul{
         list-style-type: none;
+        a{
+          color: black;
+        };    
       };      
-      li > ul{
+      li > ul {
         margin-left: 20px;
         list-style-type: none;
       };
+      .panel .panel-heading{      
+      }
     };
   };
 
