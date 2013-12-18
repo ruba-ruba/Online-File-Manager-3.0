@@ -7,7 +7,7 @@
         - @item.errors.full_messages.each do |message|
           li = message
 
-  = f.input :folder_id, :as => :hidden, :input_html => { :value => params[:folder_id] }
+  = f.hidden_field :folder_id
   = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
 
 

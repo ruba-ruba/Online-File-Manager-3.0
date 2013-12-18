@@ -12,11 +12,7 @@ class ItemsController < ApplicationController
   end
   
   def new
-    @item = Item.new
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @item = Item.new(:folder_id =>  params[:folder_id])
   end
 
   def create
@@ -24,38 +20,27 @@ class ItemsController < ApplicationController
     if @item.valid?
       if @item.check_quota 
         if @item.save
-          respond_to do |format|
-            format.html { redirect_to @item, notice: 'Item was successfully created.' }
-          end
+          redirect_to @item.folder || :root, notice: 'Item was successfully created.'
         end
       else
-        respond_to do |format|
-          format.html { redirect_to new_item_path, alert: " limit of space" }
-        end
+        redirect_to new_item_path, alert: " limit of space"
       end
     else
-      respond_to do |format|
-        format.html { render action: "new" }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+      render action: "new"
     end
   end
 
 
   def edit  
+     @item = Item.find(params[:id])
   end
 
   def update
-    @item = Folder.find(params[:id])
-
-    respond_to do |format|
-      if @item.update_attributes(params[:item])
-        format.html { redirect_to :back, notice: 'Item was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    @item = Item.find(params[:id])
+    if @item.update_attributes(params[:item])
+      redirect_to @item.folder || :root, notice: 'Item was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
