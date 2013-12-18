@@ -39,6 +39,7 @@ gem 'remotipart', '~> 1.2.1'
 gem 'grape'
 gem 'httparty'
 gem 'prawn', '0.12.0'
+gem 'famfamfam'
 
 
 group :development do

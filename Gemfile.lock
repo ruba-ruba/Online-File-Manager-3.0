@@ -120,6 +120,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
+    famfamfam (0.0.3)
+      railties (>= 3.2.0, < 5.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     faye-websocket (0.4.7)
@@ -404,6 +406,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   faker
+  famfamfam
   font-awesome-sass-rails
   geocoder
   gmaps4rails (~> 2.1.0)

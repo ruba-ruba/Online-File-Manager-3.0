@@ -91,8 +91,14 @@
       margin: -5;
       height: 50px;
       color: white;
-      ul li a span{
-        color: white;
+      li {
+        line-height: 2;        
+      };
+      li > a {
+        color: #ffffff;
+        height: 38px;
+        line-height: 0;
+        margin: 0;
       };  
     };
   };
