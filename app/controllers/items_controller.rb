@@ -24,11 +24,6 @@ class ItemsController < ApplicationController
     if @item.valid?
       if @item.check_quota 
         if @item.save
-          if @item.folder_id.nil?
-          @items = Item.root
-          else
-          @items = Item.where(:folder_id => @item.folder_id)
-          end
           respond_to do |format|
             format.html { redirect_to @item, notice: 'Item was successfully created.' }
           end
@@ -47,39 +42,19 @@ class ItemsController < ApplicationController
   end
 
 
-  def edit
-    @item = Item.find params[:id]
-    respond_to do |format|
-      format.html
-      format.js
-    end
+  def edit  
   end
 
   def update
-     @item = Item.find params[:id]
-
-    new_file_name = "original_" + params[:item][:file_file_name]
-    path = @item.item.path.split("/")
-    path.pop
-    path_for_file = path.join("/")
-    File.rename(@item.item.path ,  path_for_file + "/" + new_file_name)
+    @item = Folder.find(params[:id])
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
-        if @item.folder_id.nil?
-          @items = Item.root
-        else
-          @items = Item.where(:folder_id => @item.folder_id)
-        end
-
-
         format.html { redirect_to :back, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
-        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @item.errors, status: :unprocessable_entity }
-        format.js
       end
     end
   end
@@ -155,31 +130,13 @@ class ItemsController < ApplicationController
               :disposition => 'inline',
               :type => 'application/pdf',
               :x_sendfile => true )
-
- def destroy
-    @item = Item.find params[:id]
-    @item.destroy
-
-    respond_to do |format|
-      if @item.folder_id.nil?
-        @items = Item.root
-      else
-        @items = Item.where(:folder_id => @item.folder_id)
-      end
-      format.js
-    end
   end
 
-  def destroy_by_type
-    Item.destroy(params[:items])
-    if params[:folder_id]
-      @items = Item.where(:folder_id => params[:folder_id])      
-    else
-      @items = Item.root
-    end
-    respond_to do |format|
-      format.js
-    end
+ def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    flash[:success] = "Items destroyed."
+    redirect_to :back
   end
 
 end
