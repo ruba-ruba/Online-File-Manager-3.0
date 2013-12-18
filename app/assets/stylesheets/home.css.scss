@@ -86,11 +86,13 @@
   .control_panel{
     @include control_buttons_background;
     padding: 10px 0 10px 15px;
-    height: 50px;
-    color: white;
-    .control_buttons {        
-      ul{
-        margin: 0px;           
+    height: 50px;    
+    .control_buttons {  
+      margin: -5;
+      height: 50px;
+      color: white;
+      ul li a span{
+        color: white;
       };  
     };
   };
