@@ -13,7 +13,7 @@ table.table.table-striped
   tbody
   - folders.each do |folder|
     tr
-      td = link_to "#{truncate(folder.title)}".html_safe , folder          
+      td = link_to truncate(folder.title), folder          
       td = folder.description
       td
       td
