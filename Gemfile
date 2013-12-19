@@ -42,6 +42,7 @@ gem 'grape'
 gem 'httparty'
 gem 'prawn', '0.12.0'
 gem 'famfamfam'
+gem 'aws-sdk'
 
 
 group :development do
