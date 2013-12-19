@@ -43,9 +43,7 @@ class UsersController < ApplicationController
 
   def show_user_info
     user = User.find_by_token params[:token]
-    sign_in user
-    @info = user.as_api
-    render json: @info
+    render json: user.as_api
   end
 
   protected

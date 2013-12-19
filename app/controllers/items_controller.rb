@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
           redirect_to @item.folder || :root, notice: 'Item was successfully created.'
         end
       else
-        redirect_to new_item_path, alert: " limit of space"
+        redirect_to new_item_path, alert: "limit of space"
       end
     else
       render action: "new"

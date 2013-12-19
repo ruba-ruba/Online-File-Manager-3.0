@@ -12,19 +12,20 @@ class Item < ActiveRecord::Base
   validates :file, :attachment_presence => true
   validates_uniqueness_of :file_file_name, :scope => :folder_id
 
-  delegate :path, :to => :folder, :allow_nil => true
-
   scope :root, where(:folder_id => nil)
 
   def item_format
-    %w(html txt HTML TXT).include?(self.file_file_name.split('.')[1]) ? true : false
+    self.file_file_name.split('.').last.downcase
+  end
+
+  def pdf_or_html
+    %w(html txt).include?(self.item_format)
   end
 
   def check_quota
-    user = User.find(self.user_id)
-    current_file_size = self.file_file_size || 0
-    previouse_size = user.items.sum(:file_file_size) || 0
-    user.quota > previouse_size + current_file_size ? true : false
+    current_file_size = self.file_file_size
+    previouse_size = self.user.items.sum(:file_file_size)
+    user.quota > previouse_size + current_file_size
   end
 
   def self.file_name(link, host)

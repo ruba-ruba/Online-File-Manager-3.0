@@ -12,7 +12,7 @@
           span.glyphicon.glyphicon-envelope 
     td = pdf(item)
     td
-      - if item.item_format
+      - if item.pdf_or_html
         = link_to 'get pdf', pdf_item_path(item, format: "pdf")
     td 
       = link_to edit_item_path(item)
