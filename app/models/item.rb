@@ -24,7 +24,7 @@ class Item < ActiveRecord::Base
     user = User.find(self.user_id)
     current_file_size = self.file_file_size || 0
     previouse_size = user.items.sum(:file_file_size) || 0
-    return user.quota <=> previouse_size + current_file_size
+    user.quota > previouse_size + current_file_size ? true : false
   end
 
   def self.file_name(link, host)

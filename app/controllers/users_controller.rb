@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: :show_user_info
   before_filter :check_if_admin, only: [:destroy]
   before_filter :correct_user, only: :show
 
@@ -43,7 +43,8 @@ class UsersController < ApplicationController
 
   def show_user_info
     user = User.find_by_token params[:token]
-    @info = user_info(user)
+    sign_in user
+    @info = user.as_api
     render json: @info
   end
 

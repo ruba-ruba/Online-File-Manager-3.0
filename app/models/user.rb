@@ -30,20 +30,31 @@ class User < ActiveRecord::Base
     user
   end
 
-  protected
-
-  def generate_token
-    self.token = loop do
-      random_token = SecureRandom.urlsafe_base64(nil, false)
-      break random_token unless User.exists?(token: random_token)
-    end
+  def as_api
+    info = {}
+    user = self
+    total_quota = user.quota
+    left_quota = user.items.sum(:file_file_size)
+    info[:email] = user.email
+    info[:total_quota] = total_quota
+    info[:used] = left_quota
+    info[:left_quota] = total_quota - left_quota
+    info
   end
 
+  protected
+
+    def generate_token
+      self.token = loop do
+        random_token = SecureRandom.urlsafe_base64(nil, false)
+        break random_token unless User.exists?(token: random_token)
+      end
+    end
 
   private
 
-  def default_role
-    self.role = "user"
-  end
+    def default_role
+      self.role = "user"
+    end
 
 end

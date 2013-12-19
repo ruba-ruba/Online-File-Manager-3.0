@@ -6,21 +6,14 @@ module MyApp
     prefix "api"
     format :json
     default_format :json
+    helpers do
+      def current_user
+        @current_user ||= User.find_by_token params[:token]
+      end
+    end
 
     get "/v1/:token" do
-      user = User.find_by_token params[:token]
-      if user
-        info = {}
-        total_quota = user.quota
-        left_quota = user.items.sum(:file_file_size)
-        info[:email] = user.email
-        info[:total_quota] = total_quota
-        info[:used] = left_quota
-        info[:left_quota] = total_quota - left_quota
-        info
-      else
-        'you have wrong api key'
-      end
+      current_user.as_api
     end
 
   end
