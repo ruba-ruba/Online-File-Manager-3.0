@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.14'
 
-gem 'mysql2'
+group :production do
+  gem 'pg', '0.12.2'
+end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -62,6 +64,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'mysql2'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'guard', '2.1.0'
