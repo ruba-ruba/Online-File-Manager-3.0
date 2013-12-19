@@ -6,6 +6,8 @@ FileManager::Application.routes.draw do
   resources :folders
 
   resources :users
+  get 'api/v2/:token', to: 'users#show_user_info', as: 'info', :defaults => { :format => 'json' }
+
 
   resources :items do 
     collection do

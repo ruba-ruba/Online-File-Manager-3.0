@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
+  extend UsersHelper
   before_filter :authenticate_user!
   before_filter :check_if_admin, only: [:destroy]
   before_filter :correct_user, only: :show
@@ -39,6 +40,12 @@ class UsersController < ApplicationController
     else
       redirect_to users_path, :notice => "Can't delete yourself."
     end
+  end
+
+  def show_user_info
+    user = User.find_by_token params[:token]
+    @info = user_info(user)
+    render json: @info
   end
 
   protected

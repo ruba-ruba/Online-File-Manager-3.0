@@ -23,7 +23,5 @@ module MyApp
       end
     end
 
-
-
   end
 end
