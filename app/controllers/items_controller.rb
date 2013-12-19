@@ -121,7 +121,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.destroy
     flash[:success] = "Items destroyed."
-    redirect_to :back
+    redirect_to back_url
   end
 
 end
