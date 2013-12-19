@@ -7,7 +7,8 @@ table.table.table-striped
       th Type
       th Date
       th Send
-      th PDF        
+      th PDF
+      td Get PDF
       th Edit
       th Delete 
   tbody
@@ -15,6 +16,7 @@ table.table.table-striped
     tr
       td = link_to content_icon(folder), folder          
       td = folder.description
+      td
       td
       td
       td = folder.created_at.strftime('%d/%m/%y %I:%M%p')

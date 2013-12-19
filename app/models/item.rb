@@ -16,6 +16,9 @@ class Item < ActiveRecord::Base
 
   scope :root, where(:folder_id => nil)
 
+  def item_format
+    %w(html txt HTML TXT).include?(self.file_file_name.split('.')[1]) ? true : false
+  end
 
   def check_quota
     user = User.find(self.user_id)

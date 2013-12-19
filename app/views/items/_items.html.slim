@@ -11,7 +11,8 @@
         = f.submit 'Send'
           span.glyphicon.glyphicon-envelope 
     td = pdf(item)
-       - if %w(html txt).include?(item.file_file_name.split('.')[1])
+    td
+      - if item.item_format
         = link_to 'get pdf', pdf_item_path(item, format: "pdf")
     td 
       = link_to edit_item_path(item)
