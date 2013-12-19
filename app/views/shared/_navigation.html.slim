@@ -1,8 +1,7 @@
 .nav-buttons 
   ul#wrapper.pager
     li
-      a href="#"
-        = icon :resultset_previous
+      = link_to icon(:resultset_previous), "javascript:history.back()"      
     li
       a href="#"
         = icon :resultset_next
