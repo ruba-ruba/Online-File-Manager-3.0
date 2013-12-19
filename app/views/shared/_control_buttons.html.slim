@@ -22,12 +22,9 @@ ul.nav.nav-tabs.control_buttons
   li
    | &nbsp | &nbsp 
   li
-    a href="#"
-      = icon :page_white_add
+    = link_to "#{icon(:folder_add)}".html_safe, new_folder_path(:folder_id => params[:id]) 
   li
-    a href="#"
-      = icon :database_go
-      |  Upload
+    = link_to "#{icon(:database_go)} Upload".html_safe, new_item_path(:folder_id => params[:id])
   li
     | &nbsp | &nbsp 
   li
