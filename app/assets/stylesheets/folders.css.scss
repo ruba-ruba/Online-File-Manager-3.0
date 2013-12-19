@@ -9,15 +9,27 @@
   display: none;
   };
 
-.form-group {  
-  margin-bottom: 20px;
-  label {
-    float: left;
-    width: 160px;
-    padding-top: 5px;
-    text-align: right;
-  };
-  .text_field{
+form{
+  margin-top: 20px;
+}
 
+.form-group{  
+  padding-left: 15px;
+  margin-bottom: 10px;
+  label {    
+    float: left;
+    width: 120px;    
+    text-align: right;    
+  };
+  input{
+    margin-left: 12px;
+  }
+}
+  
+.actions {
+  .btn {
+    margin-top: 12px;
+    margin-left: 149px;
+    text-align: center;   
   }
 }

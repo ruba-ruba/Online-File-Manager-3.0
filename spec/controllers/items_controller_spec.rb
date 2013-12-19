@@ -45,6 +45,14 @@ describe ItemsController do
     it 'create new item with folder' do 
       expect{ post :create, item: FactoryGirl.attributes_for(:item, file_file_name: nil) }.to change(Item,:count).by(0)
     end
+
+    it "should not create item when quota is overflowed" do
+      file =  fixture_file_upload('/test.csv', 'text/csv')
+      item = {folder_id: folder.id, :file => file}
+      Item.any_instance.stubs(:check_quota).returns(false)
+      expect{ post :create, item: item }.to change(Item,:count).by(0)
+      response.should redirect_to(new_item_path)
+    end
   end
 
   describe "PUT update" do

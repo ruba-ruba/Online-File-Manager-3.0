@@ -1,3 +1,31 @@
 // Place all the styles related to the items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+form{
+  margin-top: 20px;
+}
+
+.form-group{  
+  padding-left: 15px;
+  margin-bottom: 10px;
+  label {    
+    float: left;
+    width: 120px;    
+    text-align: right;    
+  };
+  input{
+    margin-left: 12px;
+  }
+}
+
+.actions {
+  input {
+    margin-left: 148px;
+  }
+  .btn {
+    margin-top: 12px;
+    margin-left: 149px;
+    text-align: center;   
+  }
+}
