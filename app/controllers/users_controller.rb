@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   include UsersHelper
-  extend UsersHelper
   before_filter :authenticate_user!
   before_filter :check_if_admin, only: [:destroy]
   before_filter :correct_user, only: :show
