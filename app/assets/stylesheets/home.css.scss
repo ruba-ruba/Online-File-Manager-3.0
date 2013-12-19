@@ -7,6 +7,7 @@
 }
 
 .row{
+  margin: 0px;
   header {
     background-color: #007FFF;
     .current_user{
@@ -87,8 +88,8 @@
     @include control_buttons_background;
     padding: 10px 0 10px 15px;
     height: 50px;    
-    .control_buttons {  
-      margin: -5;  
+    ul.nav.nav-tabs.control_buttons {  
+      padding-bottom: 10px;  
       height: 50px;
       color: white;
       border: none;
@@ -104,48 +105,53 @@
     };
   };
 
-  .menu{    
-    color: black;  
-    .favourite { 
-      padding-left: 50px;
-      height: 30%;
-      border: 1px solid #dddddd;
-      .nav > li > a {
-        color: black;
-      }
-    };
-      
-    .tree_menu{      
-      padding-left: 50px;
-      border: 1px solid #dddddd;
-      overflow-y: scroll;
-      ul{
-        list-style-type: none;
-        a{
+  .content.row {
+    margin: 0px;
+    .menu{    
+      color: black;
+      padding: 0px;  
+      .favourite { 
+        padding-left: 15px;
+        height: 30%;
+        border: 2px solid #dddddd;
+        .nav > li > a {
           color: black;
-        };    
-      };      
-      li > ul {
-        margin-left: 20px;
-        list-style-type: none;
+        };
+      };
+      .tree_menu{      
+        padding-left: 15px;
+        border: 1px solid #dddddd;
+        overflow-y: scroll;
+        ul{
+          list-style-type: none;
+          a{
+            color: black;
+          };    
+        };      
+        li > ul {
+          margin-left: 20px;
+          list-style-type: none;
+        };
       };
       .panel .panel-heading{      
       }
     };
-  };
-
-  table.table.table-striped {
-    width: 100%; 
-    border: 1px solid #dddddd;
-    thead {
-      @include background-image(linear-gradient(white, #cccccc, #aaaaaa));      
-      color: black;
-      th {
-        border-right: 1px solid #dddddd; 
-      };       
+    .col-xs-10 {
+      margin: 0px;
+      padding: 0px;
+      table.table.table-striped {        
+        border: 1px solid #dddddd;
+        thead {
+          @include background-image(linear-gradient(white, #cccccc, #aaaaaa));      
+          color: black;
+          th {
+            border-right: 1px solid #dddddd; 
+          };       
+        };
+        tbody tr td {  
+          border-right: 2px solid #dddddd;
+        };
+      };
     };
-    tbody tr td {  
-      border-right: 1px solid #dddddd;
-    };
-  };
+  };  
 };
