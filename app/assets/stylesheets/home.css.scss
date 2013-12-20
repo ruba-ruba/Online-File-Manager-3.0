@@ -5,7 +5,14 @@
   margin: 0px;
 }
 
-.row{
+body{
+  width: 100%;
+}
+.container-fluid{
+  width: 100%;
+}
+
+.row{  
   margin: 0px;
   .content.row {
     margin: 0px;
