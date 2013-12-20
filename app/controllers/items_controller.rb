@@ -17,16 +17,13 @@ class ItemsController < ApplicationController
 
   def create
     @item =  current_user.items.build(params[:item])
-    if @item.valid?
-      if @item.check_quota 
-        if @item.save
-          redirect_to @item.folder || :root, notice: 'Item was successfully created.'
-        end
+    respond_to do |format|
+      if @item.save
+        format.html {redirect_to @item.folder || :root, notice: 'Item was successfully created.'}
       else
-        redirect_to new_item_path, alert: "limit of space"
+        format.html {render 'new'}
+        format.json { render json: @item.errors, status: :unprocessable_entity}
       end
-    else
-      render action: "new"
     end
   end
 
@@ -121,8 +118,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.destroy
     flash[:success] = "Items destroyed."
-    redirect_to back
-    # redirect_to back_url
+    redirect_to @item.folder || root_path
   end
 
 end

@@ -1,4 +1,6 @@
 class Item < ActiveRecord::Base
+  include ActiveModel::Validations
+
   attr_accessible :description, :folder_id, :title, :file, :file_file_name, :file_content_type, :file_file_size, :file_updated_at, :created_at, :updated_at, :user_id
   
 
@@ -14,6 +16,9 @@ class Item < ActiveRecord::Base
 
   scope :root, where(:folder_id => nil)
 
+  validate :check_quota
+
+
   def item_format
     self.file_file_name.split('.').last.downcase
   end
@@ -25,7 +30,7 @@ class Item < ActiveRecord::Base
   def check_quota
     current_file_size = self.file_file_size
     previouse_size = self.user.items.sum(:file_file_size)
-    user.quota > previouse_size + current_file_size
+    errors.add(:limit, 'you reached limit of quota') if self.user.quota < previouse_size + current_file_size
   end
 
   def self.file_name(link, host)
