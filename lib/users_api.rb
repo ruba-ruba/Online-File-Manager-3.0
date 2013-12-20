@@ -1,7 +1,4 @@
-require 'pry'
-require 'grape'
-
-module MyApp
+module UsersApi
   class API < Grape::API
     prefix "api"
     format :json
