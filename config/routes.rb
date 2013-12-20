@@ -17,7 +17,7 @@ FileManager::Application.routes.draw do
       post 'send_mail', to: 'items#send_mail'
     end
     member do
-      match 'pdf' => 'items#pdf', :as => :pdf
+      get 'pdf' => 'items#pdf', :as => :pdf
       get 'show_pdf' => 'items#show_pdf'
     end
   end

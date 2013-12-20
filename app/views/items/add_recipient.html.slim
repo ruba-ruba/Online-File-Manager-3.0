@@ -1,12 +1,8 @@
 = simple_form_for :mail, url: send_mail_items_path do |f|
   = f.input :file_path, :as => :hidden, :input_html => { :value => params[:file][:file_path] }
   = f.input :file_name, :as => :hidden, :input_html => { :value => params[:file][:file_name] }
-  
-  
   | send #{params[:file][:file_name]} to 
   = f.input :recipient
   = f.input :subject
 
   = f.submit 'submit'
-
-= debug params
