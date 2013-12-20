@@ -25,3 +25,5 @@
  *= require tables.css.scss
  *= require forms.css.scss
  */
+ 
+@import "compass"
