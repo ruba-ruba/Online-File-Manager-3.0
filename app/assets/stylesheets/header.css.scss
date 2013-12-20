@@ -7,6 +7,7 @@ header {
     color: white;
   };
   .flash{
+    width: 100%;
     .alert{
       margin-bottom: 0px;
       div.pull-right{
@@ -46,6 +47,12 @@ header {
     padding-right: 10px;
     width: 200px;
     color: white;
-    text-align: right;      
+    text-align: right;     
   };
+
+  span.pull-right{
+    color: white;
+    vertical-align: middle;
+    padding-top: 8px;
+  }
 };

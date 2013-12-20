@@ -2,7 +2,7 @@
 @import "compass";
 
 
-.form-group.new{  
+.form-group.new {  
   padding-left: 15px;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -20,4 +20,18 @@
   input[type="file"]{
     margin-left: 148px;
   }
+}
+
+.form-inputs{
+  padding-left: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  .required.control-label{
+    padding-left: 3px;   
+  }
+}
+
+.links_reg{
+  margin-left: 16px;
+  margin-top: 5px;
 }
