@@ -55,10 +55,9 @@ group :development do
   gem 'faker'
   gem 'populator'  
   gem 'meta_request', '0.2.1'
-  gem 'pry-rails', :require => false
-  gem 'pry-stack_explorer', :require => false
-  gem 'pry-debugger', :require => false
-
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
   gem 'gmaps4rails', '~> 2.1.0'
   gem 'geocoder'
   gem 'underscore-rails'
