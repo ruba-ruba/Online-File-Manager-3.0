@@ -13,7 +13,7 @@
     td = pdf(item)
     td
       - if item.pdf_or_html
-        = link_to 'get pdf', pdf_item_path(item, format: "pdf")
+        = link_to 'get as pdf', pdf_item_path(item, format: "pdf")
     td 
       = link_to edit_item_path(item)
         span.glyphicon.glyphicon-edit 
