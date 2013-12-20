@@ -2,12 +2,9 @@
 @import "compass";
 
 
-form{
-  margin-top: 20px;
-}
-
-.form-group{  
+.form-group.new{  
   padding-left: 15px;
+  margin-top: 20px;
   margin-bottom: 10px;
   label {    
     float: left;

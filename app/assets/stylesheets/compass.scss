@@ -6,9 +6,10 @@
 @include sticky-footer(72px, ".container-fluid", ".row-fluid",".footer");
 
 .alert{
+  margin: 0px;  
   background-color: orange;
   color: wihte;
-  text-align: center;
+  text-align: center;  
 };
 
 .alert-error{
