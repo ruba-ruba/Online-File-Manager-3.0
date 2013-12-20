@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
@@ -44,17 +43,17 @@ class User < ActiveRecord::Base
 
   protected
 
-    def generate_token
-      self.token = loop do
-        random_token = SecureRandom.urlsafe_base64(nil, false)
-        break random_token unless User.exists?(token: random_token)
-      end
+  def generate_token
+    self.token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless User.exists?(token: random_token)
     end
+  end
 
   private
 
-    def default_role
-      self.role = "user"
-    end
+  def default_role
+    self.role = "user"
+  end
 
 end

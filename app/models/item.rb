@@ -3,7 +3,6 @@ class Item < ActiveRecord::Base
 
   attr_accessible :description, :folder_id, :title, :file, :file_file_name, :file_content_type, :file_file_size, :file_updated_at, :created_at, :updated_at, :user_id
   
-
   has_attached_file :file,
                     :url  => "/system/:attachment/:id/:style_:filename",
                     :path => ":rails_root/public/system/:attachment/:id/:style_:filename"
@@ -13,25 +12,10 @@ class Item < ActiveRecord::Base
 
   validates :file, :attachment_presence => true
   validates_uniqueness_of :file_file_name, :scope => :folder_id
+  validate :check_quota
 
   scope :root, where(:folder_id => nil)
 
-  validate :check_quota
-
-
-  def item_format
-    self.file_file_name.split('.').last.downcase
-  end
-
-  def pdf_or_html
-    %w(html txt).include?(self.item_format)
-  end
-
-  def check_quota
-    current_file_size = self.file_file_size
-    previouse_size = self.user.items.sum(:file_file_size)
-    errors.add(:limit, 'you reached limit of quota') if self.user.quota < previouse_size + current_file_size
-  end
 
   def self.file_name(link, host)
     case
@@ -62,6 +46,20 @@ class Item < ActiveRecord::Base
     file = File.new("#{Rails.root}/#{path}/#{name}", 'wb:ASCII-8BIT')
     File.open("#{Rails.root}/#{path}/#{name}", 'wb:ASCII-8BIT')  { |f| f.write(data) }
     Item.create_record(file_params, file)
+  end
+
+  def item_format
+    self.file_file_name.split('.').last.downcase
+  end
+
+  def pdf_or_html
+    %w(html txt).include?(self.item_format)
+  end
+
+  def check_quota
+    current_file_size = self.file_file_size
+    previouse_size = self.user.items.sum(:file_file_size)
+    errors.add(:limit, 'you reached limit of quota') if self.user.quota < previouse_size + current_file_size
   end
 
 end
