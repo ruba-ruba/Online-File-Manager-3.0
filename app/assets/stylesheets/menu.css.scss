@@ -1,0 +1,32 @@
+@import "mixins.css.scss";
+@import "compass";
+
+.menu{ 
+  color: black;
+  padding: 0px;  
+  .favourite { 
+    padding-left: 15px;
+    height: 30%;
+    border: 2px solid #dddddd;
+    .nav > li > a {
+      color: black;
+    };
+  };
+  .tree_menu{      
+    padding-left: 15px;
+    border: 1px solid #dddddd;
+    overflow-y: scroll;
+    ul{
+      list-style-type: none;
+      a{
+        color: black;
+      };    
+    };      
+    li > ul {
+      margin-left: 20px;
+      list-style-type: none;
+    };
+  };
+  .panel .panel-heading{
+  }
+};
