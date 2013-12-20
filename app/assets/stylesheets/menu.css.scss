@@ -12,10 +12,12 @@
       color: black;
     };
   };
+
   .tree_menu{      
+    height: 45%;
+    margin-bottom: 72px;
     padding-left: 15px;
     border: 1px solid #dddddd;
-    overflow-y: scroll;
     ul{
       list-style-type: none;
       a{

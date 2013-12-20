@@ -7,10 +7,10 @@
           li = message
   = f.hidden_field :parent_id, :value => params[:folder_id]
 
-  .form-group
+  .form-group.new
     = f.label :title
     = f.text_field :title
-  .form-group
+  .form-group.new
     = f.label :description
     = f.text_field :description
   .actions
