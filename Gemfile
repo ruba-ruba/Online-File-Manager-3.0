@@ -43,6 +43,7 @@ gem 'httparty'
 gem 'prawn', '0.12.0'
 gem 'famfamfam'
 gem 'aws-sdk'
+gem 'thin', '1.5.1'
 
 
 group :development do
@@ -53,7 +54,6 @@ group :development do
   gem 'quiet_assets'
   gem 'faker'
   gem 'populator'
-  gem 'thin', '1.5.1'
   gem 'meta_request', '0.2.1'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
