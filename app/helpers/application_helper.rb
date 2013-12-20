@@ -11,11 +11,11 @@ module ApplicationHelper
     else
       case target.file_content_type
       when "image/jpeg" 
-        "#{icon(:picture)} #{target.file_file_name}".html_safe
+        "#{icon(:picture)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
       when "audio/mp3"
-        "#{icon(:music)} #{target.file_file_name}".html_safe
+        "#{icon(:music)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
       else
-        "#{icon(:folder)} #{target.file_file_name}".html_safe
+        "#{icon(:folder)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
       end
     end    
   end

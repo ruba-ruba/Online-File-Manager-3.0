@@ -2,7 +2,7 @@
 @import "compass";
 
 
-table.table.table-striped { 
+table.table.table-striped {   
   border: 1px solid #dddddd;
   thead {
     @include background-image(linear-gradient(white, #cccccc, #aaaaaa));      
