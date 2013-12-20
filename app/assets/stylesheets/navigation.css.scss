@@ -1,0 +1,15 @@
+@import "mixins.css.scss";
+@import "compass";
+
+.navigation{
+  min-height: 60px;
+  max-height: 60px;
+  padding-top: 15px;
+  background-color: #0D2033;
+  .nav-path{ 
+    margin-left: 8%;
+    height: 30px;
+    width: 88%;
+    background-color: white;
+  };
+};

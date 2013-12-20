@@ -1,0 +1,23 @@
+@import "mixins.css.scss";
+@import "compass";
+
+
+.form-group.new{  
+  padding-left: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  label {    
+    float: left;
+    width: 120px;    
+    text-align: right;    
+  };
+  input{
+    margin-left: 12px;
+  }
+}
+
+.actions {
+  input[type="file"]{
+    margin-left: 148px;
+  }
+}

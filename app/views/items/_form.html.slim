@@ -11,13 +11,13 @@
   = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
 
 
-  .form-group
+  .form-group.new
     = f.label :title
     = f.text_field :title
-  .form-group
+  .form-group.new
     = f.label :description
     = f.text_field :description
   
   .actions 
     = f.file_field :file
-    = f.submit 'Save', class: 'btn btn-primary'
+    = f.submit 'Save', class: 'btn btn-primary save'

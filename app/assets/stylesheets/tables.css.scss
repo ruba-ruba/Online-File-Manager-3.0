@@ -1,0 +1,17 @@
+@import "mixins.css.scss";
+@import "compass";
+
+
+table.table.table-striped {   
+  border: 1px solid #dddddd;
+  thead {
+    @include background-image(linear-gradient(white, #cccccc, #aaaaaa));      
+    color: black;
+    th {
+      border-right: 1px solid #dddddd; 
+    };       
+  };
+  tbody tr td {  
+    border-right: 2px solid #dddddd;
+  };
+};

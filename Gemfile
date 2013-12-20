@@ -53,7 +53,7 @@ group :development do
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
   gem 'quiet_assets'
   gem 'faker'
-  gem 'populator'
+  gem 'populator'  
   gem 'meta_request', '0.2.1'
   gem 'pry-rails'
   gem 'pry-stack_explorer'

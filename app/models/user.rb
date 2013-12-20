@@ -34,11 +34,11 @@ class User < ActiveRecord::Base
     info = {}
     user = self
     total_quota = user.quota
-    left_quota = user.items.sum(:file_file_size)
+    used_quota = user.items.sum(:file_file_size)
     info[:email] = user.email
     info[:total_quota] = total_quota
-    info[:used] = left_quota
-    info[:left_quota] = total_quota - left_quota
+    info[:used] = used_quota
+    info[:left_quota] = total_quota - used_quota
     info
   end
 

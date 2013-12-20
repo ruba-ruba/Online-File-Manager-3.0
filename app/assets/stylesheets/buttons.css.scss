@@ -1,0 +1,23 @@
+@import "mixins.css.scss";
+@import "compass";
+
+.btn.btn-primary.save{
+  margin-top: 12px;
+  margin-left: 149px;
+  text-align: center; 
+}
+
+.nav-buttons{
+  float: left;
+  height: 30px;
+  min-width: 50px; 
+  width: 8%;
+  display: inline-block;
+  .pager{
+    margin: 0;
+    padding: 0;
+    #wrapper{
+      min-width: 50px;
+    };
+  };
+};
