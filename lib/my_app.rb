@@ -1,6 +1,3 @@
-require 'pry'
-require 'grape'
-
 module MyApp
   class API < Grape::API
     prefix "api"
