@@ -13,10 +13,10 @@
         / =link_to icon(:email_go)
         / = f.submit "#{icon(:email_go)}".html_safe      
     td 
-      = pdf(item)       
+      = pdf(item)
     td
       - if item.txt_or_html
-        = link_to icon(:page_white_acrobat), pdf_item_path(item, format: "pdf")       
+        = link_to icon(:page_white_acrobat), pdf_item_path(item, format: "pdf"), :title => 'Get PDF', :rel => 'tooltip'      
     td 
       = link_to edit_item_path(item), :title => 'Edit', :rel => 'tooltip'
         span.glyphicon.glyphicon-edit 
