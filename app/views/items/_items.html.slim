@@ -8,10 +8,7 @@
     td = simple_form_for :file, url: add_recipient_items_path do |f|
         = f.input :file_name, :as => :hidden, :input_html => { :value => item.file_file_name } 
         = f.input :file_path, :as => :hidden, :input_html => { :value => item.file.path }
-        = f.submit icon(:email_go)
-        / = f.submit icon :email_go
-        / =link_to icon(:email_go)
-        / = f.submit "#{icon(:email_go)}".html_safe      
+        = f.submit "Send"
     td 
       = pdf(item)
     td

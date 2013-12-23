@@ -4,4 +4,8 @@
       = link_to icon(:resultset_previous), "javascript:history.back()"      
 .nav-path
   span
-    | Path will be here
+    | You are here: / 
+    = link_to "My Documents", root_path
+    |  / 
+    = @folder.title if @folder
+
