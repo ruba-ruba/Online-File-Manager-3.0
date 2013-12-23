@@ -12,7 +12,7 @@ table.table.table-striped
     tr
       td = link_to content_icon(folder), folder          
       td = folder.description
-      td
+      td = number_to_human_size(folder.size)
       td Folder
       td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
       td
