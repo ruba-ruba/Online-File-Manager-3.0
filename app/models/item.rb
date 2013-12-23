@@ -52,7 +52,7 @@ class Item < ActiveRecord::Base
     self.file_file_name.split('.').last.downcase
   end
 
-  def pdf_or_html
+  def txt_or_html
     %w(html txt).include?(self.item_format)
   end
 
