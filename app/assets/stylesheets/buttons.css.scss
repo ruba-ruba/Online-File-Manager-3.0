@@ -1,6 +1,3 @@
-@import "mixins.css.scss";
-@import "compass";
-
 .btn.btn-primary.save{
   margin-top: 12px;
   margin-left: 149px;
@@ -11,7 +8,7 @@
   float: left;
   height: 30px;
   min-width: 50px; 
-  width: 8%;
+  width: 4%;
   display: inline-block;
   .pager{
     margin: 0;
@@ -21,3 +18,9 @@
     };
   };
 };
+
+.form-actions{
+  .btn{
+    margin-left: 17px;
+  }
+}

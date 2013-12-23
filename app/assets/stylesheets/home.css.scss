@@ -1,12 +1,19 @@
-@import "mixins.css.scss";
-@import "compass";
 
 *{
   padding: 0px;
   margin: 0px;
 }
 
-.row{
+body{
+  width: 100%;
+}
+.container{
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.row{  
   margin: 0px;
   .content.row {
     margin: 0px;

@@ -12,7 +12,7 @@
  *= require silk-icons
  *= require bootstrap
  *= require cosmo.css
- *= require compass.scss
+ *= require base.scss
  *= require home.css.scss
  *= require folders.css.scss
  *= require items.css.scss
@@ -24,4 +24,6 @@
  *= require buttons.css.scss
  *= require tables.css.scss
  *= require forms.css.scss
+ *= require mixins.css.scss
  */
+ 

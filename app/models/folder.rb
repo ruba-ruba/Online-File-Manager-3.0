@@ -11,4 +11,8 @@ class Folder < ActiveRecord::Base
   validates :title, presence: true
   validates_uniqueness_of :title, :scope => :ancestry
 
+  def size 
+    children.inject(items.pluck(:file_file_size).sum){|sum, i| sum += i.size}
+  end
+
 end
