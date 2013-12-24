@@ -3,7 +3,7 @@
     td = link_to content_icon(item), download_file_item_path(item), :target => '_blank' 
     td = item.description
     td = number_to_human_size(item.file_file_size)
-    td = item.file_content_type
+    td = item.file_file_name.split(".")[-1]
     td = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')     
     td.actions = simple_form_for :file, url: add_recipient_items_path do |f|
         = f.input :file_name, :as => :hidden, :input_html => { :value => item.file_file_name } 

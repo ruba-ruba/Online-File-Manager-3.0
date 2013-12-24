@@ -16,6 +16,8 @@ module ApplicationHelper
         "#{icon(:music)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
       when "application/pdf"
         "#{icon(:page_white_acrobat)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
+      when "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        "#{icon(:page_excel)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
       else
         "#{icon(:page)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
       end
