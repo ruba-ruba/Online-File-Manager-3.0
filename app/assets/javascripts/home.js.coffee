@@ -29,7 +29,7 @@
 
 $(window).bind "beforeunload", ->
   j = 0
-  $("form :input").not(":input[type=button], :input[type=submit], :input[type=reset], :input[type=hidden], :input[type=checkbox]").each (index, elem) ->
+  $(".data_form :input").not(":input[type=button], :input[type=submit], :input[type=reset], :input[type=hidden], :input[type=checkbox]").each (index, elem) ->
     if elem.value.length >= 1
       j++
       false
