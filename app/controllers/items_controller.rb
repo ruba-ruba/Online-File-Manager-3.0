@@ -121,12 +121,10 @@ class ItemsController < ApplicationController
     redirect_to @item.folder || root_path
   end
 
-  def download_file
-    # binding.pry
+  def download_file    
     item = Item.find(params[:id])
     path = item.file.path
     send_file(path,
-              :type => item.file_content_type, 
-              :disposition => 'inline')
+              :type => item.file_content_type)
   end
 end
