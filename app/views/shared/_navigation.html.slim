@@ -6,6 +6,10 @@
   span
     | You are here: / 
     = link_to "My Documents", root_path
-    |  / 
+    - if @folder && @folder.ancestors
+      |  /
+      - @folder.ancestors.each do |folder|
+        = link_to folder.title, folder
+        |  /
     = @folder.title if @folder
 
