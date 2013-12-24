@@ -47,5 +47,5 @@ $(window).bind "beforeunload", ->
       return "Are you Sure do you want to leave?"
 
 $ ->
-  $('form').submit ->
+  $('.data_form').submit ->
     $(window).unbind 'beforeunload'
