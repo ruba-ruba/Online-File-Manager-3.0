@@ -2,19 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-#firts
-# $(window).bind "beforeunload", ->
-#   confirmation = ->
-#     if confirm("you have unsaved data in form, really want to quit ?")
-#       false
-#     else
-#       false
-
-#   j = 0
-#   $("form :input").not(":input[type=button], :input[type=submit], :input[type=reset], :input[type=hidden], :input[type=checkbox]").each (index, elem) ->
-#     j++  if elem.value.length >= 1
-
-#   return confirmation()  if j > 0
 
 # second
 # $(window).bind "beforeunload", ->
@@ -39,10 +26,13 @@
 #     return "Are you Sure do you want to leave?"
 
 
+
 $(window).bind "beforeunload", ->
   j = 0
   $("form :input").not(":input[type=button], :input[type=submit], :input[type=reset], :input[type=hidden], :input[type=checkbox]").each (index, elem) ->
-    j++  if elem.value.length >= 1
+    if elem.value.length >= 1
+      j++
+      false
 
   if j > 0
     if /Firefox[\/\s](\d+)/.test(navigator.userAgent)
@@ -56,5 +46,6 @@ $(window).bind "beforeunload", ->
     else
       return "Are you Sure do you want to leave?"
 
-$('form').submit ->
-  $(window).unbind 'beforeunload'
+$ ->
+  $('form').submit ->
+    $(window).unbind 'beforeunload'
