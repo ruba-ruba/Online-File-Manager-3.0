@@ -15,13 +15,13 @@ table.table.table-striped
       td = number_to_human_size(folder.size)
       td Folder
       td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
-      td
-      td  
-      td  
-      td          
+      td.actions
+      td.actions  
+      td.actions  
+      td.actions          
         = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
           span.glyphicon.glyphicon-edit            
-      td         
+      td.actions         
         = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
           span.glyphicon.glyphicon-trash
 
