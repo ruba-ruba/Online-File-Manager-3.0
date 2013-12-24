@@ -121,4 +121,11 @@ class ItemsController < ApplicationController
     redirect_to @item.folder || root_path
   end
 
+  def download
+    item = Item.find(params[:id])
+    path = item.file.path
+    send_file(path,
+              :type => item.file_content_type, 
+              :disposition => 'inline')
+  end
 end
