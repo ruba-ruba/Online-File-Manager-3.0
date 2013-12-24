@@ -16,11 +16,13 @@
 
   .tree_menu{      
     height: 47%;
-    // margin-bottom: 72px;
     padding-left: 15px;
     border: 1px solid #dddddd;
     ul{
-      list-style-type: none; 
+      list-style-type: none;
+      .glyphicon{
+        cursor: pointer;
+      }
       a{
         color: black;        
       };    
