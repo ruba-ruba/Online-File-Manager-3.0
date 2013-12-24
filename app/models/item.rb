@@ -9,6 +9,7 @@ class Item < ActiveRecord::Base
 
   belongs_to :folder
   belongs_to :user
+  has_many :comments, :as => :commentable, dependent: :destroy
 
   validates :file, :attachment_presence => true
   validates_uniqueness_of :file_file_name, :scope => :folder_id

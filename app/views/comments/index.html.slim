@@ -1,0 +1,27 @@
+h1 Listing comments
+
+table
+  tr
+    th Content
+    th Commentable
+    th Commentable type
+    th User
+    th 
+    th
+    th
+    th
+
+  - @comments.each do |comment|
+    tr
+      td = comment.content
+      td = comment.commentable_id
+      td = comment.commentable_type
+      td = comment.user_id
+      td = link_to 'Show', comment
+      td = link_to 'Edit', edit_comment_path(comment)
+      td = link_to 'Reply', new_polymorphic_path(comment)
+      td = link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Comment', new_comment_path
