@@ -7,7 +7,7 @@ module ApplicationHelper
 
   def content_icon(target)
     if target.class == Folder
-      "#{icon(:folder)} #{ target.title}".html_safe
+      "#{icon(:folder)} #{content_tag(:span, target.title, class: "text")}".html_safe
     else
       case target.file_content_type
       when "image/jpeg" 
