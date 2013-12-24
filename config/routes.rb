@@ -24,6 +24,7 @@ FileManager::Application.routes.draw do
     member do
       get 'pdf' => 'items#pdf', :as => :pdf
       get 'show_pdf' => 'items#show_pdf'
+      get 'download_file', to: 'items#download_file'
     end
   end
 

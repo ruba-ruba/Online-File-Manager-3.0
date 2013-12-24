@@ -121,7 +121,8 @@ class ItemsController < ApplicationController
     redirect_to @item.folder || root_path
   end
 
-  def download
+  def download_file
+    # binding.pry
     item = Item.find(params[:id])
     path = item.file.path
     send_file(path,
