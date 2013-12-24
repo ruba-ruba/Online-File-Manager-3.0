@@ -120,11 +120,4 @@ class ItemsController < ApplicationController
     flash[:success] = "Items destroyed."
     redirect_to @item.folder || root_path
   end
-
-  def download_file    
-    item = Item.find(params[:id])
-    path = item.file.path
-    send_file(path,
-              :type => item.file_content_type)
-  end
 end
