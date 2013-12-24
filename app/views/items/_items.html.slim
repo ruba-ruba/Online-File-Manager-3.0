@@ -5,18 +5,19 @@
     td = number_to_human_size(item.file_file_size)
     td = item.file_file_name.split(".")[-1]
     td = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')     
-    td.actions = simple_form_for :file, url: add_recipient_items_path do |f|
+    td 
+      = simple_form_for :file, url: add_recipient_items_path do |f|
         = f.input :file_name, :as => :hidden, :input_html => { :value => item.file_file_name } 
         = f.input :file_path, :as => :hidden, :input_html => { :value => item.file.path }
         = f.submit "Send"
-    td.actions 
+      | &nbsp
       = pdf(item)
-    td.actions
+      | &nbsp
       - if item.txt_or_html?
         = link_to icon(:page_white_acrobat), pdf_item_path(item, format: "pdf"), :title => 'Get PDF', :rel => 'tooltip'      
-    td.actions 
+      | &nbsp
       = link_to edit_item_path(item), :title => 'Edit', :rel => 'tooltip'
         span.glyphicon.glyphicon-edit 
-    td.actions
+      | &nbsp
       = link_to item, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
         span.glyphicon.glyphicon-trash
