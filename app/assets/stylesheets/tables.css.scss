@@ -15,7 +15,7 @@ table.table.table-striped {
   tbody tr td {  
     border-right: 1px solid #dddddd;
   };  
-  td.actions {
-    border: none;
+  td span {
+    padding: 4px;
   }
 };

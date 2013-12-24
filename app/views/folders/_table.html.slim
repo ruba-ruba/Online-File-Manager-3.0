@@ -18,7 +18,8 @@ table.table.table-striped
       td        
         = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
           span.glyphicon.glyphicon-edit            
-        | &nbsp
+        span
+        |
         = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
           span.glyphicon.glyphicon-trash
 
