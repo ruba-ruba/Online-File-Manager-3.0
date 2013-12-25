@@ -2,10 +2,10 @@
 
   .form-inputs
     = f.input :content, :placeholder => "leave your comment", :input_html => {:rows => 5}
-    = f.input :commentable_id
-    = f.input :commentable_type
-    = f.input :user_id
-    = f.input :parent_id
+    = f.hidden_field :commentable_id
+    = f.hidden_field :commentable_type
+    = f.hidden_field :user_id
+    = f.hidden_field :parent_id
 
   .form-actions
     = f.button :submit
