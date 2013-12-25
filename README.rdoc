@@ -12,9 +12,9 @@ http://i.stack.imgur.com/n5KIJ.png
 
 == deploy on heroku:
 
-- <tt>git pull (on master branch)</tt>
+- <tt>git pull</tt>(on master branch)
 - <tt>git checkout production</tt>
-- <tt>git pull (on production branch)</tt>
+- <tt>git pull</tt>(on production branch)
 - <tt>git merge master</tt>
 - <tt>rake assets:precompile --trace RAILS_ENV=production</tt>
 - <tt>git add -p</tt>
