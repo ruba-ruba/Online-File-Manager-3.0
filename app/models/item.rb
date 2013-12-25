@@ -49,12 +49,12 @@ class Item < ActiveRecord::Base
     Item.create_record(file_params, file)
   end
 
-  def item_format
+  def extension
     self.file_file_name.split('.').last.downcase
   end
 
   def txt_or_html?
-    %w(html txt).include?(self.item_format)
+    %w(html txt).include?(self.extension)
   end
 
   def check_quota

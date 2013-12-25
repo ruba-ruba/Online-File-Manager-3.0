@@ -21,9 +21,9 @@ describe Item do
       file2 = FactoryGirl.create(:item, file_file_name: 'new2.Txt')
       file3 = FactoryGirl.create(:item, file_file_name: 'new3.mp3.TXT')
 
-      file1.item_format.should eq('txt')
-      file2.item_format.should eq('txt')
-      file3.item_format.should eq('txt')
+      file1.extension.should eq('txt')
+      file2.extension.should eq('txt')
+      file3.extension.should eq('txt')
     end
   end
 
