@@ -11,12 +11,16 @@ http://i.stack.imgur.com/n5KIJ.png
 
 
 == deploy on heroku:
-- git pull (on master branch)
-- git checkout production
-- git merge master
-- rake assets:precompile --trace RAILS_ENV=production
-- git add -p
-- git commit -a -m "message"
-- git push
-- git push heroku production:master
-- heroku logs --tail
+
+```
+git pull (on master branch)
+git checkout production
+git pull (on production branch)
+git merge master
+rake assets:precompile --trace RAILS_ENV=production
+git add -p
+git commit -a -m "message"
+git push
+git push heroku production:master
+heroku logs --tail
+```
