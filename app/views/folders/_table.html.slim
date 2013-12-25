@@ -8,6 +8,13 @@ table.table.table-striped
       th Date
       th Actions      
   tbody
+    - if @folder
+      tr
+        td colspan="6"
+          = link_to @folder.parent
+            = icon(:folder)
+            span 
+              | ..
   - folders.each do |folder|
     tr
       td = link_to content_icon(folder), folder       
