@@ -1,18 +1,17 @@
-h1 Listing comments
+h4 Comments
 
-table
-  tr
-    th Content 
-    th Ancestry
-  - @comments.each do |comment|
-    tr
-      td = comment.content
-      td = comment.parent_id 
-      td = link_to 'Reply', new_polymorphic_path([@commentable, comment], :comment_id => comment.id)
-      td = link_to 'Destroy', [@commentable, comment], :confirm => 'Are you sure?', :method => :delete
-br
+.list-group.comments
+  ul
+    - @comments.each do |comment|
+      li
+        = comment.content
+        br/
+        = link_to 'Reply', new_polymorphic_path([@commentable, comment], :comment_id => comment.id)
+        span
+         | |
+        = link_to 'Destroy', [@commentable, comment], :confirm => 'Are you sure?', :method => :delete
 
-h3 New Comment
+h4 New Comment
 = simple_form_for [@commentable, Comment.new] do |f|
   = f.error_notification
   .form-inputs
