@@ -6,22 +6,27 @@ table.table.table-striped
       th Size
       th Type
       th Date
-      th colspan="5" Actions      
+      th Actions      
   tbody
+    - if @folder
+      tr
+        td colspan="6"
+          = link_to @folder.parent
+            = icon(:folder)
+            span 
+              | ..
   - folders.each do |folder|
     tr
-      td = link_to content_icon(folder), folder          
+      td = link_to content_icon(folder), folder       
       td = folder.description
       td = number_to_human_size(folder.size)
       td Folder
       td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
-      td
-      td  
-      td  
-      td          
+      td        
         = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
           span.glyphicon.glyphicon-edit            
-      td         
+        span
+        |
         = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
           span.glyphicon.glyphicon-trash
 

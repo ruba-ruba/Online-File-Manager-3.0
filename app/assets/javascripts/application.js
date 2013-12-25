@@ -19,9 +19,3 @@
 //= require items.js.coffee
 //= require folders.js.coffee
 //= require home.js.coffee
-
-  
-
-
-
-    

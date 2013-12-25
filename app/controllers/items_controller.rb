@@ -120,5 +120,4 @@ class ItemsController < ApplicationController
     flash[:success] = "Items destroyed."
     redirect_to @item.folder || root_path
   end
-
 end

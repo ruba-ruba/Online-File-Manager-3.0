@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :folders
   has_many :items
+  has_many :comments
 
   ROLES = %w[user admin]
 

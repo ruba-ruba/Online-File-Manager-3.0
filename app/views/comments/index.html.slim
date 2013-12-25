@@ -1,0 +1,23 @@
+h1 Listing comments
+
+table
+  tr
+    th Content    
+  - @comments.each do |comment|
+    tr
+      td = comment.content
+      td = link_to 'Reply', new_folder_comment_path()
+      td = link_to 'Destroy', [@commentable, comment], :confirm => 'Are you sure?', :method => :delete
+br
+
+h3 New Comment
+= simple_form_for [@commentable, Comment.new] do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :content
+    = f.hidden_field  :commentable_id
+    = f.hidden_field  :commentable_type
+    = f.hidden_field  :user_id
+  .form-actions
+    = f.button :submit
+

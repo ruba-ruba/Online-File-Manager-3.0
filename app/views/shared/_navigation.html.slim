@@ -1,11 +1,17 @@
 .nav-buttons 
   ul#wrapper.pager
     li
-      = link_to icon(:resultset_previous), "javascript:history.back()"      
+      = link_to "javascript:history.back()"   
+        span.glyphicon.glyphicon-arrow-left
+
 .nav-path
   span
     | You are here: / 
     = link_to "My Documents", root_path
-    |  / 
+    - if @folder && @folder.ancestors
+      |  /
+      - @folder.ancestors.each do |folder|
+        = link_to folder.title, folder
+        |  /
     = @folder.title if @folder
 

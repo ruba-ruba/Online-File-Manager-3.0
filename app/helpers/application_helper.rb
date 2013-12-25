@@ -7,7 +7,7 @@ module ApplicationHelper
 
   def content_icon(target)
     if target.class == Folder
-      "#{icon(:folder)} #{ target.title}".html_safe
+      "#{icon(:folder)} #{content_tag(:span, target.title, class: "text")}".html_safe
     else
       case target.file_content_type
       when "image/jpeg" 
@@ -16,6 +16,8 @@ module ApplicationHelper
         "#{icon(:music)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
       when "application/pdf"
         "#{icon(:page_white_acrobat)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
+      when "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        "#{icon(:page_excel)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
       else
         "#{icon(:page)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
       end

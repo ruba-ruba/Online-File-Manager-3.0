@@ -1,4 +1,4 @@
-= simple_form_for @item, :html => { :multipart => true } do |f|
+= simple_form_for @item, :html => { :multipart => true, :class => "data_form" } do |f|
 
   - if @item.errors.any?
     #error_explanation

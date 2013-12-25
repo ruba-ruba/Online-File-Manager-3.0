@@ -9,6 +9,7 @@ class Item < ActiveRecord::Base
 
   belongs_to :folder
   belongs_to :user
+  has_many :comments, :as => :commentable, dependent: :destroy
 
   validates :file, :attachment_presence => true
   validates_uniqueness_of :file_file_name, :scope => :folder_id
@@ -48,16 +49,16 @@ class Item < ActiveRecord::Base
     Item.create_record(file_params, file)
   end
 
-  def item_format
+  def extension
     self.file_file_name.split('.').last.downcase
   end
 
-  def txt_or_html
-    %w(html txt).include?(self.item_format)
+  def txt_or_html?
+    %w(html txt).include?(self.extension)
   end
 
   def check_quota
-    current_file_size = self.file_file_size
+    current_file_size = self.file_file_size || 0
     previouse_size = self.user.items.sum(:file_file_size)
     errors.add(:limit, 'you reached limit of quota') if self.user.quota < previouse_size + current_file_size
   end

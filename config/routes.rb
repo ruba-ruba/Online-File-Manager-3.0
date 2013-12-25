@@ -1,15 +1,19 @@
 FileManager::Application.routes.draw do
+  
   root :to => 'folders#index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :folders
+  resources :folders do
+    resources :comments
+  end
 
   resources :users
   get 'api/v2/:token', to: 'users#show_user_info', as: 'info', :defaults => { :format => 'json' }
 
 
-  resources :items do 
+  resources :items do
+    resources :comments 
     collection do
       get 'import_pages', to: 'items#import_pages', as: 'import_pages'
       post 'import_page', to: 'items#import_page', as: 'import_page'

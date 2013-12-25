@@ -3,14 +3,25 @@
 
 table.table.table-striped {   
   border: 1px solid #dddddd;
+  border-collapse: separate;
   thead {
     @include background-image(linear-gradient(white, #cccccc, #aaaaaa));      
     color: black;
     th {
-      border-right: 1px solid #dddddd; 
+      border: 1px solid #dddddd;
+      border-collapse: separate;
     };       
   };
   tbody tr td {  
-    border-right: 2px solid #dddddd;
+    border-right: 1px solid #dddddd;
   };
+    tr:hover{
+      text-decoration: none;
+    }
+  td span {
+    padding: 4px;
+  }
+  a{
+    color: black;
+  }
 };
