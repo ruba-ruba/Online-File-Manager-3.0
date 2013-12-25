@@ -3,7 +3,7 @@
 
 @import "compass/layout.scss";
 
-@include sticky-footer(72px, ".container-fluid", ".row-fluid",".footer");
+@include sticky-footer(72px, ".container", ".row-fluid",".footer");
 
 .alert{
   margin: 0px;  
