@@ -8,4 +8,4 @@ ul
       '&nbsp
       = link_to "#{icon :folder} #{content_tag(:span, folder.title)}".html_safe, folder_path(folder)    
       - if folder.has_children?
-        = render 'shared/tree', :folders => folder.children
+        = render 'shared/tree', :folders => folder.children.order("title asc")
