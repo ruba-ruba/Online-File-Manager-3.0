@@ -6,7 +6,7 @@
     td = item.extension
     td = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')     
     td 
-      = link_to 'send as email', add_recipient_items_path(file_name: item.file_file_name,file_path: item.file.path)
+      = link_to icon(:email_go), add_recipient_items_path(file_name: item.file_file_name,file_path: item.file.path), :title => 'Send as email', :rel => 'tooltip'
       span
       |
       = pdf(item)
