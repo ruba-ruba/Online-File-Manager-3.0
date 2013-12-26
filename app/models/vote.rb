@@ -6,11 +6,4 @@ class Vote < ActiveRecord::Base
 
   validates :user_id, uniqueness: { scope: :comment_id }
 
-  # after_create :update_comments_counter
-
-
-  # def update_comments_counter
-  #   binding.pry
-  # end
-
 end
