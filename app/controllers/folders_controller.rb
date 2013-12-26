@@ -1,78 +1,71 @@
 class FoldersController < ApplicationController
   
-  before_filter :authenticate_user!, except: :index
+  helper_method  :sort_column, :item_sort_column, :sort_direction
+  before_filter  :authenticate_user!, :except => [:index, :show]
+  before_filter  :find_folder_and_check_manageability, :only => [:edit, :update, :destroy]
 
   def index
-    @folders = Folder.roots
-    @items = Item.root
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @folders }
-    end
+    @folders = Folder.roots.order(sort_column + ' ' + sort_direction)
+    @items = Item.root.order(item_sort_column + ' ' + sort_direction)
   end
 
   def show
-    @folder = Folder.find(params[:id])    
+    @folder = Folder.find(params[:id])
+    @folders = @folder.children.order(sort_column + ' ' + sort_direction)
+    @items = @folder.items.order(item_sort_column + ' ' + sort_direction)    
   end
 
-  # GET /folders/new
-  # GET /folders/new.json
   def new
     @folder = Folder.new
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @folder }
-    end
   end
 
-  # GET /folders/1/edit
   def edit
-    @folder = Folder.find(params[:id])
   end
 
-  # POST /folders
-  # POST /folders.json
   def create
     @folder = current_user.folders.build(params[:folder])
-
-    respond_to do |format|
-      if @folder.save
-        format.html { redirect_to @folder, notice: 'Folder was successfully created.' }
-        format.json { render json: @folder, status: :created, location: @folder }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @folder.errors, status: :unprocessable_entity }
-      end
+    if @folder.save
+      flash[:notice] = "Folder was successfully created."
+      redirect_to @folder
+    else
+      render action: "new"
     end
   end
 
-  # PUT /folders/1
-  # PUT /folders/1.json
   def update
-    @folder = Folder.find(params[:id])
+    if @folder.update_attributes(params[:folder])
+      redirect_to @folder, notice: 'Folder was successfully updated.'
+    else
+      render action: "edit"
+    end
+  end
 
-    respond_to do |format|
-      if @folder.update_attributes(params[:folder])
-        format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @folder.errors, status: :unprocessable_entity }
+  def destroy
+    @folder.destroy
+    flash[:notice] = "Folder was successfully deleted."
+    redirect_to :back
+  end
+
+  private
+
+    def find_folder_and_check_manageability
+      @folder = Folder.find(params[:id])
+      unless current_user.can_manage?(@folder)  
+        flash[:error] = "you can not do that"
+        redirect_to :back and return  
       end
     end
-  end
 
-  # DELETE /folders/1
-  # DELETE /folders/1.json
-  def destroy
-    @folder = Folder.find(params[:id])
-    @folder.destroy
-
-    respond_to do |format|
-      format.html { redirect_to folders_url }
-      format.json { head :no_content }
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
     end
-  end
+
+    def sort_column
+      Folder.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    end
+
+    def item_sort_column
+      Item.column_names.include?(params[:items_sort]) ? params[:items_sort] : "file_file_name"
+    end
 
 end

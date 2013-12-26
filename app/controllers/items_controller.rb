@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
   require 'uri'
 
   before_filter :authenticate_user!
+  before_filter  :find_item_and_check_manageability, :only => [:edit, :update, :destroy]
+
 
   def index
   end
@@ -29,11 +31,9 @@ class ItemsController < ApplicationController
 
 
   def edit  
-     @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update_attributes(params[:item])
       redirect_to @item.folder || :root, notice: 'Item was successfully updated.'
     else
@@ -114,9 +114,18 @@ class ItemsController < ApplicationController
   end
 
  def destroy
-    @item = Item.find(params[:id])
     @item.destroy
     flash[:success] = "Items destroyed."
     redirect_to @item.folder || root_path
   end
+
+  private
+
+    def find_item_and_check_manageability
+      @item = Item.find(params[:id])
+      unless current_user.can_manage?(@item)  
+        flash[:error] = "you can not do that"
+        redirect_to :back and return  
+      end
+    end
 end

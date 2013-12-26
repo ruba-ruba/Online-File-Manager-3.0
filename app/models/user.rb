@@ -43,6 +43,14 @@ class User < ActiveRecord::Base
     info
   end
 
+  def admin?
+    role == 'admin'
+  end
+
+  def can_manage?(target)
+    admin? || target.user_id == id
+  end
+
   protected
 
   def generate_token
@@ -57,5 +65,4 @@ class User < ActiveRecord::Base
   def default_role
     self.role = "user"
   end
-
 end
