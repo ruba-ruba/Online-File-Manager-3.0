@@ -27,6 +27,8 @@ FileManager::Application.routes.draw do
   end
 
 
+  post "vote", to: 'votes#vote'
+
   #grape
   mount UsersApi::API => "/"
 
