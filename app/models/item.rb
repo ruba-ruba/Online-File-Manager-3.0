@@ -50,7 +50,7 @@ class Item < ActiveRecord::Base
   end
 
   def extension
-    self.file_file_name.split('.').last.downcase
+    self.file_file_name.index('.') ? self.file_file_name.split('.').last.downcase : ''
   end
 
   def txt_or_html?
@@ -58,9 +58,13 @@ class Item < ActiveRecord::Base
   end
 
   def check_quota
-    current_file_size = self.file_file_size || 0
-    previouse_size = self.user.items.sum(:file_file_size)
-    errors.add(:limit, 'you reached limit of quota') if self.user.quota < previouse_size + current_file_size
+    if self.file.present?
+      current_file_size = self.file_file_size
+      previouse_size = self.user.items.sum(:file_file_size)
+      errors.add(:limit, 'you reached limit of quota') if self.user.quota < previouse_size + current_file_size
+    else
+      false
+    end
   end
 
 end

@@ -20,10 +20,12 @@ describe Item do
       file1 = FactoryGirl.create(:item, file_file_name: 'new1.txt')
       file2 = FactoryGirl.create(:item, file_file_name: 'new2.Txt')
       file3 = FactoryGirl.create(:item, file_file_name: 'new3.mp3.TXT')
+      file4 = FactoryGirl.create(:item, file_file_name: 'SOMEfile')
 
       file1.extension.should eq('txt')
       file2.extension.should eq('txt')
       file3.extension.should eq('txt')
+      file4.extension.should eq('')
     end
   end
 
