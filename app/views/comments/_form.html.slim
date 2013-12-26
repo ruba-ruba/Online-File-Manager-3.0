@@ -1,0 +1,13 @@
+= simple_form_for [@commentable, @comment] do |f|
+
+  .form-inputs
+    = f.input :content, :placeholder => "leave your comment", :input_html => {:rows => 5}
+    = f.hidden_field :commentable_id
+    = f.hidden_field :commentable_type
+    = f.hidden_field :user_id
+    = f.hidden_field :parent_id
+
+  .form-actions
+    = f.button :submit
+
+    

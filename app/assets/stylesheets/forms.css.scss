@@ -9,7 +9,7 @@
   };
   input{
     margin-left: 12px;
-  }
+  }  
 }
 
 .actions {
@@ -19,7 +19,7 @@
 }
 
 .form-inputs{
-  padding-left: 15px;
+  padding-left: 0px;
   margin-top: 20px;
   margin-bottom: 10px;
   .required.control-label{
@@ -30,4 +30,18 @@
 .links_reg{
   margin-left: 16px;
   margin-top: 5px;
+}
+
+h4{
+  padding-left: 15px;
+}
+
+.control-group {
+  padding-left: 15px;
+  margin-top: 20px;
+}
+
+.cancel-accout{
+  padding-left: 15px;
+  margin-top: 20px;
 }

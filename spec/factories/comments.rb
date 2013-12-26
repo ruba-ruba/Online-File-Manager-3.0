@@ -1,11 +1,12 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
-  factory :comment do
-    content "MyText"
-    commentable_id 1
-    commentable_type "MyString"
-    user_id "MyString"
-    string "MyString"
+
+  factory :folder_comment, :class => 'Comment' do
+    content "comment for something"
+    association :commentable, :factory => :folder
+  end
+
+  factory :item_comment, :class => 'Comment' do 
+    content "comment for something"
+    association :commentable, :factory => :item
   end
 end

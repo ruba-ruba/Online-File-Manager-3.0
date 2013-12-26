@@ -1,5 +1,4 @@
 @import "compass/css3/images";
-@import "base";
 
 table.table.table-striped {   
   border: 1px solid #dddddd;
@@ -23,3 +22,12 @@ table.table.table-striped {
     text-decoration: none;
   }
 };
+
+.link-muted{
+  cursor: default;
+  opacity: 0.3;
+}
+
+.empty_actions_folder{
+  padding-left: 75px;
+}

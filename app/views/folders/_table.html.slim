@@ -11,7 +11,7 @@ table.table.table-striped
     - if @folder
       tr
         td colspan="6"
-          = link_to @folder.parent
+          = link_to @folder.parent || root_path
             = icon(:folder)
             span 
               | ..
@@ -22,12 +22,13 @@ table.table.table-striped
       td = number_to_human_size(folder.size)
       td Folder
       td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
-      td        
-        = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
-          span.glyphicon.glyphicon-edit            
-        span
-        |
-        = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
-          span.glyphicon.glyphicon-trash
+      td
+        .empty_actions_folder
+          = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
+            span.glyphicon.glyphicon-edit            
+          span
+          |
+          = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
+            span.glyphicon.glyphicon-trash
 
   = render 'items/items', :items => items
