@@ -42,33 +42,32 @@ class ItemsController < ApplicationController
   end
 
   def add_recipient
+    @item = Item.find params[:id]
   end
 
   def send_mail
     mail = params[:mail]
     recipient = mail[:recipient]
     subject = mail[:subject]
-    file_path = mail[:file_path]
-    file_name = mail[:file_name]
+    item = Item.find params[:id]
+    file_path = item.file.path
+    file_name = item.file_file_name
     FileMailer.send_file(recipient, subject, file_path, file_name).deliver
-    redirect_to root_path, notice: 'emeil sent successfully'
+    redirect_to root_path, notice: 'email sent successfully'
   end
 
   def import_pages 
   end
 
   def import_page
-    user = params[:import][:user_id]
     folder = params[:import][:folder_id]
     link = params[:import][:url]
     host = URI.parse(link).host
     name = Item.file_name(link, host)
-    begin
-      response = HTTParty.get(link)
-      create_file(user, folder, name, host, response.body)
+    response = HTTParty.get(link)
+    create_file(current_user.id, folder, name, host, response.body)
     rescue Exception => exc
-       redirect_to import_pages_items_path, alert: "url not correct #{exc}"
-    end
+      redirect_to import_pages_items_path, alert: "url not correct #{exc}"
   end
 
   def create_file(user, folder, name, host, data)
