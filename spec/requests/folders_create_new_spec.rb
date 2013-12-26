@@ -17,7 +17,7 @@ describe "Folders" do
     expect {
       visit '/folders/new'
       fill_in "Title", :with => ""
-      fill_in "Description", :with => "some_description"    
+      fill_in "Description", :with => "some_description"
       click_button "Save"
       page.should have_content("Title can't be blank")
     }.to change(Folder, :count).by(0)
@@ -38,8 +38,7 @@ describe "Folders" do
       fill_in "Title", :with => "some_titile"
       fill_in "Description", :with => "some_description"
       click_button "Save"
-      page.should have_content("Title has already been taken")
-      Folder.find_by_title("some_titile").should be_present
+      page.should have_content("Title has already been taken")      
     }.to change(Folder, :count).by(0)
   end
 end
