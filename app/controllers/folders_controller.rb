@@ -28,6 +28,7 @@ class FoldersController < ApplicationController
       flash[:notice] = "Folder was successfully created."
       redirect_to @folder
     else
+      flash[:error] = @folder.errors.full_messages.join(", ")
       render action: "new"
     end
   end

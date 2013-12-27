@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
       if @item.save
         format.html {redirect_to @item.folder || :root, notice: 'Item was successfully created.'}
       else
+        flash[:error] = @item.errors.full_messages.join(", ")
         format.html {render 'new'}
         format.json { render json: @item.errors, status: :unprocessable_entity}
       end

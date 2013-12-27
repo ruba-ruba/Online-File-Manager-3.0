@@ -1,14 +1,6 @@
 .control-group
   h4 New item
   = simple_form_for @item, :html => { :multipart => true, :class => "data_form" } do |f|
-
-    - if @item.errors.any?
-      #error_explanation
-        h2 = "#{pluralize(@item.errors.count, "error")} prohibited this folder from being saved:"
-        ul
-          - @item.errors.full_messages.each do |message|
-            li = message
-
     = f.hidden_field :folder_id
     = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
 
