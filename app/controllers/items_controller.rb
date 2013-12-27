@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item =  current_user.items.build(params[:item])
+    @item =  Item.new({:user_id => current_user.id}.merge(params[:item]))
     respond_to do |format|
       if @item.save
         format.html {redirect_to @item.folder || :root, notice: 'Item was successfully created.'}

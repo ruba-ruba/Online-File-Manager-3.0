@@ -2,7 +2,6 @@
   h4 New item
   = simple_form_for @item, :html => { :multipart => true, :class => "data_form" } do |f|
     = f.hidden_field :folder_id
-    = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
 
     .form-group.new
       = f.label :description

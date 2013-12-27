@@ -27,7 +27,6 @@
     = f.input :content, :placeholder => "leave your comment", :input_html => {:rows => 5}
     = f.hidden_field  :commentable_id
     = f.hidden_field  :commentable_type
-    = f.hidden_field  :user_id
     = f.input :parent_id, :as => :hidden, :input_html => { :value => params[:comment_id] }
     .form-actions
       = f.button :submit, class: 'btn btn-primary submit'
