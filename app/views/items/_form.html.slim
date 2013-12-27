@@ -12,10 +12,6 @@
     = f.hidden_field :folder_id
     = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
 
-
-    .form-group.new
-      = f.label :title
-      = f.text_field :title
     .form-group.new
       = f.label :description
       = f.text_field :description

@@ -3,9 +3,9 @@ class Comment < ActiveRecord::Base
 
   has_ancestry
   
-  has_many :votes, :dependent => :destroy
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
+  has_many :votes, :dependent => :destroy
 
   validates :content, presence: true
 

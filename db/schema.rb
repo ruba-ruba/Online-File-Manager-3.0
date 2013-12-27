@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131226133019) do
+ActiveRecord::Schema.define(:version => 20131227091358) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20131226133019) do
   add_index "folders", ["user_id"], :name => "index_folders_on_user_id"
 
   create_table "items", :force => true do |t|
-    t.string   "title"
     t.string   "description"
     t.integer  "folder_id"
     t.datetime "created_at",        :null => false
