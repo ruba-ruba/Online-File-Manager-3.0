@@ -2,11 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.list-group.comments{
+.comments{
   width: 400px;
   ul{
     list-style-type: none;
-    padding-left: 15px;
   }
   ul li {    
     padding-bottom: 10px;

@@ -23,12 +23,11 @@ table.table.table-striped
       td Folder
       td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
       td
-        .empty_actions_folder
-          = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
-            span.glyphicon.glyphicon-edit            
-          span
-          |
-          = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
-            span.glyphicon.glyphicon-trash
+        = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
+          span.glyphicon.glyphicon-edit            
+        span
+        |
+        = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
+          span.glyphicon.glyphicon-trash
 
   = render 'items/items', :items => items

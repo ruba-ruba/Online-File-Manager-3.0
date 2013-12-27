@@ -3,6 +3,7 @@
 table.table.table-striped {   
   border: 1px solid #dddddd;
   border-collapse: separate;
+  width: 100%;  
   thead {
     @include background-image(linear-gradient(white, #cccccc, #aaaaaa));      
     color: black;
@@ -22,7 +23,3 @@ table.table.table-striped {
     text-decoration: none;
   }
 };
-
-.empty_actions_folder{
-  padding-left: 75px;
-}

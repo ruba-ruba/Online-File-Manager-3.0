@@ -1,7 +1,7 @@
 .control-group
   h4 Comments
 
-  .list-group.comments
+  .comments
     ul
       - @comments.each do |comment|
         li
@@ -18,7 +18,6 @@
            | |
           = comment.votes_down
           = link_to 'vote_down', vote_path(comment: comment.id, vote: 'down'), :method=> :post, remote: true
-
 
   h4 New Comment
   = simple_form_for [@commentable, Comment.new] do |f|

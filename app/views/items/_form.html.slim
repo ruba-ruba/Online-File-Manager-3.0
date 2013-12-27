@@ -1,5 +1,4 @@
-.control-group
-  h4 New item
+.control-group  
   = simple_form_for @item, :html => { :multipart => true, :class => "data_form" } do |f|
     = f.hidden_field :folder_id
 
