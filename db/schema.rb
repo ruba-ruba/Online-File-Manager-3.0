@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< Updated upstream
-ActiveRecord::Schema.define(:version => 20131227091358) do
-=======
 ActiveRecord::Schema.define(:version => 20131227110354) do
->>>>>>> Stashed changes
 
   create_table "comments", :force => true do |t|
     t.text     "content"
