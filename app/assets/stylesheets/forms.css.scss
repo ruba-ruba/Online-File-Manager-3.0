@@ -1,23 +1,11 @@
-.form-group.new {  
-  margin-top: 20px;
-  margin-bottom: 10px;
-  label {    
-    float: left;
-    width: 120px;    
-    text-align: right;    
-  };
-  input{
-    margin-left: 12px;
-  }  
-}
-
 .actions {
   input[type="file"]{
-    margin-left: 130px;
+    margin-top: 15px;
   }
 }
 
-.control-group {
+.form-group {
+  margin-top: 15px;
   .links_reg{
   margin-top: 6px;
   }

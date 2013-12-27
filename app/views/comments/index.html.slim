@@ -1,4 +1,4 @@
-.control-group
+.form-group
   h4 Comments
 
   .comments
@@ -27,5 +27,5 @@
     = f.hidden_field  :commentable_id
     = f.hidden_field  :commentable_type
     = f.input :parent_id, :as => :hidden, :input_html => { :value => params[:comment_id] }
-    .form-actions
+    .actions
       = f.button :submit, class: 'btn btn-primary submit'
