@@ -1,9 +1,7 @@
 module ApplicationHelper
   def pdf(item)
     if item.file_file_name.split('.')[1] == 'pdf'
-        "#{link_to icon(:page_go), show_pdf_item_path(item), :target => '_blank', :alt => 'Open PDF', :title => 'Open PDF', :rel => 'tooltip'}".html_safe
-    else
-        "#{link_to icon(:page_go), "#", class: "link-muted", :title => 'Cannot open PDF', :rel => 'tooltip'}".html_safe   
+        "#{link_to icon(:page_go), show_pdf_item_path(item), :target => '_blank', :alt => 'Open PDF', :title => 'Open PDF', :rel => 'tooltip'}".html_safe 
     end
   end
 
