@@ -18,4 +18,8 @@ class Comment < ActiveRecord::Base
     updated = self.votes_down ? self.votes_down + 1 : 1
     self.update_attribute(:votes_down, updated)
   end
+
+  def status
+    self.votes_up >= self.votes_down ? '' : 'negative'
+  end
 end

@@ -3,7 +3,7 @@ class VotesController < ApplicationController
     @vote = Vote.new(user_id: current_user.id, comment_id: params[:comment])
     respond_to do |format|
       if @vote.save
-        params[:vote] == 'up' ? @vote.comment.vote_up : @vote.comment.vote_down 
+        params[:vote] == 'up' ? @vote.comment.vote_up : @vote.comment.vote_down
         format.js
       else
         format.js

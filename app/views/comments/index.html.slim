@@ -4,7 +4,7 @@
   .comments
     ul
       - @comments.each do |comment|
-        li
+        li class="#{comment.status}"
           = comment.content
           br/
           = link_to 'Reply', new_polymorphic_path([@commentable, comment], :comment_id => comment.id)

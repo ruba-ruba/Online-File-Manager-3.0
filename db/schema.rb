@@ -11,18 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131227110354) do
+ActiveRecord::Schema.define(:version => 20131227142025) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "ancestry"
-    t.integer  "votes_up"
-    t.integer  "votes_down"
+    t.integer  "votes_up",         :default => 0
+    t.integer  "votes_down",       :default => 0
   end
 
   add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
