@@ -1,4 +1,4 @@
-.control-group
+.form-group
   h4 New comment
   = simple_form_for [@commentable, @comment] do |f|
 
@@ -8,5 +8,5 @@
       = f.hidden_field :commentable_type
       = f.hidden_field :parent_id
 
-    .form-actions
+    .actions
       = f.button :submit, class: 'btn btn-primary submit'

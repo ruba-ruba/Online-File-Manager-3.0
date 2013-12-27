@@ -1,0 +1,10 @@
+.form-group
+  h4 Resend unlock instructions
+  = simple_form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f|
+    = f.error_notification
+    = f.full_error :unlock_token
+    div
+      = f.input :email, :required => true, :autofocus => true
+    .form-actions
+      = f.button :submit, "Resend unlock instructions", class: 'btn btn-primary submit'
+  = render "devise/shared/links"
