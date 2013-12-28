@@ -12,12 +12,7 @@
            | |
           = link_to 'Destroy', [@commentable, comment], :confirm => 'Are you sure?', :method => :delete
           br/
-          = comment.votes_up
-          = link_to 'vote_up', vote_path(comment: comment.id, vote_type: true), :method=> :post, remote: true
-          span
-           | |
-          = comment.votes_down
-          = link_to 'vote_down', vote_path(comment: comment.id, vote_type: false), :method=> :post, remote: true
+          = render 'comment_votes', comment: comment
 
   h4 New Comment
   = simple_form_for [@commentable, Comment.new] do |f|

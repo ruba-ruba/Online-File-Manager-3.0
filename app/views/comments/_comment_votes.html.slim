@@ -1,0 +1,7 @@
+div class=dom_id(comment)
+  = comment.votes_up
+  = link_to 'vote_up', vote_path(comment: comment.id, vote_type: true), :method=> :post, remote: true
+  span
+   | |
+  = comment.votes_down
+  = link_to 'vote_down', vote_path(comment: comment.id, vote_type: false), :method=> :post, remote: true

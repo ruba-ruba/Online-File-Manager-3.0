@@ -1,5 +1,1 @@
-<% if @vote.errors.any? %>
-  alert('you already voted');
-<% else %>
-  alert('thanks for vote');
-<% end %>
+$(".comment_<%= @comment.id %>").replaceWith("<%= escape_javascript(render :partial => 'comments/comment_votes', :locals => { :comment => @comment })%>");
