@@ -9,14 +9,19 @@ class Comment < ActiveRecord::Base
 
   validates :content, presence: true
 
-  def vote_up
-    updated = self.votes_up ? self.votes_up + 1 : 1 
-    self.update_attribute(:votes_up, updated)    
+  def vote_up(col)
+    updated = self.send(col.to_sym) ? self.send(col.to_sym) + 1 : 1 
+    self.update_attribute(col.to_sym, updated)    
   end
 
-  def vote_down
-    updated = self.votes_down ? self.votes_down + 1 : 1
-    self.update_attribute(:votes_down, updated)
+  def vote_down(col) 
+    updated = self.send(col.to_sym) != 0 ? self.send(col.to_sym) - 1 : 0
+    self.update_attribute(col.to_sym, updated)
+  end
+
+  def vote_change(up_col, down_col)
+    vote_up(up_col)
+    vote_down(down_col)
   end
 
   def status
