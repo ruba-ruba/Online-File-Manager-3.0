@@ -14,7 +14,7 @@ class Comment < ActiveRecord::Base
     self.update_attribute(col.to_sym, updated)    
   end
 
-  def vote_down(col) 
+  def vote_down(col)
     updated = self.send(col.to_sym) != 0 ? self.send(col.to_sym) - 1 : 0
     self.update_attribute(col.to_sym, updated)
   end
