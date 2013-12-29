@@ -1,0 +1,26 @@
+.form-group
+  h4 Comments
+
+  .comments
+    ul
+      - @comments.each do |comment|
+        li class="#{comment.status}"
+          = comment.content
+          br/
+          = link_to 'Reply', new_polymorphic_path([@commentable, comment], :comment_id => comment.id)
+          span
+           | |
+          = link_to 'Destroy', [@commentable, comment], :confirm => 'Are you sure?', :method => :delete
+          br/
+          = render 'comment_votes', comment: comment
+
+  h4 New Comment
+  = simple_form_for [@commentable, Comment.new] do |f|
+    = f.error_notification
+    
+    = f.input :content, :placeholder => "leave your comment", :input_html => {:rows => 5}
+    = f.hidden_field  :commentable_id
+    = f.hidden_field  :commentable_type
+    = f.input :parent_id, :as => :hidden, :input_html => { :value => params[:comment_id] }
+    .actions
+      = f.button :submit, class: 'btn btn-primary submit'

@@ -1,12 +1,15 @@
-@import "mixins.css.scss";
-@import "compass";
+@import "compass/css3/images";
 
-header {
+header.col-xs-12{
   background-color: #007FFF;
+  color: white;
+  padding: 0px;
+  margin: 0px;
   .current_user{
     color: white;
   };
   .flash{
+    width: 100%;
     .alert{
       margin-bottom: 0px;
       div.pull-right{
@@ -46,6 +49,12 @@ header {
     padding-right: 10px;
     width: 200px;
     color: white;
-    text-align: right;      
+    text-align: right;     
   };
+
+  span.pull-right{
+    color: white;
+    vertical-align: middle;
+    padding-top: 8px;
+  }
 };

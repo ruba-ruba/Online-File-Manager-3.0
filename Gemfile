@@ -58,8 +58,6 @@ group :development do
   gem 'pry-rails'
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
-  gem 'gmaps4rails', '~> 2.1.0'
-  gem 'geocoder'
   gem 'underscore-rails'
 end
 
@@ -86,5 +84,4 @@ group :test do
   gem 'rack-contrib'
   gem 'guard-spork'
   gem 'spork'
-  gem 'zeus'
 end

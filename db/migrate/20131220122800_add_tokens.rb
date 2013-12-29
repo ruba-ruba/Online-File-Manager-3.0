@@ -3,7 +3,7 @@ class AddTokens < ActiveRecord::Migration
     users = User.where(:token => nil)
     users.each do |user|
       user.token = user.send(:generate_token)
-      user.save
+      user.save(:validate => false)
     end
   end
 

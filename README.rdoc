@@ -1,7 +1,25 @@
 == File Manager
 
 tasks
+
 https://docs.google.com/document/d/1EST5BwFEdRLBQVG2tMiBWGFDTNn0TSETT7uMwXqGtBE/edit?pli=1
 
 template
+
 http://i.stack.imgur.com/n5KIJ.png
+
+
+
+== deploy on heroku:
+
+- <tt>git pull</tt>(on master branch)
+- <tt>git checkout production</tt>
+- <tt>git pull</tt>(on production branch)
+- <tt>git merge master</tt>
+- <tt>rake assets:precompile --trace RAILS_ENV=production</tt>
+- <tt>git add -p</tt>
+- <tt>git commit -a -m "message"</tt>
+- <tt>git push</tt>
+- <tt>git push heroku production:master</tt>
+- <tt>heroku logs --tail</tt>
+

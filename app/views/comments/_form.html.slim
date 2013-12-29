@@ -1,0 +1,12 @@
+.form-group
+  h4 New comment
+  = simple_form_for [@commentable, @comment] do |f|
+
+    .form-inputs
+      = f.input :content, :placeholder => "leave your comment", :input_html => {:rows => 5}
+      = f.hidden_field :commentable_id
+      = f.hidden_field :commentable_type
+      = f.hidden_field :parent_id
+
+    .actions
+      = f.button :submit, class: 'btn btn-primary submit'

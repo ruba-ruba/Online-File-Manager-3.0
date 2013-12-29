@@ -1,27 +1,33 @@
 FileManager::Application.routes.draw do
+  
   root :to => 'folders#index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :folders
+  resources :folders do
+    resources :comments
+  end
 
   resources :users
   get 'api/v2/:token', to: 'users#show_user_info', as: 'info', :defaults => { :format => 'json' }
 
 
-  resources :items do 
+  resources :items do
+    resources :comments 
     collection do
       get 'import_pages', to: 'items#import_pages', as: 'import_pages'
       post 'import_page', to: 'items#import_page', as: 'import_page'
-      match 'add_recipient', to: 'items#add_recipient'
-      post 'send_mail', to: 'items#send_mail'
     end
     member do
       get 'pdf' => 'items#pdf', :as => :pdf
       get 'show_pdf' => 'items#show_pdf'
+      match 'add_recipient', to: 'items#add_recipient'
+      post 'send_mail', to: 'items#send_mail'
     end
   end
 
+
+  post "vote", to: 'votes#vote'
 
   #grape
   mount UsersApi::API => "/"

@@ -1,9 +1,8 @@
 @import "mixins.css.scss";
-@import "compass";
 
 .control_panel{
   @include control_buttons_background;
-  padding: 10px 0 10px 15px;
+  padding: 5px 0 0 15px;
   height: 50px;    
   ul.nav.nav-tabs.control_buttons {  
     padding-bottom: 10px;  

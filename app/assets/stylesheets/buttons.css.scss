@@ -1,23 +1,17 @@
-@import "mixins.css.scss";
-@import "compass";
-
-.btn.btn-primary.save{
-  margin-top: 12px;
-  margin-left: 149px;
-  text-align: center; 
+ul.btn{
+  background-color: #0D2033;  
+  float: left;
+  min-width: 50px;
+  margin: 0px;
+  margin-left: 15px;
+  list-style-type: none;
+  margin-top: 10px;
+  span.glyphicon.glyphicon-arrow-left{
+    color: white;
+  }
 }
 
-.nav-buttons{
-  float: left;
-  height: 30px;
-  min-width: 50px; 
-  width: 8%;
-  display: inline-block;
-  .pager{
-    margin: 0;
-    padding: 0;
-    #wrapper{
-      min-width: 50px;
-    };
-  };
-};
+.btn.btn-primary.submit{
+  margin-top: 12px;
+  text-align: center; 
+}

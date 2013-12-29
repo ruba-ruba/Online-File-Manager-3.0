@@ -1,31 +1,32 @@
 class User < ActiveRecord::Base
+  ROLES = %w[user admin]
 
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :provider, :uid, :name
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :provider, :uid, :name
-
   has_many :folders
   has_many :items
+  has_many :comments
+  has_many :votes
 
-  ROLES = %w[user admin]
+  validates :role, :inclusion => { :in => ROLES }
 
   before_validation :default_role, :on => :create
   before_create :generate_token
-
-  validates :role, :inclusion => { :in => ROLES }
 
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
       user = User.create(name:auth.extra.raw_info.name,
-                           provider:auth.provider,
-                           uid:auth.uid,
-                           email:auth.info.email,
-                           password:Devise.friendly_token[0,20]
-                           )
+                         provider:auth.provider,
+                         uid:auth.uid,
+                         email:auth.info.email,
+                         password:Devise.friendly_token[0,20]
+                         )
     end
     user
   end
@@ -42,19 +43,26 @@ class User < ActiveRecord::Base
     info
   end
 
+  def admin?
+    role == 'admin'
+  end
+
+  def can_manage?(target)
+    admin? || target.user_id == id
+  end
+
   protected
 
-    def generate_token
-      self.token = loop do
-        random_token = SecureRandom.urlsafe_base64(nil, false)
-        break random_token unless User.exists?(token: random_token)
-      end
+  def generate_token
+    self.token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless User.exists?(token: random_token)
     end
+  end
 
   private
 
-    def default_role
-      self.role = "user"
-    end
-
+  def default_role
+    self.role = "user"
+  end
 end

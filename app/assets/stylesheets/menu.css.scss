@@ -1,34 +1,42 @@
-@import "mixins.css.scss";
-@import "compass";
-
 .menu{ 
   color: black;
   padding: 0px;  
   .favourite { 
     padding-left: 15px;
     height: 30%;
-    border: 2px solid #dddddd;
+    border: 1px solid #dddddd;
     .nav > li > a {
       color: black;
+      padding: 4px 15px 4px 15px;
     };
+    h4{
+      padding-left: 14px;
+    }
   };
 
   .tree_menu{      
-    height: 47%;
-    margin-bottom: 72px;
+    height: 46%;
     padding-left: 15px;
-    border: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
     ul{
-      list-style-type: none; 
+      list-style-type: none;
+      .glyphicon{
+        cursor: pointer;
+      }
       a{
-        color: black;        
+        color: black;
+        text-decoration: none;
+        span:hover{
+          text-decoration: underline;
+        }
       };    
     };      
     li > ul {
       margin-left: 20px;
       list-style-type: none;
     };
+    .list-group{
+      padding-left: 15px;
+    }
   };
-  .panel .panel-heading{
-  }
 };

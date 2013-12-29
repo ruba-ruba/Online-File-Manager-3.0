@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131219153357) do
+ActiveRecord::Schema.define(:version => 20131227162711) do
+
+  create_table "comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "ancestry"
+    t.integer  "votes_up",         :default => 0
+    t.integer  "votes_down",       :default => 0
+  end
+
+  add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "folders", :force => true do |t|
     t.string   "title"
@@ -26,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20131219153357) do
   add_index "folders", ["user_id"], :name => "index_folders_on_user_id"
 
   create_table "items", :force => true do |t|
-    t.string   "title"
     t.string   "description"
     t.integer  "folder_id"
     t.datetime "created_at",        :null => false
@@ -62,5 +77,13 @@ ActiveRecord::Schema.define(:version => 20131219153357) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["token"], :name => "index_users_on_token"
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "vote_type"
+  end
 
 end

@@ -23,4 +23,4 @@
     .panel-heading
       h4 Folders 
     .list-group 
-      = render 'shared/tree', :folders => Folder.roots
+      = render 'shared/tree', :folders => Folder.roots.order("title asc")
