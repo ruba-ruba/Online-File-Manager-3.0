@@ -15,6 +15,7 @@ body{
 
 .row{  
   margin: 0px;
+  border-collapse: collapse;
   .content.row {
     margin: 0px;
     .main_content.col-xs-10 {
@@ -33,3 +34,4 @@ span{
   vertical-align: middle;
   text-align: center;
 }
+
