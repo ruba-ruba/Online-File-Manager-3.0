@@ -8,13 +8,14 @@ ul
           | Posted #{time_ago_in_words(comment.created_at)} ago.
       .comment_content
         = comment.content
-      br/
-      = link_to 'Reply', new_polymorphic_path([@commentable, comment], :comment_id => comment.id)
-      span
-       | |
-      = link_to 'Destroy', [@commentable, comment], :confirm => 'Are you sure?', :method => :delete
-      br/
-      = render 'comment_votes', comment: comment
+      .reply_controls
+        .links
+          = link_to 'Reply', new_polymorphic_path([@commentable, comment], :comment_id => comment.id)
+          span
+           | |
+          = link_to 'Destroy', [@commentable, comment], :confirm => 'Are you sure?', :method => :delete
+        .voiting
+          = render 'comment_votes', comment: comment
       br/
       - if comment.has_children?
         = render 'comments/comment_message', :comments => comment.children

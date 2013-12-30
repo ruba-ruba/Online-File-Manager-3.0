@@ -10,7 +10,7 @@
   }
   ul li {
     display: list-item;
-    padding-bottom: 10px;
+    padding-top: 5px;
     margin-bottom: 4px;
     .timestamp{
       color: #a8a8a8;
@@ -19,8 +19,18 @@
     .autor{
       vertical-align: middle;
     }
+    .reply_controls{
+      width: 300px;
+      .voiting{
+        float: right;
+      }
+      .links{
+       float: left;
+      }
+    }    
   }
   li > ul{
     padding-left: 30px;
+    padding-top: 10px;
   } 
 }
