@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   before_filter  :find_comment_and_check_manageability, :only => [:destroy]
   
   def index
-    @comments = @commentable.comments
+    @comments = @commentable.comments.roots
   end
 
   def new

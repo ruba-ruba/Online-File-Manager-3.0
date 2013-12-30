@@ -1,0 +1,24 @@
+ul  
+  - comments.each do |comment|
+    li 
+      div class="#{comment.status}"
+        .comment_head
+          b.autor 
+            = comment.author
+          span.timestamp
+            | Posted #{time_ago_in_words(comment.created_at)} ago.
+        .comment_content
+          = comment.content
+        .reply_controls
+          .links
+            = link_to 'Reply', "#", :class => "link_hidden_form_reply"
+            span
+             | |
+            = link_to 'Destroy', [@commentable, comment], :confirm => 'Are you sure?', :method => :delete
+          .voiting
+            = render 'comment_votes', comment: comment
+      .hidden_form_reply
+        = render "comments/form", comment: Comment.new(:parent_id => comment.id), commentable: comment.commentable
+      br/
+      - if comment.has_children?
+        = render 'comments/comment_message', :comments => comment.children
