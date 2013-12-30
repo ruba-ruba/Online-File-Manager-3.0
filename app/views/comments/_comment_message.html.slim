@@ -1,0 +1,20 @@
+ul  
+  - comments.each do |comment|
+    li class="#{comment.status}"
+      .comment_head
+        b.autor 
+          = comment.author
+        span.timestamp
+          | Posted #{time_ago_in_words(comment.created_at)} ago.
+      .comment_content
+        = comment.content
+      br/
+      = link_to 'Reply', new_polymorphic_path([@commentable, comment], :comment_id => comment.id)
+      span
+       | |
+      = link_to 'Destroy', [@commentable, comment], :confirm => 'Are you sure?', :method => :delete
+      br/
+      = render 'comment_votes', comment: comment
+      br/
+      - if comment.has_children?
+        = render 'comments/comment_message', :comments => comment.children

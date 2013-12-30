@@ -27,4 +27,8 @@ class Comment < ActiveRecord::Base
   def status
     self.votes_up >= self.votes_down ? '' : 'negative'
   end
+
+  def author
+    user.name || "anonymous"   
+  end
 end
