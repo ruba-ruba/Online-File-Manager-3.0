@@ -1,7 +1,6 @@
-.control-group
+.form-group
   = simple_form_for :import, url: import_page_items_path do |f|
     = f.input :folder_id, as: :hidden, :input_html => { :value => params[:folder_id] }
-    = f.input :user_id, as: :hidden, :input_html => { :value => current_user.id }
 
     = f.input :url
     = f.submit 'submit', class: 'btn btn-primary submit'

@@ -1,11 +1,11 @@
 table.table.table-striped
   thead
     tr
-      th Name
-      th Description
+      th= sortable 'title', 'Name'
+      th= sortable 'description', 'Description'
       th Size
       th Type
-      th Date
+      th= sortable 'created_at', 'Date'
       th Actions      
   tbody
     - if @folder
@@ -17,18 +17,17 @@ table.table.table-striped
               | ..
   - folders.each do |folder|
     tr
-      td = link_to content_icon(folder), folder       
+      td = link_to content_icon(folder), folder
       td = folder.description
       td = number_to_human_size(folder.size)
       td Folder
       td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
       td
-        .empty_actions_folder
-          = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
-            span.glyphicon.glyphicon-edit            
-          span
-          |
-          = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
-            span.glyphicon.glyphicon-trash
+        = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
+          span.glyphicon.glyphicon-edit            
+        span
+        |
+        = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
+          span.glyphicon.glyphicon-trash
 
   = render 'items/items', :items => items

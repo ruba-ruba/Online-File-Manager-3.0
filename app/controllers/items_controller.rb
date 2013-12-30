@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
   require 'uri'
 
   before_filter :authenticate_user!
+  before_filter  :find_item_and_check_manageability, :only => [:edit, :update, :destroy]
+
 
   def index
   end
@@ -16,11 +18,12 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item =  current_user.items.build(params[:item])
+    @item =  Item.new({:user_id => current_user.id}.merge(params[:item]))
     respond_to do |format|
       if @item.save
         format.html {redirect_to @item.folder || :root, notice: 'Item was successfully created.'}
       else
+        flash[:error] = @item.errors.full_messages.join(", ")
         format.html {render 'new'}
         format.json { render json: @item.errors, status: :unprocessable_entity}
       end
@@ -29,11 +32,9 @@ class ItemsController < ApplicationController
 
 
   def edit  
-     @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update_attributes(params[:item])
       redirect_to @item.folder || :root, notice: 'Item was successfully updated.'
     else
@@ -42,33 +43,32 @@ class ItemsController < ApplicationController
   end
 
   def add_recipient
+    @item = Item.find params[:id]
   end
 
   def send_mail
     mail = params[:mail]
     recipient = mail[:recipient]
     subject = mail[:subject]
-    file_path = mail[:file_path]
-    file_name = mail[:file_name]
+    item = Item.find params[:id]
+    file_path = item.file.path
+    file_name = item.file_file_name
     FileMailer.send_file(recipient, subject, file_path, file_name).deliver
-    redirect_to root_path, notice: 'emeil sent successfully'
+    redirect_to root_path, notice: 'email sent successfully'
   end
 
   def import_pages 
   end
 
   def import_page
-    user = params[:import][:user_id]
     folder = params[:import][:folder_id]
     link = params[:import][:url]
     host = URI.parse(link).host
     name = Item.file_name(link, host)
-    begin
-      response = HTTParty.get(link)
-      create_file(user, folder, name, host, response.body)
+    response = HTTParty.get(link)
+    create_file(current_user.id, folder, name, host, response.body)
     rescue Exception => exc
-       redirect_to import_pages_items_path, alert: "url not correct #{exc}"
-    end
+      redirect_to import_pages_items_path, alert: "url not correct #{exc}"
   end
 
   def create_file(user, folder, name, host, data)
@@ -115,9 +115,18 @@ class ItemsController < ApplicationController
   end
 
  def destroy
-    @item = Item.find(params[:id])
     @item.destroy
     flash[:success] = "Items destroyed."
     redirect_to @item.folder || root_path
   end
+
+  private
+
+    def find_item_and_check_manageability
+      @item = Item.find(params[:id])
+      unless current_user.can_manage?(@item)  
+        flash[:error] = "you can not do that"
+        redirect_to :back and return  
+      end
+    end
 end

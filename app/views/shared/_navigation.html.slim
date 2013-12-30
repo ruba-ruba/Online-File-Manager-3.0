@@ -1,8 +1,7 @@
-.nav-buttons 
-  ul#wrapper.pager
-    li
-      = link_to "javascript:history.back()"   
-        span.glyphicon.glyphicon-arrow-left
+ul.btn
+  li.previous
+    = link_to "javascript:history.back()"   
+      span.glyphicon.glyphicon-arrow-left
 
 .nav-path
   span
@@ -14,4 +13,3 @@
         = link_to folder.title, folder
         |  /
     = @folder.title if @folder
-

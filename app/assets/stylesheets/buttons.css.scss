@@ -1,32 +1,17 @@
-.btn.btn-primary.save{
-  margin-top: 12px;
-  margin-left: 149px;
-  text-align: center; 
-}
-
-.nav-buttons{
+ul.btn{
+  background-color: #0D2033;  
   float: left;
-  height: 30px;
-  min-width: 50px; 
-  width: 4%;
-  display: inline-block;
-  .pager{
-    margin-top: 15px;
-    padding: 0;
-    #wrapper{
-      min-width: 50px;
-    };
-  };
-};
-
-.form-actions{
-  .btn{
-    margin-left: 17px;
+  min-width: 50px;
+  margin: 0px;
+  margin-left: 15px;
+  list-style-type: none;
+  margin-top: 10px;
+  span.glyphicon.glyphicon-arrow-left{
+    color: white;
   }
 }
 
 .btn.btn-primary.submit{
   margin-top: 12px;
-  margin-left: 16px;
   text-align: center; 
 }
