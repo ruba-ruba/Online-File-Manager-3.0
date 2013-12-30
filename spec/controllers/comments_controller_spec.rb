@@ -44,8 +44,16 @@ describe CommentsController do
     let!(:user){FactoryGirl.create(:user)}
     let!(:comment){FactoryGirl.create(:folder_comment, user_id: user.id)}
     it "should delete comment" do
+      sign_in :user, user
       request.env["HTTP_REFERER"] = 'where_i_came_from'
-      expect{delete :destroy, id: comment, folder_id: comment.commentable.id}.to change(Comment,:count).by(-1) 
+      expect{delete :destroy, id: comment.id, folder_id: comment.commentable.id}.to change(Comment,:count).by(-1) 
+      response.should redirect_to 'where_i_came_from'
+    end
+
+    it "should not delete comment" do
+      request.env["HTTP_REFERER"] = 'where_i_came_from'
+      expect{delete :destroy, id: comment.id, folder_id: comment.commentable.id}.to change(Comment,:count).by(0) 
+      flash.should_not be_nil
       response.should redirect_to 'where_i_came_from'
     end
   end
