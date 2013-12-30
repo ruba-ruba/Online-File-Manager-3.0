@@ -34,3 +34,16 @@
     padding-top: 10px;
   } 
 }
+
+.negative{
+  opacity: 0.5;
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.hidden_form_reply{
+  padding-top: 10px;
+  display: none;
+}
+

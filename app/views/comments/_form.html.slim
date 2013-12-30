@@ -1,6 +1,5 @@
 .form-group
-  h4 New reply
-  = simple_form_for [@commentable, @comment] do |f|
+  = simple_form_for [commentable, comment] do |f|
 
     .form-inputs
       = f.input :content, :placeholder => "leave your comment", :input_html => {:rows => 5}
@@ -10,3 +9,4 @@
 
     .actions
       = f.button :submit, class: 'btn btn-primary submit'
+      = link_to 'Cancel', "#", :class => "link_cancel_hidden_form_reply"
