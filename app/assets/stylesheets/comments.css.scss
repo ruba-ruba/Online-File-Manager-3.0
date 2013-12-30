@@ -47,3 +47,11 @@
   display: none;
 }
 
+.btn.link_cancel_hidden_form_reply{
+  margin-top: 12px;
+  margin-left: 15px;
+  background-color: #E8E8E8;
+  &:hover{
+    background-color: #007fff;
+  }
+}
