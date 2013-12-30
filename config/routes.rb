@@ -19,6 +19,8 @@ FileManager::Application.routes.draw do
       post 'import_page', to: 'items#import_page', as: 'import_page'
     end
     member do
+      get 'crop_image', to: 'items#crop_image'
+      post 'crop_process', to: 'items#crop_process'
       get 'pdf' => 'items#pdf', :as => :pdf
       get 'show_pdf' => 'items#show_pdf'
       match 'add_recipient', to: 'items#add_recipient'

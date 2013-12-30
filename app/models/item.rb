@@ -1,11 +1,18 @@
 class Item < ActiveRecord::Base
+  require 'RMagick'
   include ActiveModel::Validations
+  include Magick
 
   attr_accessible :description, :folder_id, :title, :file, :file_file_name, :file_content_type, :file_file_size, :file_updated_at, :created_at, :updated_at, :user_id
+
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
+  after_update :reprocess_file, :if => :cropping?
   
   has_attached_file :file,
                     :url  => "/system/:attachment/:id/:style_:filename",
-                    :path => ":rails_root/public/system/:attachment/:id/:style_:filename"
+                    :path => ":rails_root/public/system/:attachment/:id/:style_:filename",
+                    :processors => [:cropper]
 
   belongs_to :folder
   belongs_to :user
@@ -55,6 +62,16 @@ class Item < ActiveRecord::Base
 
   def txt_or_html?
     %w(html txt).include?(self.extension)
+  end
+
+  def image?
+    %w(jpg jpeg).include?(extension)
+  end
+
+  def reprocess_file
+    image = Image.read("#{self.file.path}").first
+    face = image.crop!(270,55,194,194)
+    face.write("/home/deployer/test_proj/Online-File-Manager-3.0/public/system/files/83/new.jpg")
   end
 
   def check_quota

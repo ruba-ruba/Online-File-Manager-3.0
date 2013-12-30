@@ -114,6 +114,18 @@ class ItemsController < ApplicationController
               :x_sendfile => true )
   end
 
+  def crop_image
+    @image = Item.find params[:id]
+  end
+
+  def crop_process
+    @image = Item.find params[:id]
+    @image.reprocess_file
+    respond_to do |format|
+    end
+  end
+
+
  def destroy
     @item.destroy
     flash[:success] = "Items destroyed."

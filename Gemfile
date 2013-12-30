@@ -24,6 +24,11 @@ gem 'simple_form', '2.1.0'
 gem 'jquery-rails', '2.1.3'
 gem 'jquery-ui-rails'
 gem 'jquery-fileupload-rails'
+gem 'jcrop-rails-v2'
+
+gem "mini_magick", "~> 3.4"
+gem 'cocaine'
+gem 'rmagick'
 
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
