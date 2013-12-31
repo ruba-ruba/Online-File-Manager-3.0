@@ -1,18 +1,18 @@
 @import "compass/css3/images";
 
-table.table.table-striped {   
+table.table.table-striped {
   border: 1px solid #dddddd;
   border-collapse: separate;
-  width: 100%;  
+  width: 100%;
   thead {
-    @include background-image(linear-gradient(white, #cccccc, #aaaaaa));      
+    @include background-image(linear-gradient(white, #cccccc, #aaaaaa));
     color: black;
     th {
       border: 1px solid #dddddd;
       border-collapse: separate;
-    };       
+    };
   };
-  tbody tr td {  
+  tbody tr td {
     border-right: 1px solid #dddddd;
   };
   td span {

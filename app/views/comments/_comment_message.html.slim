@@ -1,4 +1,4 @@
-ul  
+ul
   - comments.each do |comment|
     li 
       div class="#{comment.status}"
@@ -6,7 +6,7 @@ ul
           b.autor 
             = comment.author
           span.timestamp
-            | Posted #{time_ago_in_words(comment.created_at)} ago.
+            = comment.created_at.strftime("%b %e, %l:%M %p")
         .comment_content
           = comment.content
         .reply_controls

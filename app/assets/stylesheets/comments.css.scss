@@ -6,7 +6,7 @@
   width: 600px;
   ul{
     list-style-type: none;
-    word-wrap: break-word;    
+    word-wrap: break-word;
   }
   ul li {
     display: list-item;
@@ -18,6 +18,9 @@
     }
     .autor{
       vertical-align: middle;
+    }
+    .comment_head{
+      border-top: 1px solid #e8e8e8;
     }
     .reply_controls{
       width: 300px;
@@ -53,5 +56,18 @@
   background-color: #E8E8E8;
   &:hover{
     background-color: #007fff;
+  }
+}
+
+.pagination{
+  padding-left: 250px;
+  ul{
+    list-style-type: none;
+  }
+  ul li{
+    display: inline;
+    .disabled{
+      background-color: #E8E8E8;
+    }
   }
 }

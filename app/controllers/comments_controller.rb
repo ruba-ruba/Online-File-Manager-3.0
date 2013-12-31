@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   before_filter  :find_comment_and_check_manageability, :only => [:destroy]
   
   def index
-    @comments = @commentable.comments.roots
+    @comments = @commentable.comments.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
