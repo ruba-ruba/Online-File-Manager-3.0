@@ -8,11 +8,10 @@ class Item < ActiveRecord::Base
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   after_update :reprocess_file, :if => :cropping?
-  
+
   has_attached_file :file,
                     :url  => "/system/:attachment/:id/:style_:filename",
-                    :path => ":rails_root/public/system/:attachment/:id/:style_:filename",
-                    :processors => [:cropper]
+                    :path => ":rails_root/public/system/:attachment/:id/:style_:filename"
 
   belongs_to :folder
   belongs_to :user
@@ -34,30 +33,42 @@ class Item < ActiveRecord::Base
     else
       link.split('/').last
     end
-  end 
-  
+  end
+
   def self.create_record(params, file)
     folder = params[:folder_id]
     user = params[:user_id]
-    Item.create(title: name, folder_id: folder, user_id: user, file: file)
+    Item.create(folder_id: folder, user_id: user, file: file)
   end
 
   def self.create_file(user, folder, name, host, data)
     file_params = {user_id: user, folder_id: folder, file_name: name}
-    id = Item.last ? Item.last.id + 1 : 1
-    path = "public/system/files/#{id}"
-    dirname = ("#{Rails.root}/#{path}")
-    unless File.directory?(dirname)
-      FileUtils.mkdir_p(dirname)
+    id = self.last_id_plus_one
+    path = self.standart_path_for_new id
+    unless File.directory?(path)
+      FileUtils.mkdir_p(path)
     end
     #data = data.encode "UTF-8"
-    file = File.new("#{Rails.root}/#{path}/#{name}", 'wb:ASCII-8BIT')
-    File.open("#{Rails.root}/#{path}/#{name}", 'wb:ASCII-8BIT')  { |f| f.write(data) }
+    file = File.new("#{path}/#{name}", 'wb:ASCII-8BIT')
+    File.open("#{path}/#{name}", 'wb:ASCII-8BIT')  { |f| f.write(data) }
     Item.create_record(file_params, file)
+  end
+
+  def self.last_id_plus_one
+    Item.last ? Item.last.id + 1 : 1
+  end
+
+  def self.standart_path_for_new id
+    "#{Rails.root}/public/system/files/#{id}"
   end
 
   def extension
     self.file_file_name.index('.') ? self.file_file_name.split('.').last.downcase : ''
+  end
+
+  def file_name
+    file_name_array = file_file_name.split('.')
+    file_name_array.count >= 2 ? file_name_array.shift.to_s : file_name_array.to_s
   end
 
   def txt_or_html?
@@ -68,10 +79,19 @@ class Item < ActiveRecord::Base
     %w(jpg jpeg).include?(extension)
   end
 
-  def reprocess_file
+  def reprocess_file(x,y,w,h)
     image = Image.read("#{self.file.path}").first
-    face = image.crop!(270,55,194,194)
-    face.write("/home/deployer/test_proj/Online-File-Manager-3.0/public/system/files/83/new.jpg")
+    new_image = image.crop!(x,y,w,h)
+    id = Item.last_id_plus_one
+    path = Item.standart_path_for_new id
+    unless File.directory?(path)
+      FileUtils.mkdir_p(path)
+    end
+    new_file_name = "#{self.file_name}_crop.#{self.extension}"
+    new_image.write "#{path}/#{new_file_name}"
+    file = File.open"#{path}/#{new_file_name}"
+    file_params = {user_id: self.user_id, folder_id: self.folder_id}
+    Item.create_record(file_params, file)
   end
 
   def check_quota
