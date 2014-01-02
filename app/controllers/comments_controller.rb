@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   before_filter  :find_comment_and_check_manageability, :only => [:destroy]
   
   def index
-    @comments = @commentable.comments.order(:commentable_id).page(params[:page]).per(5)
+    @comments = @commentable.comments.order(:created_at).page(params[:page]).per(5)
   end
 
   def new
