@@ -6,7 +6,7 @@
 
     .comments
       = render "comments/comment_message", :comments => @comments.roots
-    = will_paginate @comments
+    = paginate @comments
 
   .form-group.col-xs-4
     h4 New Comment
