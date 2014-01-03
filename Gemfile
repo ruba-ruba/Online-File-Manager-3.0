@@ -63,6 +63,8 @@ group :development do
   gem 'pry-rails'
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
+  gem 'geocoder'
+  gem 'gmaps4rails'
   gem 'underscore-rails'
 end
 
