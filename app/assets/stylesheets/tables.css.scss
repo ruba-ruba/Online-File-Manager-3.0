@@ -1,6 +1,6 @@
 @import "compass/css3/images";
 
-table.table.table-striped {
+table.table {
   border: 1px solid #dddddd;
   border-collapse: separate;
   width: 100%;
@@ -21,5 +21,11 @@ table.table.table-striped {
   a{
     color: black;
     text-decoration: none;
+  }
+  tbody tr:hover{
+      background-color: #EAEAEA;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
   }
 };
