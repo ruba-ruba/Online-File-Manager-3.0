@@ -20,3 +20,4 @@
 //= require folders.js.coffee
 //= require home.js.coffee
 //= require comments.js.coffee
+//= require dropzone.js

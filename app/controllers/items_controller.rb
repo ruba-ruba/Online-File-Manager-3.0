@@ -17,11 +17,12 @@ class ItemsController < ApplicationController
     @item = Item.new(:folder_id =>  params[:folder_id])
   end
 
-  def create
+  def create    
     @item =  Item.new({:user_id => current_user.id}.merge(params[:item]))
     respond_to do |format|
       if @item.save
         format.html {redirect_to @item.folder || :root, notice: 'Item was successfully created.'}
+        format.json render json: {:message => 'Item was successfully created.'}
       else
         flash[:error] = @item.errors.full_messages.join(", ")
         format.html {render 'new'}

@@ -33,3 +33,6 @@ table.table.table-striped
             span.glyphicon.glyphicon-trash
 
   = render 'items/items', :items => items
+
+= simple_form_for Item.new(:folder_id => @folder.id), :html => { :multipart => true, :class => "dropzone", :id => "my-dropzone" } do |f|
+  = f.hidden_field :folder_id
