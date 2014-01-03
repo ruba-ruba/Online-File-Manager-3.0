@@ -77,11 +77,8 @@ describe FoldersController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested folder" do
-        folder = Folder.create! valid_attributes
-        # Assuming there are no other folders in the database, this
-        # specifies that the Folder created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
+        folder = FactoryGirl.create(:folder_with_user)
+        sign_in :user, folder.user
         Folder.any_instance.expects(:update_attributes).with({ "title" => "MyString" })
         put :update, {:id => folder.to_param, :folder => { "title" => "MyString" }}
       end
@@ -93,7 +90,8 @@ describe FoldersController do
       end
 
       it "redirects to the folder" do
-        folder = Folder.create! valid_attributes
+        folder = FactoryGirl.create(:folder_with_user)
+        sign_in :user, folder.user
         put :update, {:id => folder.to_param, :folder => valid_attributes}
         response.should redirect_to(folder)
       end
@@ -102,7 +100,6 @@ describe FoldersController do
     describe "with invalid params" do
       it "assigns the folder as @folder" do
         folder = Folder.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
         Folder.any_instance.stubs(:save).returns(false)
         put :update, {:id => folder.to_param, :folder => { "title" => "invalid value" }}
         assigns(:folder).should eq(folder)
@@ -110,7 +107,6 @@ describe FoldersController do
 
       it "re-renders the 'edit' template" do
         folder = Folder.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
         Folder.any_instance.stubs(:save).returns(false)
         put :update, {:id => folder.to_param, :folder => { "title" => "invalid value" }}
         response.should render_template("edit")
@@ -120,10 +116,14 @@ describe FoldersController do
 
   describe "DELETE destroy" do
     it "destroys the requested folder" do
-      folder = Folder.create! valid_attributes
+      folder = FactoryGirl.create(:folder_with_user)
+      sign_in :user, folder.user
+      request.env["HTTP_REFERER"] = 'where_i_came_from'
       expect {
         delete :destroy, {:id => folder.to_param}
       }.to change(Folder, :count).by(-1)
+      flash.should_not be_nil
+      response.should redirect_to 'where_i_came_from'
     end
 
     it "redirects to the folders list" do
