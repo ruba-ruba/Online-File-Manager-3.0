@@ -79,6 +79,10 @@ class Item < ActiveRecord::Base
     %w(jpg jpeg).include?(extension)
   end
 
+  def cropping? 
+    image? ? super : false
+  end
+
   def reprocess_file(x,y,w,h)
     image = Image.read("#{self.file.path}").first
     new_image = image.crop!(x,y,w,h)
