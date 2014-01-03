@@ -8,6 +8,7 @@ class Item < ActiveRecord::Base
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   after_update :reprocess_file, :if => :cropping?
+  after_save :parse_map, :if => :is_map?
 
   has_attached_file :file,
                     :url  => "/system/:attachment/:id/:style_:filename",
@@ -16,6 +17,7 @@ class Item < ActiveRecord::Base
   belongs_to :folder
   belongs_to :user
   has_many :comments, :as => :commentable, dependent: :destroy
+  has_many :locations, dependent: :destroy
 
   validates :file, :attachment_presence => true
   validates_uniqueness_of :file_file_name, :scope => :folder_id
@@ -108,4 +110,25 @@ class Item < ActiveRecord::Base
     end
   end
 
+  def parse_map
+    headers = [
+      "address",
+      "latitude",
+      "longitude"
+    ]
+   
+    CSV.foreach("#{self.file.path}", {headers: false}) do |row|
+      place = Location.new(:item_id => id)
+
+      headers.each_with_index do |key, idx|
+        place.send("#{key}=", row[idx])
+      end
+      place.save
+    end
+  end
+
+  def is_map?
+    extension == "csv"
+    # extension == "csv" && file_name == "map"
+  end
 end
