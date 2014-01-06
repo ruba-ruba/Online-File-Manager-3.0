@@ -33,9 +33,4 @@ table.table-condensed
             span.glyphicon.glyphicon-trash
 
   = render 'items/items', :items => items
-- if @folder
-  = simple_form_for Item.new(:folder_id => @folder.id), :html => { :multipart => true, :class => "dropzone", :id => "my-dropzone" } do |f|
-    = f.hidden_field :folder_id
-- else
-  = simple_form_for Item.new, :html => { :multipart => true, :class => "dropzone", :id => "my-dropzone" } do |f|
-    = f.hidden_field :folder_id
+= render 'dropzone', :item => Item.new(:folder_id => @folder.try(:id))
