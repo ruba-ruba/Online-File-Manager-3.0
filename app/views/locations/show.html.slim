@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Address:
+  = @location.address
+p
+  strong Latitude:
+  = @location.latitude
+p
+  strong Longitude:
+  = @location.longitude
+
+= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}"
+
+= link_to 'Edit', edit_location_path(@location)
+'|
+= link_to 'Back', locations_path
+

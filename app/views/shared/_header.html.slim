@@ -12,16 +12,16 @@
       li= link_to 'Import page', import_pages_items_path(:folder_id => params[:id])
       li.divider
       li= link_to 'Edit profile', edit_user_registration_path
-      li= link_to 'Sign Out', destroy_user_session_path, method: :delete      
+      li= link_to 'Sign Out', destroy_user_session_path, method: :delete
           
   .pull-right.progress  
     .progress-bar aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" style="width: #{@taken}%"
       .g-gradient  
 
   .pull-right.text
-    | used  
+    | used
     = @taken
-    | % of  
+    | % of
     = number_to_human_size current_user.quota
     
 

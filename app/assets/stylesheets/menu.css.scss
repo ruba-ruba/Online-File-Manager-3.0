@@ -1,6 +1,6 @@
-.menu{ 
+.menu{
   color: black;
-  padding: 0px;  
+  padding: 0px;
   .favourite { 
     padding-left: 15px;
     height: 30%;
@@ -14,7 +14,7 @@
     }
   };
 
-  .tree_menu{      
+  .tree_menu{
     height: 46%;
     padding-left: 15px;
     border-right: 1px solid #dddddd;
@@ -29,8 +29,8 @@
         span:hover{
           text-decoration: underline;
         }
-      };    
-    };      
+      };
+    };
     li > ul {
       margin-left: 20px;
       list-style-type: none;

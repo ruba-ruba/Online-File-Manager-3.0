@@ -22,6 +22,7 @@ describe ItemsController do
   describe "DELETE destroy" do
     let!(:item) {FactoryGirl.create(:item)}
     it "delete item" do
+      sign_in :user, item.user
       request.env["HTTP_REFERER"]="/" 
       expect{delete :destroy, id: item.id}.to change(Item,:count).by(-1) 
     end
@@ -62,14 +63,19 @@ describe ItemsController do
       it "update item" do
         file =  fixture_file_upload('/test.csv', 'text/csv')
         item = {folder_id: folder.id, :file => file } 
+        sign_in :user, old_item.user
         put :update, {id: old_item.id, item: item}
         old_item.reload
         old_item.file_file_name.should eq("test.csv")
+        flash.should_not be_nil
+        response.should redirect_to(old_item.folder)
       end
     end
+
     describe "invalid attributes" do
       it "should not update item" do
         item = {folder_id: folder.id, :file => nil} 
+        sign_in :user, old_item.user
         put :update, {id: old_item.id, item: item}
         old_item.reload
         old_item.file_file_name.should eq("123123")

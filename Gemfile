@@ -24,6 +24,11 @@ gem 'simple_form', '2.1.0'
 gem 'jquery-rails', '2.1.3'
 gem 'jquery-ui-rails'
 gem 'jquery-fileupload-rails'
+gem 'jcrop-rails-v2'
+
+gem "mini_magick", "~> 3.4"
+gem 'cocaine'
+gem 'rmagick'
 
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
@@ -44,7 +49,7 @@ gem 'prawn', '0.12.0'
 gem 'famfamfam'
 gem 'aws-sdk'
 gem 'thin', '1.5.1'
-
+gem 'kaminari'
 
 group :development do
   gem 'annotate', '2.5.0'
@@ -58,6 +63,8 @@ group :development do
   gem 'pry-rails'
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
+  gem 'geocoder'
+  gem 'gmaps4rails'
   gem 'underscore-rails'
 end
 

@@ -5,7 +5,8 @@
       = @commentable.class.to_s
 
     .comments
-      = render "comments/comment_message", :comments => @comments
+      = render "comments/comment_message", :comments => @comments.roots
+    = paginate @comments
 
   .form-group.col-xs-4
     h4 New Comment
