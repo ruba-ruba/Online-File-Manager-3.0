@@ -7,9 +7,14 @@ module ApplicationHelper
 
   def sortable(column, title = nil)
     title ||= column.titleize
-    css_class = column == sort_column ? "current #{sort_direction}" : nil
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-    link_to title, {:sort => column, :direction => direction}, {:class => css_class}
+    css_class = if column == sort_column
+      "glyphicon glyphicon-chevron-" + (sort_direction == 'asc' ? 'up' : 'down')
+    else
+      "glyphicon glyphicon-resize-vertical"
+    end
+    title += content_tag(:span, nil, :class => css_class)
+    link_to title.html_safe, {:sort => column, :direction => direction}
   end
 
   def content_icon(target)

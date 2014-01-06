@@ -87,7 +87,7 @@ class Item < ActiveRecord::Base
   end
 
   def reprocess_file(x,y,w,h)
-    image = Image.read("#{self.file.path}").first
+    image = Image.read(self.file.path).first
     new_image = image.crop!(x,y,w,h)
     id = Item.last_id_plus_one
     path = Item.standart_path_for_new id
@@ -128,7 +128,6 @@ class Item < ActiveRecord::Base
   end
 
   def is_map?
-    extension == "csv"
-    # extension == "csv" && file_name == "map"
+    extension.downcase == "csv" && file_name.downcase == "map"
   end
 end
