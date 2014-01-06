@@ -19,6 +19,10 @@
       height: 38px;
       line-height: 0;
       margin: 0;
-    };  
+    };
+    li > a:hover{
+      background-color: #456786;
+      border-color: #0D2033;
+    }
   };
 };
