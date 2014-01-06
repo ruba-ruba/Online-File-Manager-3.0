@@ -1,23 +1,18 @@
-h4 Locations
+= render 'locations/list'
 
-table
-  tr
-    th Address
-    th Latitude
-    th Longitude
-    th
-    th
-    th
+#map-canvas
 
-  - @locations.each do |location|
-    tr
-      td = location.address
-      td = location.latitude
-      td = location.longitude
-      td = link_to 'Show', location
-      td = link_to 'Edit', edit_location_path(location)
-      td = link_to 'Destroy', location, data: {:confirm => 'Are you sure?'}, :method => :delete
+javascript:
+  $( document ).ready(function(){
+    var map;
+    function initialize() {
+      var mapOptions = {
+        zoom: 7,
+        center: new google.maps.LatLng(48.8566, 2.35222)
+      };
+      map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+    }
 
-br
-
-= link_to 'New Location', new_location_path
+    google.maps.event.addDomListener(window, 'load', initialize);
+  });
