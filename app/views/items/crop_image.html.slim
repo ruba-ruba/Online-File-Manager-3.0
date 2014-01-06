@@ -22,6 +22,6 @@
 
   = form_for @image, :url => crop_process_item_path(@image), :method => :post do |f|
     - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
-       = f.text_field attribute, :id => attribute
+       = f.hidden_field attribute, :id => attribute
     .actions
       = f.submit "Crop", class: 'btn btn-primary submit'

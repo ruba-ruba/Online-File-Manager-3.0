@@ -79,10 +79,10 @@ class Item < ActiveRecord::Base
   end
 
   def image?
-    %w(jpg jpeg).include?(extension)
+    %w(jpg jpeg png).include?(extension)
   end
 
-  def cropping? 
+  def cropping?
     image? ? super : false
   end
 
@@ -94,7 +94,7 @@ class Item < ActiveRecord::Base
     unless File.directory?(path)
       FileUtils.mkdir_p(path)
     end
-    new_file_name = "#{self.file_name}_crop.#{self.extension}"
+    new_file_name = "#{self.file_name}_crop_#{Date.today.to_time.to_i}.#{self.extension}"
     new_image.write "#{path}/#{new_file_name}"
     file = File.open"#{path}/#{new_file_name}"
     file_params = {user_id: self.user_id, folder_id: self.folder_id}
