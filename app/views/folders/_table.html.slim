@@ -10,7 +10,7 @@ table.table-condensed
   tbody
     - if @folder
       tr
-        td colspan="6"
+        td.up colspan="6"
           = link_to @folder.parent || root_path
             = icon(:folder)
             span 
@@ -27,7 +27,7 @@ table.table-condensed
           = link_to icon(:comments), folder_comments_path(folder), :title => 'Comments', :rel => 'tooltip'
         span         
           = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
-            span.glyphicon.glyphicon-edit            
+            span.glyphicon.glyphicon-edit
         span
           = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
             span.glyphicon.glyphicon-trash
@@ -35,4 +35,7 @@ table.table-condensed
   = render 'items/items', :items => items
 - if @folder
   = simple_form_for Item.new(:folder_id => @folder.id), :html => { :multipart => true, :class => "dropzone", :id => "my-dropzone" } do |f|
+    = f.hidden_field :folder_id
+- else
+  = simple_form_for Item.new, :html => { :multipart => true, :class => "dropzone", :id => "my-dropzone" } do |f|
     = f.hidden_field :folder_id
