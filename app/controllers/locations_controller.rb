@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = Location.where(:item_id => params[:item_id]).all
 
     respond_to do |format|
       format.html # index.html.erb

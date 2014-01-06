@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   require 'RMagick'
+  require 'csv'
   include ActiveModel::Validations
   include Magick
 
@@ -116,15 +117,14 @@ class Item < ActiveRecord::Base
       "latitude",
       "longitude"
     ]
-   
-    CSV.foreach("#{self.file.path}", {headers: false}) do |row|
+    CSV.parse(self.file.queued_for_write[:original].read) do |row|
       place = Location.new(:item_id => id)
-
       headers.each_with_index do |key, idx|
         place.send("#{key}=", row[idx])
       end
       place.save
     end
+    self.file.queued_for_write[:original].rewind
   end
 
   def is_map?

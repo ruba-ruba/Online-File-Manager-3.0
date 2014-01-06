@@ -2,7 +2,7 @@
   tr.items
     td 
       - if item.is_map?
-        = link_to content_icon(item), item, :target => '_blank'
+        = link_to content_icon(item), locations_path(:item_id => item.id), :target => '_blank'
       - else
         = link_to content_icon(item), item.file.url, :target => '_blank'
     td = item.description

@@ -1,6 +1,4 @@
 class Location < ActiveRecord::Base
-  attr_accessible :address, :latitude, :longitude
-  # after_validation :geocode, :if => :address_changed?
-
+  attr_accessible :address, :latitude, :longitude, :item_id
   belongs_to :item
 end
