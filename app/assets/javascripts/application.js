@@ -21,3 +21,4 @@
 //= require home.js.coffee
 //= require comments.js.coffee
 //= require dropzone.js
+//= require locations.js.coffee
