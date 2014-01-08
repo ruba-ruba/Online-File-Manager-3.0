@@ -15,11 +15,6 @@ class Comment < ActiveRecord::Base
     self.update_attributes(:votes_up => up, :votes_down => down)
   end
 
-  # move this method to helper or use gems drapper or decorator
-  def status
-    self.votes_up >= self.votes_down ? '' : 'negative'
-  end
-
   def author
     user.name || "anonymous"
   end
