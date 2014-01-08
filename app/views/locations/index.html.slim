@@ -4,4 +4,4 @@
 
 #map-canvas
 javascript:
-  google.maps.event.addDomListener(window, "load", initialize_index)
+  new FileManagerMap(#{raw @locations.to_json})
