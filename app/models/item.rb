@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   require 'RMagick'
+  require 'csv'
   include ActiveModel::Validations
   include Magick
 
@@ -78,22 +79,22 @@ class Item < ActiveRecord::Base
   end
 
   def image?
-    %w(jpg jpeg).include?(extension)
+    %w(jpg jpeg png).include?(extension)
   end
 
-  def cropping? 
+  def cropping?
     image? ? super : false
   end
 
   def reprocess_file(x,y,w,h)
-    image = Image.read("#{self.file.path}").first
+    image = Image.read(self.file.path).first
     new_image = image.crop!(x,y,w,h)
     id = Item.last_id_plus_one
     path = Item.standart_path_for_new id
     unless File.directory?(path)
       FileUtils.mkdir_p(path)
     end
-    new_file_name = "#{self.file_name}_crop.#{self.extension}"
+    new_file_name = "#{self.file_name}_crop_#{Date.today.to_time.to_i}.#{self.extension}"
     new_image.write "#{path}/#{new_file_name}"
     file = File.open"#{path}/#{new_file_name}"
     file_params = {user_id: self.user_id, folder_id: self.folder_id}
@@ -116,19 +117,17 @@ class Item < ActiveRecord::Base
       "latitude",
       "longitude"
     ]
-   
-    CSV.foreach("#{self.file.path}", {headers: false}) do |row|
+    CSV.parse(self.file.queued_for_write[:original].read) do |row|
       place = Location.new(:item_id => id)
-
       headers.each_with_index do |key, idx|
         place.send("#{key}=", row[idx])
       end
       place.save
     end
+    self.file.queued_for_write[:original].rewind
   end
 
   def is_map?
-    extension == "csv"
-    # extension == "csv" && file_name == "map"
+    extension.downcase == "csv" && file_name.downcase == "map"
   end
 end

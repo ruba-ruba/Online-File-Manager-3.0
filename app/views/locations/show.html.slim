@@ -1,3 +1,6 @@
+- content_for (:head) do
+  script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"
+
 p#notice = notice
 
 p
@@ -10,9 +13,10 @@ p
   strong Longitude:
   = @location.longitude
 
-= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}"
-
 = link_to 'Edit', edit_location_path(@location)
 '|
 = link_to 'Back', locations_path
 
+#map-canvas
+javascript:
+  new FileManagerMap(#{raw [@location].to_json})

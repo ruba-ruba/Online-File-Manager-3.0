@@ -22,11 +22,10 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.save
         format.html {redirect_to @item.folder || :root, notice: 'Item was successfully created.'}
-        format.json { render json: {:message => 'Item was successfully created.'} }
+        format.json { render :partial => @item}
       else
-        flash[:error] = @item.errors.full_messages.join(", ")
-        format.html {render 'new'}
-        format.json { render json: @item.errors, status: :unprocessable_entity}
+        format.html {render 'new', error: @item.errors.full_messages.join(", ")}
+        format.json { render json: @item.errors.full_messages.to_json, status: :unprocessable_entity}
       end
     end
   end

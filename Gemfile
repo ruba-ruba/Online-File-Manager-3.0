@@ -50,6 +50,7 @@ gem 'famfamfam'
 gem 'aws-sdk'
 gem 'thin', '1.5.1'
 gem 'kaminari'
+gem 'draper', '~> 1.3'
 
 group :development do
   gem 'annotate', '2.5.0'
@@ -63,8 +64,6 @@ group :development do
   gem 'pry-rails'
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
-  gem 'geocoder'
-  gem 'gmaps4rails'
   gem 'underscore-rails'
 end
 

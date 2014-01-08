@@ -1,0 +1,4 @@
+<% self.formats = ["html"] %>
+{
+  "html":<%= raw render("items/item", :item => @item).to_json %>
+}

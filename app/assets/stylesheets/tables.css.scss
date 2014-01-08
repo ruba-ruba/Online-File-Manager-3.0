@@ -29,4 +29,7 @@ table.table-condensed {
   tr:nth-child(even) {
     background-color: #f9f9f9;
   }
+  .glyphicon.glyphicon-chevron-up, .glyphicon-chevron-down, .glyphicon-resize-vertical{
+    float: right;
+  }
 };

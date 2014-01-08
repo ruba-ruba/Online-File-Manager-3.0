@@ -1,5 +1,5 @@
 ul
-  - comments.each do |comment|
+  - comments.decorate.each do |comment|
     li 
       div class="#{comment.status}"
         .comment_head

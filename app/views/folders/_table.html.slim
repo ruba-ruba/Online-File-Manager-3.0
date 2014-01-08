@@ -1,13 +1,20 @@
 table.table-condensed
   thead
     tr
-      th= sortable 'title', 'Name'
-      th= sortable 'description', 'Description'
+      th = sortable 'title', 'Name'
+      th = sortable 'description', 'Description'
       th Size
       th Type
-      th= sortable 'created_at', 'Date'
+      th = sortable 'created_at', 'Date'
       th Actions      
   tbody
+    tr
+      td
+      td
+      td
+      td
+      td
+      td
     - if @folder
       tr
         td.up colspan="6"
@@ -15,22 +22,22 @@ table.table-condensed
             = icon(:folder)
             span 
               | ..
-  - folders.each do |folder|
-    tr
-      td = link_to content_icon(folder), folder
-      td = folder.description
-      td = number_to_human_size(folder.size)
-      td Folder
-      td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
-      td
-        span
-          = link_to icon(:comments), folder_comments_path(folder), :title => 'Comments', :rel => 'tooltip'
-        span         
-          = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
-            span.glyphicon.glyphicon-edit
-        span
-          = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
-            span.glyphicon.glyphicon-trash
+    - folders.each do |folder|
+      tr
+        td = link_to content_icon(folder), folder
+        td = folder.description
+        td = number_to_human_size(folder.size)
+        td Folder
+        td = folder.created_at.strftime('%d/%m/%y %I:%M%p')
+        td
+          span
+            = link_to icon(:comments), folder_comments_path(folder), :title => 'Comments', :rel => 'tooltip'
+          span         
+            = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
+              span.glyphicon.glyphicon-edit
+          span
+            = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
+              span.glyphicon.glyphicon-trash
 
-  = render 'items/items', :items => items
+    = render 'items/items', :items => items
 = render 'dropzone', :item => Item.new(:folder_id => @folder.try(:id))
