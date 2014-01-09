@@ -9,7 +9,7 @@ describe CommentsController do
 
   describe 'GET index' do 
     let!(:folder){FactoryGirl.create(:folder)}
-    it 'should render comments for object' do
+    xit 'should render comments for object' do
       get :index, folder_id: folder.id
       response.should be_success
       response.should render_template :index
