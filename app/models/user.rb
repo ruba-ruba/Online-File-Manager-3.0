@@ -51,6 +51,10 @@ class User < ActiveRecord::Base
     admin? || target.user_id == id
   end
 
+  def space_used
+    items.sum(:file_file_size)
+  end
+
   protected
 
   def generate_token
