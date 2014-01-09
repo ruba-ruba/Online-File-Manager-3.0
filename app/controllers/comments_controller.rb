@@ -17,7 +17,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to [@commentable, :comments]
     else
-      render :action => 'new'
+      redirect_to :back
+      flash[:error] = "Comment does not created."
     end
   end
 
