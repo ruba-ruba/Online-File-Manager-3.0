@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   before_validation :default_role, :on => :create
   before_create :generate_token
 
+  after_validation :report_validation_errors_to_rollbar
+
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
