@@ -15,11 +15,12 @@ body{
 
 .row{  
   margin: 0px;
+  border-collapse: collapse;
   .content.row {
     margin: 0px;
     .main_content.col-xs-10 {
-      margin: 0px;
-      padding: 20px;
+      padding: 20px 20px 76px 20px;
+      overflow: auto;
     };
   };  
 };
@@ -33,3 +34,4 @@ span{
   vertical-align: middle;
   text-align: center;
 }
+

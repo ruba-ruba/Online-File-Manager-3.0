@@ -8,11 +8,11 @@ class ItemsController < ApplicationController
 
   def index
   end
-  
+
   def show
-    @item = Item.find(params[:id])    
+    @item = Item.find(params[:id])
   end
-  
+
   def new
     @item = Item.new(:folder_id =>  params[:folder_id])
   end
@@ -22,16 +22,16 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.save
         format.html {redirect_to @item.folder || :root, notice: 'Item was successfully created.'}
+        format.json { render :partial => @item}
       else
-        flash[:error] = @item.errors.full_messages.join(", ")
-        format.html {render 'new'}
-        format.json { render json: @item.errors, status: :unprocessable_entity}
+        format.html {render 'new', error: @item.errors.full_messages.join(", ")}
+        format.json { render json: @item.errors.full_messages.to_json, status: :unprocessable_entity}
       end
     end
   end
 
 
-  def edit  
+  def edit
   end
 
   def update
@@ -54,10 +54,12 @@ class ItemsController < ApplicationController
     file_path = item.file.path
     file_name = item.file_file_name
     FileMailer.send_file(recipient, subject, file_path, file_name).deliver
-    redirect_to root_path, notice: 'email sent successfully'
+    redirect_to root_path, notice: 'Email sent successfully'
+    rescue Exception => exc
+      Rollbar.report_exception(exc)
   end
 
-  def import_pages 
+  def import_pages
   end
 
   def import_page
@@ -69,6 +71,7 @@ class ItemsController < ApplicationController
     create_file(current_user.id, folder, name, host, response.body)
     rescue Exception => exc
       redirect_to import_pages_items_path, alert: "url not correct #{exc}"
+      Rollbar.report_exception(exc)
   end
 
   def create_file(user, folder, name, host, data)
@@ -99,7 +102,7 @@ class ItemsController < ApplicationController
     file_name = "#{name}.pdf"
     output = PDF.new.to_pdf(path)
     respond_to do |format|
-      format.pdf { 
+      format.pdf {
         send_data output, filename: file_name, type: "application/pdf"
       }
     end
@@ -114,6 +117,18 @@ class ItemsController < ApplicationController
               :x_sendfile => true )
   end
 
+  def crop_image
+    @image = Item.find params[:id]
+  end
+
+  def crop_process
+    @image = Item.find params[:id]
+    @image.reprocess_file(params[:item][:crop_x].to_i, params[:item][:crop_y].to_i, params[:item][:crop_w].to_i, params[:item][:crop_h].to_i)
+    respond_to do |format|
+      format.html { redirect_to @image.folder || root_path }
+    end
+  end
+
  def destroy
     @item.destroy
     flash[:success] = "Items destroyed."
@@ -124,9 +139,9 @@ class ItemsController < ApplicationController
 
     def find_item_and_check_manageability
       @item = Item.find(params[:id])
-      unless current_user.can_manage?(@item)  
+      unless current_user.can_manage?(@item)
         flash[:error] = "you can not do that"
-        redirect_to :back and return  
+        redirect_to :back and return
       end
     end
 end

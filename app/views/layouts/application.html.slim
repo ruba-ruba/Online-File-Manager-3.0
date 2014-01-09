@@ -1,9 +1,13 @@
 doctype
 html
   head
-    title FileManager
+    - if content_for?(:title)
+      = yield(:title)
+    - else
+      title FileManager
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
+    = yield :head
     = csrf_meta_tags
   body
     wrapper
@@ -11,14 +15,14 @@ html
         .row
           header.col-xs-12
             = render 'shared/flash_message'
-            = render 'shared/header'            
+            = render 'shared/header'
           .navigation.col-xs-12
-            = render 'shared/navigation'            
+            = render 'shared/navigation'
           .control_panel.col-xs-12
-            = render 'shared/control_buttons'            
+            = render 'shared/control_buttons'
           .content.row
             .menu.col-xs-2
-              = render 'shared/menu'              
+              = render 'shared/menu'
             .main_content.col-xs-10
               = yield
       footer.footer

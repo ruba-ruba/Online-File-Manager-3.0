@@ -1,3 +1,6 @@
+- content_for :title do
+  - if @folder
+    title = @folder.title
 - content_for :menu do
   = render 'shared/menu'
 = render 'table', {:folders => @folders, :items => @items}

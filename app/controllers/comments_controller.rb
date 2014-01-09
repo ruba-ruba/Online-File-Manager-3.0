@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   before_filter  :find_comment_and_check_manageability, :only => [:destroy]
   
   def index
-    @comments = @commentable.comments
+    @comments = @commentable.comments.order(:created_at).page(params[:page]).per(5).decorate
   end
 
   def new
@@ -17,7 +17,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to [@commentable, :comments]
     else
-      render :action => 'new'
+      redirect_to :back
+      flash[:error] = "Comment does not created."
     end
   end
 

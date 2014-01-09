@@ -1,0 +1,27 @@
+.form-group
+  h4 Crop image
+  - content_for (:head) do
+    = stylesheet_link_tag 'jquery.Jcrop'
+    = javascript_include_tag 'jquery.Jcrop'
+    javascript:
+      $(function() {
+        $('#cropbox').Jcrop({
+          onChange: update_crop,
+          onSelect: update_crop
+        });
+      });
+
+      function update_crop(coords) {
+        $('#crop_x').val(coords.x);
+        $('#crop_y').val(coords.y);
+        $('#crop_w').val(coords.w);
+        $('#crop_h').val(coords.h);
+      }
+
+  = image_tag @image.file.url,  :id => "cropbox"
+
+  = form_for @image, :url => crop_process_item_path(@image), :method => :post do |f|
+    - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
+       = f.hidden_field attribute, :id => attribute
+    .actions
+      = f.submit "Crop", class: 'btn btn-primary submit'

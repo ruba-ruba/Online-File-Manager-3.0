@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   before_validation :default_role, :on => :create
   before_create :generate_token
 
+  after_validation :report_validation_errors_to_rollbar
+
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
@@ -49,6 +51,10 @@ class User < ActiveRecord::Base
 
   def can_manage?(target)
     admin? || target.user_id == id
+  end
+
+  def space_used
+    items.sum(:file_file_size)
   end
 
   protected

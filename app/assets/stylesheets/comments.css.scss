@@ -3,17 +3,71 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .comments{
-  width: 400px;
+  width: 600px;
+  ul{
+    list-style-type: none;
+    word-wrap: break-word;
+  }
+  ul li {
+    display: list-item;
+    padding-top: 5px;
+    margin-bottom: 4px;
+    .timestamp{
+      color: #a8a8a8;
+      padding-left: 5px;
+    }
+    .autor{
+      vertical-align: middle;
+    }
+    .comment_head{
+      border-top: 1px solid #e8e8e8;
+    }
+    .reply_controls{
+      width: 300px;
+      .voiting{
+        float: right;
+      }
+      .links{
+       float: left;
+      }
+    }    
+  }
+  li > ul{
+    padding-left: 30px;
+    padding-top: 10px;
+  } 
+}
+
+.negative{
+  opacity: 0.5;
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.hidden_form_reply{
+  padding-top: 10px;
+  display: none;
+}
+
+.btn.link_cancel_hidden_form_reply{
+  margin-top: 12px;
+  margin-left: 15px;
+  background-color: #E8E8E8;
+  &:hover{
+    background-color: #007fff;
+  }
+}
+
+.pagination{
+  padding-left: 250px;
   ul{
     list-style-type: none;
   }
-  ul li {    
-    padding-bottom: 10px;
-    padding: 7px;
-    margin-bottom: 4px;
-    border: 1px solid #dddddd;
-  };
-  span{
-    padding: 5px;
+  ul li{
+    display: inline;
+    .disabled{
+      background-color: #E8E8E8;
+    }
   }
 }

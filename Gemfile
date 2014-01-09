@@ -24,6 +24,11 @@ gem 'simple_form', '2.1.0'
 gem 'jquery-rails', '2.1.3'
 gem 'jquery-ui-rails'
 gem 'jquery-fileupload-rails'
+gem 'jcrop-rails-v2'
+
+gem "mini_magick", "~> 3.4"
+gem 'cocaine'
+gem 'rmagick'
 
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
@@ -44,7 +49,9 @@ gem 'prawn', '0.12.0'
 gem 'famfamfam'
 gem 'aws-sdk'
 gem 'thin', '1.5.1'
-
+gem 'kaminari'
+gem 'draper', '~> 1.3'
+gem 'rollbar'
 
 group :development do
   gem 'annotate', '2.5.0'

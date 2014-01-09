@@ -19,15 +19,15 @@ header.col-xs-12{
       };
     };
   };
-  .pull-right.progress{ 
-    position: relative;     
-    display: inline-block;      
+  .pull-right.progress{
+    position: relative;
+    display: inline-block;
     margin-top: 10px;
-    margin-bottom: 0px;            
-    height: 20px;      
+    margin-bottom: 0px;
+    height: 20px;
     max-width: 300px;
     min-width: 280px;
-    background-color: white;      
+    background-color: white;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px; 
@@ -36,12 +36,12 @@ header.col-xs-12{
       width: 300px;
       color: none;
       overflow: hidden;
-      .g-gradient {    
+      .g-gradient {
         @include background-image(linear-gradient(left, #5AFF30 30%, #FFEE00 40%, #F7B416 70%, #AD0000));
         height: 20px;
-        width: 300px;          
+        width: 300px;
       };
-    };   
+    };
   };
   .pull-right.text{
     display: inline-block;
@@ -49,7 +49,7 @@ header.col-xs-12{
     padding-right: 10px;
     width: 200px;
     color: white;
-    text-align: right;     
+    text-align: right;
   };
 
   span.pull-right{

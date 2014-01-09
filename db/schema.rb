@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131227162711) do
+ActiveRecord::Schema.define(:version => 20140103140915) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(:version => 20131227162711) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "item_id"
   end
 
   create_table "users", :force => true do |t|

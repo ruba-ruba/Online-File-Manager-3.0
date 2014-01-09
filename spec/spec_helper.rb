@@ -26,8 +26,6 @@ Spork.prefork do
   require "paperclip/matchers"
 end
 
-
-
 Spork.each_run do
 
   if ENV['DRB']
@@ -69,11 +67,10 @@ Spork.each_run do
 
     config.before(:each) { GC.disable }
     config.after(:each) { GC.enable }
-
-    include Capybara::DSL
-    include Capybara::RSpecMatchers
     
     config.include Devise::TestHelpers, :type => :controller
+    config.include Capybara::DSL, :type =>:request
+    config.include Capybara::RSpecMatchers, :type =>:request
     config.extend ControllerMacros, :type => :controller
     config.include Warden::Test::Helpers, :type =>:request
     config.extend RequestMacros, :type => :request
