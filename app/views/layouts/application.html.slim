@@ -1,12 +1,12 @@
 doctype
 html
   head
-    - if @folder
-      title = @folder.title
+    - if content_for?(:title)
+      = yield(:title)
     - else
       title FileManager
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"    
+    = javascript_include_tag "application"
     = yield :head
     = csrf_meta_tags
   body

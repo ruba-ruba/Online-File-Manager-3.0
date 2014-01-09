@@ -58,11 +58,19 @@ class FoldersController < ApplicationController
     end
 
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+      if %w[asc desc].include?(params[:direction])
+          cookies[:cookie_sorting] = params[:direction]
+      else
+        cookies[:cookie_sorting] || "asc"
+      end
     end
 
     def sort_column
-      Folder.column_names.include?(params[:sort]) ? params[:sort] : "title"
+      if Folder.column_names.include?(params[:sort])
+        cookies[:cookie_column] = params[:sort]
+      else
+        cookies[:cookie_column] || "title"
+      end
     end
 
     def item_sort_column

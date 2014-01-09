@@ -51,6 +51,7 @@ gem 'aws-sdk'
 gem 'thin', '1.5.1'
 gem 'kaminari'
 gem 'draper', '~> 1.3'
+gem 'rollbar'
 
 group :development do
   gem 'annotate', '2.5.0'

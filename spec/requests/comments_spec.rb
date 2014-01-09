@@ -1,11 +1,16 @@
 require 'spec_helper'
 
 describe "Comments" do
+
+  login_user
+
   describe "GET /comments" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get comments_path
-      response.status.should be(200)
+    it "should render comments" do
+      comment = FactoryGirl.create :folder_comment_with_votes, :content => "a very useful Comment"
+      folder = comment.commentable
+      comment.update_counters
+      visit folder_comments_path(folder)
+      page.should have_content("a very useful Comment")
     end
   end
 end

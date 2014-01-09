@@ -54,7 +54,9 @@ class ItemsController < ApplicationController
     file_path = item.file.path
     file_name = item.file_file_name
     FileMailer.send_file(recipient, subject, file_path, file_name).deliver
-    redirect_to root_path, notice: 'email sent successfully'
+    redirect_to root_path, notice: 'Email sent successfully'
+    rescue Exception => exc
+      Rollbar.report_exception(exc)
   end
 
   def import_pages
@@ -69,6 +71,7 @@ class ItemsController < ApplicationController
     create_file(current_user.id, folder, name, host, response.body)
     rescue Exception => exc
       redirect_to import_pages_items_path, alert: "url not correct #{exc}"
+      Rollbar.report_exception(exc)
   end
 
   def create_file(user, folder, name, host, data)
@@ -125,7 +128,6 @@ class ItemsController < ApplicationController
       format.html { redirect_to @image.folder || root_path }
     end
   end
-
 
  def destroy
     @item.destroy

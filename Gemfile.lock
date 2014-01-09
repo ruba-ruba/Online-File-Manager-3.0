@@ -323,6 +323,8 @@ GEM
     remotipart (1.2.1)
     request_store (1.0.5)
     rmagick (2.13.2)
+    rollbar (0.12.3)
+      multi_json (~> 1.3)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -471,6 +473,7 @@ DEPENDENCIES
   rails (= 3.2.14)
   remotipart (~> 1.2.1)
   rmagick
+  rollbar
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda-matchers

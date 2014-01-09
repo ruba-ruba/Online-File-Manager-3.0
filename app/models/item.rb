@@ -102,21 +102,17 @@ class Item < ActiveRecord::Base
   end
 
   def check_quota
-    if self.file.present?
-      current_file_size = self.file_file_size
-      previouse_size = self.user.items.sum(:file_file_size)
-      errors.add(:limit, 'you reached limit of quota') if self.user.quota < previouse_size + current_file_size
+    if file.present?
+      current_file_size = file_file_size
+      previouse_size = user.space_used
+      errors.add(:limit, 'you reached limit of quota') if user.quota < previouse_size + current_file_size
     else
       false
     end
   end
 
   def parse_map
-    headers = [
-      "address",
-      "latitude",
-      "longitude"
-    ]
+    headers = ["address","latitude","longitude"]
     CSV.parse(self.file.queued_for_write[:original].read) do |row|
       place = Location.new(:item_id => id)
       headers.each_with_index do |key, idx|
