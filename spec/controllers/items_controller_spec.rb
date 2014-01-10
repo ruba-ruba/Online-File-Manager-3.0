@@ -6,7 +6,7 @@ describe ItemsController do
 
   let(:item) { FactoryGirl.create(:item) }
   let(:folder) { FactoryGirl.create(:folder) }
-  let(:item_with_file) { FactoryGirl.create(:item, folder_id: folder.id, :file => fixture_file_upload('/test.csv', 'text/csv')) }
+  let(:item_with_file) { FactoryGirl.create(:item, folder_id: folder.id, :file => fixture_file_upload('/test.jpg', 'text/csv')) }
 
   describe 'GET #crop_image' do
     it 'shoult find image' do 
@@ -19,7 +19,7 @@ describe ItemsController do
   describe 'GET #show_pdf' do
     it 'should show the pdf' do
       get :show_pdf, {:id => item_with_file.id}
-      expect(response).to be_success
+      expect(response).to redirect_to item_with_file.file.url
     end
   end
 
@@ -34,17 +34,16 @@ describe ItemsController do
 
   describe 'ItemsController::PDF' do
     it 'should do something' do
-      response = ItemsController::PDF.new.to_pdf(item_with_file.file.path)
+      item_with_csv = FactoryGirl.create(:item, folder_id: folder.id, :file => fixture_file_upload('/test.csv', 'text/csv'))
+      response = ItemsController::PDF.new.to_pdf(item_with_csv.file.url)
       expect(response).not_to eq ''
     end
   end
 
-  describe 'GET #crop_process' do
-    xit 'shoult find image' do 
-      get :crop_process, {:id => item_with_file.id, :item => {:crop_x => '12', :crop_y => '12', :crop_w => '12', :crop_h => '123123'}}
-      assigns(:image).should eq(item)
-      Item.any_instance.stubs(:reprocess_file).returns(true)
-      expect(response).to be_success
+  describe 'POST #crop_process' do
+    it 'shoult reprocess image' do
+      post :crop_process, {:id => item_with_file.id, :item => {:crop_x => '12', :crop_y => '12', :crop_w => '12', :crop_h => '23'}}
+      assigns(:image).should eq(item_with_file)
       expect(response).to redirect_to folder
     end
   end
@@ -83,7 +82,7 @@ describe ItemsController do
       FileMailer.expects(:send_file).with(
         'john@somedomain.com', 
         'Hello John!', 
-        item.file.path, 
+        item.file.url, 
         item.file_file_name
       ).returns(mailer)
       get :send_mail, {:id => item.id, :mail => {:recipient => 'john@somedomain.com', :subject => 'Hello John!'}}
