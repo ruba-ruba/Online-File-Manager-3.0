@@ -34,4 +34,15 @@ FileManager::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # please, uncomment this section only in case you know why you are doing this
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'file-manager-test',
+      :access_key_id => 'AKIAJV435CSJ4QM7VG6A',
+      :secret_access_key => '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',
+      :s3_host_name => 's3-eu-west-1.amazonaws.com'
+    }
+  }
 end

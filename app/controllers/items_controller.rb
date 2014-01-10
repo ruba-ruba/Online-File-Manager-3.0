@@ -89,7 +89,7 @@ class ItemsController < ApplicationController
 
   class PDF < Prawn::Document
     def to_pdf(path)
-      data = File.read(path)
+      data = HTTParty.get(path).body
       text data
       render
     end
@@ -97,7 +97,7 @@ class ItemsController < ApplicationController
 
   def pdf
     file = Item.find params[:id]
-    path = file.file.path
+    path = file.file.url
     name = file.file_file_name.split('.')[0]
     file_name = "#{name}.pdf"
     output = PDF.new.to_pdf(path)
@@ -110,11 +110,7 @@ class ItemsController < ApplicationController
 
   def show_pdf
     item = Item.find params[:id]
-    path = item.file.path
-    send_file(path,
-              :disposition => 'inline',
-              :type => 'application/pdf',
-              :x_sendfile => true )
+    redirect_to item.file.url
   end
 
   def crop_image

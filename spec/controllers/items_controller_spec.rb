@@ -19,7 +19,7 @@ describe ItemsController do
   describe 'GET #show_pdf' do
     it 'should show the pdf' do
       get :show_pdf, {:id => item_with_file.id}
-      expect(response).to be_success
+      expect(response).to redirect_to item_with_file.file.url
     end
   end
 

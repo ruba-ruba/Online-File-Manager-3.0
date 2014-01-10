@@ -37,4 +37,13 @@ FileManager::Application.configure do
 
   # Finally, you need to set up default url options for the mailer in each environment.
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+   config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'file-manager-development',
+      :access_key_id => 'AKIAJV435CSJ4QM7VG6A',
+      :secret_access_key => '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',
+      :s3_host_name => 's3-eu-west-1.amazonaws.com'
+    }
+  }
 end
