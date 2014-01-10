@@ -35,7 +35,7 @@ describe ItemsController do
   describe 'ItemsController::PDF' do
     it 'should do something' do
       item_with_csv = FactoryGirl.create(:item, folder_id: folder.id, :file => fixture_file_upload('/test.csv', 'text/csv'))
-      response = ItemsController::PDF.new.to_pdf(item_with_csv.file.path)
+      response = ItemsController::PDF.new.to_pdf(item_with_csv.file.url)
       expect(response).not_to eq ''
     end
   end
@@ -82,7 +82,7 @@ describe ItemsController do
       FileMailer.expects(:send_file).with(
         'john@somedomain.com', 
         'Hello John!', 
-        item.file.path, 
+        item.file.url, 
         item.file_file_name
       ).returns(mailer)
       get :send_mail, {:id => item.id, :mail => {:recipient => 'john@somedomain.com', :subject => 'Hello John!'}}
