@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
     item = Item.find params[:id]
     file_path = item.file.url
     file_name = item.file_file_name
-    FileMailer.send_file(recipient, subject, file_path, file_name).deliver
+    FileManagerMailer.send_file(recipient, subject, file_path, file_name).deliver
     redirect_to root_path, notice: 'Email sent successfully'
     rescue Exception => exc
       Rollbar.report_exception(exc)

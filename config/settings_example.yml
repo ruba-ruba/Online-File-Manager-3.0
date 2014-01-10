@@ -1,0 +1,6 @@
+development:
+  admin_mail: your_admi@example.com
+test:
+  admin_mail: your_admi@example.com
+production:
+  admin_mail: your_admi@example.com

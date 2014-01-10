@@ -9,6 +9,7 @@
 /tmp
 
 config/database.yml
+config/settings.yml
 public/assets/
 
 # Ignore all logfiles and tempfiles.

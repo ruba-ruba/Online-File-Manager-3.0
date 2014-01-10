@@ -79,7 +79,7 @@ describe ItemsController do
   describe 'GET #send_mail' do
     it 'shoult send mail' do
       mailer = stub(:deliver => true)
-      FileMailer.expects(:send_file).with(
+      FileManagerMailer.expects(:send_file).with(
         'john@somedomain.com', 
         'Hello John!', 
         item.file.url, 
