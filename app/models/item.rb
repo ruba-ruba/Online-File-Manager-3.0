@@ -65,6 +65,15 @@ class Item < ActiveRecord::Base
     "#{Rails.root}/public/system/files/#{id}"
   end
 
+  def send_mail(mail)
+    FileManagerMailer.send_file(
+      mail[:recipient],
+      mail[:subject],
+      self.file.url,
+      self.file_file_name
+    ).deliver
+   end
+
   def extension
     self.file_file_name.index('.') ? self.file_file_name.split('.').last.downcase : ''
   end

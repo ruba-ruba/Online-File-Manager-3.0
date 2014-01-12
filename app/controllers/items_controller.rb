@@ -47,17 +47,14 @@ class ItemsController < ApplicationController
   end
 
   def send_mail
-    mail = params[:mail]
-    recipient = mail[:recipient]
-    subject = mail[:subject]
-    item = Item.find params[:id]
-    file_path = item.file.url
-    file_name = item.file_file_name
-    FileManagerMailer.send_file(recipient, subject, file_path, file_name).deliver
-    redirect_to root_path, notice: 'Email sent successfully'
-    rescue Exception => exc
-      Rollbar.report_exception(exc)
-      redirect_to root_path, notice: 'Email failed, try again'
+    @item = Item.find params[:id]
+    validator = EmailValidator.new(params[:mail])
+    if validator.valid?
+      @item.send_mail(params[:mail])
+      redirect_to @item.folder, notice: 'Email sent successfully'
+    else
+      redirect_to @item.folder, notice: 'Email failed. ' + validator.errors.full_messages.join(', ')
+    end
   end
 
   def import_pages

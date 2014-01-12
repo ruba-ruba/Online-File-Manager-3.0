@@ -80,13 +80,13 @@ describe ItemsController do
     it 'shoult send mail' do
       mailer = stub(:deliver => true)
       FileManagerMailer.expects(:send_file).with(
-        'john@somedomain.com', 
-        'Hello John!', 
-        item.file.url, 
+        'john@somedomain.com',
+        'Hello John!',
+        item.file.url,
         item.file_file_name
       ).returns(mailer)
       get :send_mail, {:id => item.id, :mail => {:recipient => 'john@somedomain.com', :subject => 'Hello John!'}}
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(item.folder)
     end
   end
 

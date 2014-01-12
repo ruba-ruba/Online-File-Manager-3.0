@@ -3,13 +3,9 @@ require 'spec_helper'
 describe CommentsController do
   login_user
 
-  let(:valid_attributes) { { "content" => "MyText" } }
-
-  let(:valid_session) { {} }
-
   describe 'GET index' do 
     let!(:folder){FactoryGirl.create(:folder)}
-    xit 'should render comments for object' do
+    it 'should render comments for object' do
       get :index, folder_id: folder.id
       response.should be_success
       response.should render_template :index
@@ -28,15 +24,23 @@ describe CommentsController do
   describe "POST create" do
     let!(:folder){FactoryGirl.create(:folder)}
     it 'should create comment' do
-      expect{post :create, comment: FactoryGirl.attributes_for(:folder_comment), folder_id: folder.id}.to change(Comment,:count).by(1)
+      mailer = stub(:deliver => true)
+      FileManagerMailer.expects(:send_comment).returns(mailer)
+      expect{
+        post :create, comment: FactoryGirl.attributes_for(:folder_comment), folder_id: folder.id
+      }.to change(Comment,:count).by(1)
     end
     it 'should redirect to folder comments' do
+      mailer = stub(:deliver => true)
+      FileManagerMailer.expects(:send_comment).returns(mailer)
       post :create, comment: FactoryGirl.attributes_for(:folder_comment), folder_id: folder.id
       expect(response).to redirect_to folder_comments_path(folder)
     end
     it 'should not create comment' do
       request.env["HTTP_REFERER"] = 'where_i_came_from'
-      expect{post :create, comment: FactoryGirl.attributes_for(:folder_comment, content: nil), folder_id: folder.id}.to change(Comment,:count).by(0)
+      expect{
+        post :create, comment: FactoryGirl.attributes_for(:folder_comment, content: nil), folder_id: folder.id
+      }.to change(Comment,:count).by(0)
       flash.should_not be_nil
       response.should redirect_to 'where_i_came_from'
     end
@@ -48,16 +52,19 @@ describe CommentsController do
     it "should delete comment" do
       sign_in :user, user
       request.env["HTTP_REFERER"] = 'where_i_came_from'
-      expect{delete :destroy, id: comment.id, folder_id: comment.commentable.id}.to change(Comment,:count).by(-1) 
+      expect{
+        delete :destroy, id: comment.id, folder_id: comment.commentable.id
+      }.to change(Comment,:count).by(-1) 
       response.should redirect_to 'where_i_came_from'
     end
 
     it "should not delete comment" do
       request.env["HTTP_REFERER"] = 'where_i_came_from'
-      expect{delete :destroy, id: comment.id, folder_id: comment.commentable.id}.to change(Comment,:count).by(0) 
+      expect{
+        delete :destroy, id: comment.id, folder_id: comment.commentable.id
+      }.to change(Comment,:count).by(0) 
       flash.should_not be_nil
       response.should redirect_to 'where_i_came_from'
     end
   end
-
 end
