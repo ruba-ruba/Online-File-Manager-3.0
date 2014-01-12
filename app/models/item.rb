@@ -72,7 +72,7 @@ class Item < ActiveRecord::Base
       self.file.url,
       self.file_file_name
     ).deliver
-   end
+  end
 
   def extension
     self.file_file_name.index('.') ? self.file_file_name.split('.').last.downcase : ''
