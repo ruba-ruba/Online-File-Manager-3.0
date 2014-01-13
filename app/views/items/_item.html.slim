@@ -16,7 +16,7 @@ td
     = pdf(item)
   - if item.txt_or_html?
     span
-      = link_to icon(:page_white_acrobat), pdf_item_path(item, format: "pdf"), :title => 'Get PDF', :rel => 'tooltip'      
+      = link_to icon(:page_white_acrobat), pdf_item_path(item, format: "pdf"), :title => 'Get PDF', :rel => 'tooltip'
   - if item.image?
     span
       = link_to icon(:picture_edit), crop_image_item_path(item), :title => 'Crop image', :rel => 'tooltip'
@@ -26,3 +26,26 @@ td
   span
     = link_to item, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
       span.glyphicon.glyphicon-trash
+td.item_info_hidden
+  ul.nav.nav-pills.nav-stacked
+    li
+      span.title
+        | Title:
+      span
+        = item.file_file_name
+    li
+      span.title
+        | Format:
+      span
+        = item.extension
+  ul.nav.nav-pills.nav-stacked
+    li
+      span.title
+        | Size:
+      span
+        = number_to_human_size(item.file_file_size)
+    li
+      span.title
+        | Date:
+      span
+        = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')

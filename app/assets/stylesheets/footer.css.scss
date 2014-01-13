@@ -1,7 +1,17 @@
 footer.footer{
   background-color: #007FFF;
   color: white;
-  span{
-    padding-left: 30px;
+  padding-left: 30px;
+}
+
+.item_details {
+  padding-top: 10px;
+  ul.nav.nav-pills.nav-stacked{
+    display: inline-block;
+    width: 350px;
+  }
+  span.title{
+    color: blue;
+    margin-right: 4px;
   }
 }
