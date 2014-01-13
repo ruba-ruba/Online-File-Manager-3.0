@@ -5,13 +5,16 @@ describe Item do
   let(:item_with_file_true) { FactoryGirl.create(:item, :file => fixture_file_upload('/test.txt', 'text.html'))}
   let(:item_with_file_false) { FactoryGirl.create(:item, :file => fixture_file_upload('/test.jpg')) }
 
-  describe 'true txt_or_html' do
-    it 'shoult find file' do 
-      expect(item_with_file_true.txt_or_html?).to eq(true)
+  describe 'parse_map' do
+    it 'shoult parse_map' do 
+      expect{ FactoryGirl.create(:item, :file => fixture_file_upload('/map.csv')) }.to change(Location, :count).by(1)
     end
   end
 
-  describe 'false txt_or_html' do
+  describe 'txt_or_html' do
+    it 'shoult find file' do 
+      expect(item_with_file_true.txt_or_html?).to eq(true)
+    end
     it 'shoult find file' do 
       expect(item_with_file_false.txt_or_html?).to eq(false)
     end
