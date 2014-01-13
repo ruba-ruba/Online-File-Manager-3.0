@@ -1,21 +1,20 @@
 - content_for (:head) do
   script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"
 
-p#notice = notice
+table.table-condensed.locations
+    tr
+      th Address
+      th Latitude
+      th Longitude 
+    tr
+      td = @location.address
+      td = @location.latitude
+      td = @location.longitude
 
-p
-  strong Address:
-  = @location.address
-p
-  strong Latitude:
-  = @location.latitude
-p
-  strong Longitude:
-  = @location.longitude
-
-= link_to 'Edit', edit_location_path(@location)
-'|
-= link_to 'Back', locations_path
+.form-group
+  = link_to 'Edit', edit_location_path(@location)
+  '|
+  = link_to 'Back', locations_path
 
 #map-canvas
 javascript:
