@@ -26,16 +26,16 @@ describe ItemsController do
   describe 'GET #pdf' do
     it 'should show the pdf' do
       instance = stub(:to_pdf => true)
-      ItemsController::PDF.expects(:new).returns(instance)
+      PdfFormater.expects(:new).returns(instance)
       get :pdf, {:id => item.id}
       expect(response).not_to be_success
     end
   end
 
-  describe 'ItemsController::PDF' do
+  describe 'PdfFormater' do
     it 'should do something' do
       item_with_csv = FactoryGirl.create(:item, folder_id: folder.id, :file => fixture_file_upload('/test.csv', 'text/csv'))
-      response = ItemsController::PDF.new.to_pdf(item_with_csv.file.url)
+      response = PdfFormater.new.to_pdf(item_with_csv.file.url)
       expect(response).not_to eq ''
     end
   end
@@ -79,14 +79,14 @@ describe ItemsController do
   describe 'GET #send_mail' do
     it 'shoult send mail' do
       mailer = stub(:deliver => true)
-      FileMailer.expects(:send_file).with(
-        'john@somedomain.com', 
-        'Hello John!', 
-        item.file.url, 
+      FileManagerMailer.expects(:send_file).with(
+        'john@somedomain.com',
+        'Hello John!',
+        item.file.url,
         item.file_file_name
       ).returns(mailer)
       get :send_mail, {:id => item.id, :mail => {:recipient => 'john@somedomain.com', :subject => 'Hello John!'}}
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(item.folder)
     end
   end
 

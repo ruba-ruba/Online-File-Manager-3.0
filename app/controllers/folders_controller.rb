@@ -59,7 +59,7 @@ class FoldersController < ApplicationController
 
     def sort_direction
       if %w[asc desc].include?(params[:direction])
-          cookies[:cookie_sorting] = params[:direction]
+        cookies[:cookie_sorting] = params[:direction]
       else
         cookies[:cookie_sorting] || "asc"
       end

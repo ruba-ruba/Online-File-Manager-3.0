@@ -47,17 +47,14 @@ class ItemsController < ApplicationController
   end
 
   def send_mail
-    mail = params[:mail]
-    recipient = mail[:recipient]
-    subject = mail[:subject]
-    item = Item.find params[:id]
-    file_path = item.file.url
-    file_name = item.file_file_name
-    FileMailer.send_file(recipient, subject, file_path, file_name).deliver
-    redirect_to root_path, notice: 'Email sent successfully'
-    rescue Exception => exc
-      Rollbar.report_exception(exc)
-      redirect_to root_path, notice: 'Email failed, try again'
+    @item = Item.find params[:id]
+    validator = EmailValidator.new(params[:mail])
+    if validator.valid?
+      @item.send_mail(params[:mail])
+      redirect_to @item.folder, notice: 'Email sent successfully'
+    else
+      redirect_to @item.folder, notice: 'Email failed. ' + validator.errors.full_messages.join(', ')
+    end
   end
 
   def import_pages
@@ -88,20 +85,12 @@ class ItemsController < ApplicationController
     end
   end
 
-  class PDF < Prawn::Document
-    def to_pdf(path)
-      data = HTTParty.get(path).body
-      text data
-      render
-    end
-  end
-
   def pdf
     file = Item.find params[:id]
     path = file.file.url
     name = file.file_file_name.split('.')[0]
     file_name = "#{name}.pdf"
-    output = PDF.new.to_pdf(path)
+    output = PdfFormater.new.to_pdf(path)
     respond_to do |format|
       format.pdf {
         send_data output, filename: file_name, type: "application/pdf"

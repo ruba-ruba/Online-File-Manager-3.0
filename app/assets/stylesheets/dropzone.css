@@ -155,13 +155,14 @@
 }
 .dropzone {
   border: 1px dashed gray;
-  min-height: 160px;
+  min-height: 140px;
   max-width: 420px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
   background: rgba(0,0,0,0.03);
-  padding: 23px;
+  padding: 23px 23px 5px 23px;
   margin-top: 23px;
+  margin-bottom: 10px;
 }
 .dropzone .dz-default.dz-message {
   opacity: 1;
@@ -177,7 +178,7 @@
   background-position: 0 0;
   position: absolute;
   width: 400px;
-  height: 123px;
+  height: 50px;
   margin-left: -214px;
   margin-top: -61.5px;
   top: 50%;
@@ -198,7 +199,7 @@
   background-position: 0 -123px;
   width: 268px;
   margin-left: -134px;
-  height: 174px;
+  height: 100px;
   margin-top: -87px;
 }
 .dropzone.dz-drag-hover .dz-message {

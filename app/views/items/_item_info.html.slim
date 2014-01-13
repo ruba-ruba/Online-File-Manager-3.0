@@ -1,0 +1,28 @@
+ul.nav.nav-pills.nav-stacked.title
+  li
+    span.title
+      | Title:
+  li
+    span.title
+      | Format:
+ul.nav.nav-pills.nav-stacked.val
+  li
+    span
+      = item.file_file_name
+  li
+    span
+      = item.extension
+ul.nav.nav-pills.nav-stacked.title
+  li
+    span.title
+      | Size:
+  li
+    span.title
+      | Date:
+ul.nav.nav-pills.nav-stacked.val
+  li
+    span
+      = number_to_human_size(item.file_file_size)
+  li
+    span
+      = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')

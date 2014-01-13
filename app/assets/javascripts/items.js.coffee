@@ -11,3 +11,6 @@ $ ->
         alert response
       @on "complete", (file) ->
         @removeAllFiles(true)
+
+  $(".items").on "click", ->
+    $(".item_details").html($(this).children(".item_info_hidden").html())

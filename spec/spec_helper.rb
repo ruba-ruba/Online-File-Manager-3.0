@@ -67,7 +67,7 @@ Spork.each_run do
 
     config.before(:each) { GC.disable }
     config.after(:each) { GC.enable }
-    
+    config.include ActionDispatch::TestProcess
     config.include Devise::TestHelpers, :type => :controller
     config.include Capybara::DSL, :type =>:request
     config.include Capybara::RSpecMatchers, :type =>:request
@@ -79,18 +79,18 @@ Spork.each_run do
       config.include Paperclip::Shoulda::Matchers
     end
 
-    # config.before(:suite) do
-    #   DatabaseCleaner.strategy = :transaction
-    #   DatabaseCleaner.clean_with :truncation
-    # end
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with :truncation
+    end
 
-    # config.before(:each) do
-    #   DatabaseCleaner.start
-    # end
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
 
-    # config.after(:each) do
-    #   DatabaseCleaner.clean
-    # end
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
 
 
   end

@@ -19,6 +19,9 @@ table.table-condensed {
   td span {
     padding: 4px;
   }
+  td.item_info_hidden{
+    display: none;
+  }
   a{
     color: black;
     text-decoration: none;
