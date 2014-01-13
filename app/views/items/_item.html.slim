@@ -27,25 +27,31 @@ td
     = link_to item, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
       span.glyphicon.glyphicon-trash
 td.item_info_hidden
-  ul.nav.nav-pills.nav-stacked
+  ul.nav.nav-pills.nav-stacked.title
     li
       span.title
         | Title:
-      span
-        = item.file_file_name
     li
       span.title
         | Format:
+  ul.nav.nav-pills.nav-stacked.val
+    li
+      span
+        = item.file_file_name
+    li
       span
         = item.extension
-  ul.nav.nav-pills.nav-stacked
+  ul.nav.nav-pills.nav-stacked.title
     li
       span.title
         | Size:
-      span
-        = number_to_human_size(item.file_file_size)
     li
       span.title
         | Date:
+  ul.nav.nav-pills.nav-stacked.val
+    li
+      span
+        = number_to_human_size(item.file_file_size)
+    li
       span
         = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')
