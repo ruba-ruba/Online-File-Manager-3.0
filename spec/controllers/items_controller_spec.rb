@@ -26,16 +26,16 @@ describe ItemsController do
   describe 'GET #pdf' do
     it 'should show the pdf' do
       instance = stub(:to_pdf => true)
-      ItemsController::PDF.expects(:new).returns(instance)
+      PdfFormater.expects(:new).returns(instance)
       get :pdf, {:id => item.id}
       expect(response).not_to be_success
     end
   end
 
-  describe 'ItemsController::PDF' do
+  describe 'PdfFormater' do
     it 'should do something' do
       item_with_csv = FactoryGirl.create(:item, folder_id: folder.id, :file => fixture_file_upload('/test.csv', 'text/csv'))
-      response = ItemsController::PDF.new.to_pdf(item_with_csv.file.url)
+      response = PdfFormater.new.to_pdf(item_with_csv.file.url)
       expect(response).not_to eq ''
     end
   end

@@ -36,7 +36,7 @@ FileManager::Application.configure do
   config.assets.debug = true
 
   # Finally, you need to set up default url options for the mailer in each environment.
-  # BetterErrors::Middleware.allow_ip! # '192.168.232.1'
+  BetterErrors::Middleware.allow_ip! #'192.168.109.1'
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
    config.paperclip_defaults = {

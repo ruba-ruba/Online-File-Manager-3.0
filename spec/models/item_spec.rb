@@ -1,6 +1,21 @@
 require 'spec_helper'
 
 describe Item do
+
+  let(:item_with_file_true) { FactoryGirl.create(:item, :file => fixture_file_upload('/test.txt', 'text.html'))}
+  let(:item_with_file_false) { FactoryGirl.create(:item, :file => fixture_file_upload('/test.jpg')) }
+
+  describe 'true txt_or_html' do
+    it 'shoult find file' do 
+      expect(item_with_file_true.txt_or_html?).to eq(true)
+    end
+  end
+
+  describe 'false txt_or_html' do
+    it 'shoult find file' do 
+      expect(item_with_file_false.txt_or_html?).to eq(false)
+    end
+  end
   
   describe 'methods' do
     it 'should return right name' do
