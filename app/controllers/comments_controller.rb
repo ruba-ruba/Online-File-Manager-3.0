@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.build(params[:comment].merge({:user_id => current_user.id}))
+    @comment.session_id = session_id
     if @comment.save      
       redirect_to [@commentable, :comments]
       FileManagerMailer.send_comment(@comment).deliver
@@ -24,9 +25,15 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment.session_id = session_id
     @comment.destroy
     redirect_to :back
   end
+
+  protected
+    def session_id
+      request.headers["X-Session-ID"]
+    end
 
   private
 

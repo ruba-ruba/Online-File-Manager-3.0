@@ -14,7 +14,7 @@ group :assets do
   gem "compass-inline-gradient", "~> 0.0.1"
 end
 
-
+gem 'pusher'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'

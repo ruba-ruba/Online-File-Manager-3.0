@@ -182,6 +182,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     httpauth (0.2.0)
+    httpclient (2.3.4.1)
     i18n (0.6.9)
     ice_nine (0.11.0)
     jcrop-rails-v2 (0.9.12.3)
@@ -283,6 +284,10 @@ GEM
     pry-stack_explorer (0.4.9.1)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
+    pusher (0.12.0)
+      httpclient (~> 2.3.0)
+      multi_json (~> 1.0)
+      signature (~> 0.1.6)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.4.5)
@@ -349,6 +354,7 @@ GEM
     settingslogic (2.0.9)
     shoulda-matchers (2.4.0)
       activesupport (>= 3.0.0)
+    signature (0.1.7)
     silk-bootstrap-rails (0.0.1)
       railties (~> 3.1)
     simple_form (2.1.0)
@@ -469,6 +475,7 @@ DEPENDENCIES
   pry-debugger
   pry-rails
   pry-stack_explorer
+  pusher
   quiet_assets
   rack-contrib
   rails (= 3.2.14)
