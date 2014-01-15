@@ -19,14 +19,14 @@ table.table-condensed {
   td span {
     padding: 4px;
   }
-  td.item_info_hidden{
+  td.item_info_hidden {
     display: none;
   }
-  a{
+  a {
     color: black;
     text-decoration: none;
   }
-  tbody tr:hover{
+  tbody tr:hover {
       background-color: #EAEAEA;
   }
   tr:nth-child(even) {
@@ -37,6 +37,6 @@ table.table-condensed {
   }
 };
 
-table.table-condensed.user{
+table.table-condensed.user {
   width: 300px;
 }

@@ -6,17 +6,33 @@ describe Item do
   let(:item_with_file_false) { FactoryGirl.create(:item, :file => fixture_file_upload('/test.jpg')) }
 
   describe 'parse_map' do
-    it 'shoult parse_map' do 
+    it 'should parse_map' do 
       expect{ FactoryGirl.create(:item, :file => fixture_file_upload('/map.csv')) }.to change(Location, :count).by(1)
     end
   end
 
   describe 'txt_or_html' do
-    it 'shoult find file' do 
+    it 'should find file' do 
       expect(item_with_file_true.txt_or_html?).to eq(true)
     end
-    it 'shoult find file' do 
+    it 'should find file' do 
       expect(item_with_file_false.txt_or_html?).to eq(false)
+    end
+  end
+
+  describe 'self.duplicates' do
+    let!(:item1){FactoryGirl.create(:item, file_file_name: '1.txt', :file_file_size=>"10",:folder => FactoryGirl.create(:folder))}
+    let!(:item2){FactoryGirl.create(:item, file_file_name: '1.txt', :file_file_size=>"10",:folder => FactoryGirl.create(:folder))}
+    let!(:item3){FactoryGirl.create(:item, file_file_name: '2.txt', :file_file_size=>"10",:folder => FactoryGirl.create(:folder))}
+    let!(:item4){FactoryGirl.create(:item, file_file_name: '2.txt', :file_file_size=>"11",:folder => FactoryGirl.create(:folder))}
+    let!(:item5){FactoryGirl.create(:item, file_file_name: '3.txt', :file_file_size=>"11",:folder => FactoryGirl.create(:folder))}
+    let!(:item6){FactoryGirl.create(:item, file_file_name: '4.txt', :file_file_size=>"11",:folder => FactoryGirl.create(:folder))}
+    let!(:item7){FactoryGirl.create(:item, file_file_name: '5.txt', :file_file_size=>"12",:folder => FactoryGirl.create(:folder))}
+    let!(:item8){FactoryGirl.create(:item, file_file_name: '6.txt', :file_file_size=>"13",:folder => FactoryGirl.create(:folder))}
+    let!(:item9){FactoryGirl.create(:item, file_file_name: '7.txt', :file_file_size=>"12",:folder => FactoryGirl.create(:folder))}
+    let!(:item10){FactoryGirl.create(:item, file_file_name: '7.txt', :file_file_size=>"12",:folder => FactoryGirl.create(:folder))}
+    it 'should find duplicates' do
+      expect(Item.duplicates).to eq([item1, item2, item9, item10])
     end
   end
   

@@ -1,10 +1,10 @@
-.navigation{
+.navigation {
   min-height: 60px;
   max-height: 60px;
   padding: 0px;
   background-color: #0D2033;
   vertical-align: middle;
-  .nav-path{ 
+  .nav-path { 
     margin-left: 3%;
     padding-top: 20px;
     height: 60px;
@@ -15,12 +15,12 @@
     a {
       color: white;
       padding-left: 4px;
-    };
+    }
   };
-  form.navbar-form.navbar{
+  form.navbar-form.navbar {
     display: inline-block;
     vertical-align: middle;
-    .form-group-search{
+    .form-group-search {
       display: inline-block;
       padding-top: 3px;
     }

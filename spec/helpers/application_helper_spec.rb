@@ -11,31 +11,31 @@ describe ApplicationHelper do
   let(:target_sheet) { FactoryGirl.create(:item, :file => fixture_file_upload('/test.xlsx',"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))}
  
   describe 'true pdf' do
-    it 'shoult find file' do 
+    it 'should find file' do 
       expect(helper.pdf(item_with_file_true)).to eq("<a href=\"/items/1/show_pdf\" alt=\"Open PDF\" rel=\"tooltip\" target=\"_blank\" title=\"Open PDF\"><img align=\"bottom\" border=\"0\" class=\"icon \" src=\"/assets/icons/fam-fam/16/page_go.png\" /></a>")
     end
   end
 
   describe 'content_icon valid' do
-    it 'shoult folder' do 
+    it 'should folder' do 
       expect(helper.content_icon(target)).to eq("<img align=\"bottom\" border=\"0\" class=\"icon \" src=\"/assets/icons/fam-fam/16/folder.png\" /> <span class=\"text\">title1</span>")   
     end
-    it 'shoult jpeg' do
+    it 'should jpeg' do
       expect(helper.content_icon(target_jpeg)).to eq("<img align=\"bottom\" border=\"0\" class=\"icon \" src=\"/assets/icons/fam-fam/16/picture.png\" /> <span class=\"text\">test.jpeg</span>")
     end
-    it 'shoult target_mp3' do 
+    it 'should target_mp3' do 
       expect(helper.content_icon(target_mp3)).to eq("<img align=\"bottom\" border=\"0\" class=\"icon \" src=\"/assets/icons/fam-fam/16/music.png\" /> <span class=\"text\">test.mp3</span>")
     end
-    it 'shoult target_pdf' do 
+    it 'should target_pdf' do 
       expect(helper.content_icon(target_pdf)).to eq("<img align=\"bottom\" border=\"0\" class=\"icon \" src=\"/assets/icons/fam-fam/16/page_white_acrobat.png\" /> <span class=\"text\">test.pdf</span>")
     end
-    it 'shoult target_exel' do 
+    it 'should target_exel' do 
       expect(helper.content_icon(target_exel)).to eq("<img align=\"bottom\" border=\"0\" class=\"icon \" src=\"/assets/icons/fam-fam/16/map.png\" /> <span class=\"text\">test.exel</span>")
     end
-    it 'shoult target_sheet' do 
+    it 'should target_sheet' do 
       expect(helper.content_icon(target_sheet)).to eq("<img align=\"bottom\" border=\"0\" class=\"icon \" src=\"/assets/icons/fam-fam/16/page_excel.png\" /> <span class=\"text\">test.xlsx</span>")
     end
-    it 'shoult invalid params' do 
+    it 'should invalid params' do 
       expect(helper.content_icon(item_with_file_false)).to eq("<img align=\"bottom\" border=\"0\" class=\"icon \" src=\"/assets/icons/fam-fam/16/page.png\" /> <span class=\"text\">test.pdf</span>")
     end
   end

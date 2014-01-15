@@ -1,25 +1,25 @@
 @import "compass/css3/images";
 
-header.col-xs-12{
+header.col-xs-12 {
   background-color: #007FFF;
   color: white;
   padding: 0px;
   margin: 0px;
-  .current_user{
+  .current_user {
     color: white;
   };
-  .flash{
+  .flash {
     width: 100%;
-    .alert{
+    .alert {
       margin-bottom: 0px;
-      div.pull-right{
-        span{
+      div.pull-right {
+        span {
           cursor: pointer;
-        };
-      };
-    };
+        }
+      }
+    }
   };
-  .pull-right.progress{
+  .pull-right.progress {
     position: relative;
     display: inline-block;
     margin-top: 10px;
@@ -31,7 +31,7 @@ header.col-xs-12{
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px; 
-    .progress-bar{
+    .progress-bar {
       height: 20px;
       width: 300px;
       color: none;
@@ -43,7 +43,7 @@ header.col-xs-12{
       };
     };
   };
-  .pull-right.text{
+  .pull-right.text {
     display: inline-block;
     margin-top: 10px;
     padding-right: 10px;
@@ -52,7 +52,7 @@ header.col-xs-12{
     text-align: right;
   };
 
-  span.pull-right{
+  span.pull-right {
     color: white;
     vertical-align: middle;
     padding-top: 8px;

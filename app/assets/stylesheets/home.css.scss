@@ -4,16 +4,16 @@
   margin: 0px;
 }
 
-body{
+body {
   width: 100%;
 }
-.container{
+.container {
   width: 100%;
   padding: 0px;
   margin: 0px;
 }
 
-.row{  
+.row {  
   margin: 0px;
   border-collapse: collapse;
   .content.row {
@@ -25,12 +25,12 @@ body{
   };
 };
 
-.icon, .glyphicon{
+.icon, .glyphicon {
   vertical-align: middle;
   white-space: nowrap;
 }
 
-span{
+span {
   vertical-align: middle;
   text-align: center;
 }

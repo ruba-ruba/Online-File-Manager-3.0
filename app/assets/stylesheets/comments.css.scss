@@ -2,9 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.comments{
+.comments {
   width: 600px;
-  ul{
+  ul {
     list-style-type: none;
     word-wrap: break-word;
   }
@@ -12,61 +12,61 @@
     display: list-item;
     padding-top: 5px;
     margin-bottom: 4px;
-    .timestamp{
+    .timestamp {
       color: #a8a8a8;
       padding-left: 5px;
     }
-    .autor{
+    .autor {
       vertical-align: middle;
     }
-    .comment_head{
+    .comment_head {
       border-top: 1px solid #e8e8e8;
     }
-    .reply_controls{
+    .reply_controls {
       width: 300px;
-      .voiting{
+      .voiting {
         float: right;
       }
-      .links{
+      .links {
        float: left;
       }
     }    
   }
-  li > ul{
+  li > ul {
     padding-left: 30px;
     padding-top: 10px;
   } 
 }
 
-.negative{
+.negative {
   opacity: 0.5;
-  &:hover{
+  &:hover {
     opacity: 1;
   }
 }
 
-.hidden_form_reply{
+.hidden_form_reply {
   padding-top: 10px;
   display: none;
 }
 
-.btn.link_cancel_hidden_form_reply{
+.btn.link_cancel_hidden_form_reply {
   margin-top: 12px;
   margin-left: 15px;
   background-color: #E8E8E8;
-  &:hover{
+  &:hover {
     background-color: #007fff;
   }
 }
 
-.pagination{
+.pagination {
   padding-left: 250px;
-  ul{
+  ul {
     list-style-type: none;
   }
-  ul li{
+  ul li {
     display: inline;
-    .disabled{
+    .disabled {
       background-color: #E8E8E8;
     }
   }

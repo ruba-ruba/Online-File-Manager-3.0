@@ -16,7 +16,6 @@ class Item < ActiveRecord::Base
 
   belongs_to :folder
   belongs_to :user
-  belongs_to :duplicate
   has_many :comments, :as => :commentable, dependent: :destroy
   has_many :locations, dependent: :destroy
 
@@ -25,7 +24,6 @@ class Item < ActiveRecord::Base
   validate :check_quota
 
   scope :root, where(:folder_id => nil)
-  scope :duplicates, where('`items`.`duplicate_id` IS NOT NULL').order(:file_file_name)
 
   def self.file_name(link, host)
     case
@@ -72,6 +70,18 @@ class Item < ActiveRecord::Base
       self.file.url,
       self.file_file_name
     ).deliver
+  end
+
+  def self.duplicates
+    query = <<-SQL
+      Select file_file_name, file_file_size, count(file_file_name) as ct from items group by file_file_name, file_file_size HAVING ct>1
+    SQL
+    rows = ActiveRecord::Base.connection.select_rows(query)
+    items = []
+    rows.each do |row|
+      items << Item.where('file_file_name = ? and file_file_size = ?', row[0], row[1])
+    end
+    items.flatten
   end
 
   def extension
