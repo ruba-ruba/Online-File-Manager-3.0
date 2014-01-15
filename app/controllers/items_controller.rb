@@ -44,16 +44,17 @@ class ItemsController < ApplicationController
 
   def add_recipient
     @item = Item.find params[:id]
+    @validator = EmailValidator.new
   end
 
   def send_mail
     @item = Item.find params[:id]
-    validator = EmailValidator.new(params[:mail])
-    if validator.valid?
-      @item.send_mail(params[:mail])
+    @validator = EmailValidator.new(params[:email_validator])
+    if @validator.valid?
+      @item.send_mail(params[:email_validator])
       redirect_to @item.folder, notice: 'Email sent successfully'
     else
-      redirect_to @item.folder, notice: 'Email failed. ' + validator.errors.full_messages.join(', ')
+      render "add_recipient"
     end
   end
 
