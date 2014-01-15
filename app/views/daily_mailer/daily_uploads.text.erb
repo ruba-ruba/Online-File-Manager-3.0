@@ -1,0 +1,5 @@
+Hello, <%= User.first.email %>
+Yesterday was uploaded:
+ - <%= @folders.count %> folders
+ - <%= @items.count %> files
+ - total upload size <%= number_to_human_size(@size) %>
