@@ -1,5 +1,5 @@
 ul
-  - comments.decorate.each do |comment|
+  - comments.each do |comment|
     li 
       div class="#{comment.status}"
         .comment_head
@@ -21,4 +21,4 @@ ul
         = render "comments/form", comment: Comment.new(:parent_id => comment.id), commentable: comment.commentable
       br/
       - if comment.has_children?
-        = render 'comments/comment_message', :comments => comment.children
+        = render 'comments/comment_message', :comments => comment.children.decorate

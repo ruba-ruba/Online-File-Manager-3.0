@@ -8,12 +8,12 @@ javascript:
       = @commentable.class.to_s
 
     .comments
-      = render "comments/comment_message", :comments => @comments.roots
+      = render "comments/comment_message", :comments => @comments.roots.decorate
     = paginate @comments
 
   .form-group.col-xs-4
     h4 New Comment
-    = simple_form_for [@commentable, Comment.new] do |f|
+    = simple_form_for [@commentable, Comment.new], :remote => true do |f|
       = f.error_notification
       = f.input :content, :placeholder => "leave your comment", :input_html => {:rows => 5}
       = f.hidden_field  :commentable_id

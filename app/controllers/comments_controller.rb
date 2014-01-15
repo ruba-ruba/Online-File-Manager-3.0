@@ -15,7 +15,14 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.build(params[:comment].merge({:user_id => current_user.id}))
     if @comment.save  
-      redirect_to [@commentable, :comments]
+      render :json => {}
+      data = render_to_string(
+        :partial => "comments/comment_message", 
+        :layout => false, 
+        :locals => {:comments => [@comment.decorate]}
+      ).html_safe.gsub(/<ul>|<\/ul>/, '')
+
+      Pusher["presence-#{@comment.commentable_id}"].trigger('send_comment', data)
       FileManagerMailer.send_comment(@comment).deliver
     else
       redirect_to :back
