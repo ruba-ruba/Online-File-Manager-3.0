@@ -1,3 +1,7 @@
-= @user.email
-br/
-= @user.role
+table.table-condensed.user
+  tr
+    th User email
+    th User role
+  tr
+    td = @user.email
+    td = @user.role

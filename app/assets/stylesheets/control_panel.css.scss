@@ -1,6 +1,6 @@
 @import "mixins.css.scss";
 
-.control_panel{
+.control_panel {
   @include control_buttons_background;
   padding: 5px 0 0 15px;
   height: 50px;
@@ -20,7 +20,7 @@
       line-height: 0;
       margin: 0;
     };
-    li > a:hover{
+    li > a:hover {
       background-color: #456786;
       border-color: #0D2033;
     }

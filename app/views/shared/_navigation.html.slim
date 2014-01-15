@@ -13,3 +13,8 @@ ul.btn
         = link_to folder.title, folder
         |  /
     = @folder.title if @folder
+
+form.navbar-form.navbar role="search"
+  .form-group-search
+    input.form-control placeholder="Search files..." type="text"
+  button.btn.btn-search type="submit" Search

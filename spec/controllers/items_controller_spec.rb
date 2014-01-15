@@ -9,7 +9,7 @@ describe ItemsController do
   let(:item_with_file) { FactoryGirl.create(:item, folder_id: folder.id, :file => fixture_file_upload('/test.jpg', 'text/csv')) }
 
   describe 'GET #crop_image' do
-    it 'shoult find image' do 
+    it 'should find image' do 
       get :crop_image, {:id => item.id}
       assigns(:image).should eq(item)
       expect(response).to be_success
@@ -41,7 +41,7 @@ describe ItemsController do
   end
 
   describe 'POST #crop_process' do
-    it 'shoult reprocess image' do
+    it 'should reprocess image' do
       post :crop_process, {:id => item_with_file.id, :item => {:crop_x => '12', :crop_y => '12', :crop_w => '12', :crop_h => '23'}}
       assigns(:image).should eq(item_with_file)
       expect(response).to redirect_to folder
@@ -77,7 +77,7 @@ describe ItemsController do
   end
 
   describe 'GET #send_mail' do
-    it 'shoult send mail' do
+    it 'should send mail' do
       mailer = stub(:deliver => true)
       FileManagerMailer.expects(:send_file).with(
         'john@somedomain.com',
@@ -91,7 +91,7 @@ describe ItemsController do
   end
 
   describe 'GET #add_recipient' do
-    it 'shoult find item' do 
+    it 'should find item' do 
       get :add_recipient, {:id => item.id}
       assigns(:item).should eq(item)
       response.should be_success

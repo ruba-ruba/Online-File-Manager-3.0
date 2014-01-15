@@ -8,7 +8,6 @@ class Item < ActiveRecord::Base
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
-  after_update :reprocess_file, :if => :cropping?
   after_save :parse_map, :if => :is_map?
 
   has_attached_file :file,
@@ -25,7 +24,6 @@ class Item < ActiveRecord::Base
   validate :check_quota
 
   scope :root, where(:folder_id => nil)
-
 
   def self.file_name(link, host)
     case
@@ -74,6 +72,18 @@ class Item < ActiveRecord::Base
     ).deliver
   end
 
+  def self.duplicates
+    query = <<-SQL
+      Select file_file_name, file_file_size, count(file_file_name) as ct from items group by file_file_name, file_file_size HAVING ct>1
+    SQL
+    rows = ActiveRecord::Base.connection.select_rows(query)
+    items = []
+    rows.each do |row|
+      items << Item.where('file_file_name = ? and file_file_size = ?', row[0], row[1])
+    end
+    items.flatten
+  end
+
   def extension
     self.file_file_name.index('.') ? self.file_file_name.split('.').last.downcase : ''
   end
@@ -89,10 +99,6 @@ class Item < ActiveRecord::Base
 
   def image?
     %w(jpg jpeg png).include?(extension)
-  end
-
-  def cropping?
-    image? ? super : false
   end
 
   def reprocess_file(x,y,w,h)

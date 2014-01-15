@@ -1,19 +1,28 @@
-.navigation{
+.navigation {
   min-height: 60px;
   max-height: 60px;
   padding: 0px;
   background-color: #0D2033;
   vertical-align: middle;
-  .nav-path{ 
-    margin-left: 5%;
+  .nav-path { 
+    margin-left: 3%;
     padding-top: 20px;
     height: 60px;
-    width: 88%;
+    width: 70%;
+    display: inline-block;
     color: white;
     vertical-align: middle;
     a {
       color: white;
       padding-left: 4px;
-    };
+    }
   };
+  form.navbar-form.navbar {
+    display: inline-block;
+    vertical-align: middle;
+    .form-group-search {
+      display: inline-block;
+      padding-top: 3px;
+    }
+  }
 };

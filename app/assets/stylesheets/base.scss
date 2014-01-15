@@ -5,17 +5,21 @@
 
 @include sticky-footer(77px, ".container-fluid", ".row-fluid",".footer");
 
-.alert{
+.alert {
   margin: 0px;  
   background-color: orange;
   color: wihte;
   text-align: center;
 };
 
-.alert-error{
+.alert-error {
 
 };
 
-.alert-notice{
+.alert-notice {
 
 };
+
+.help-inline {
+  padding-left: 6px;
+}

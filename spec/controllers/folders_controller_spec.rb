@@ -30,7 +30,7 @@ describe FoldersController do
   end
 
   describe "GET edit" do
-    xit "assigns the requested folder as @folder" do
+    it "assigns the requested folder as @folder" do
       folder = Folder.create! valid_attributes
       get :edit, {:id => folder.to_param}
       assigns(:folder).should eq(folder)
@@ -83,7 +83,7 @@ describe FoldersController do
         put :update, {:id => folder.to_param, :folder => { "title" => "MyString" }}
       end
 
-      xit "assigns the requested folder as @folder" do
+      it "assigns the requested folder as @folder" do
         folder = Folder.create! valid_attributes
         put :update, {:id => folder.to_param, :folder => valid_attributes}
         assigns(:folder).should eq(folder)
@@ -98,14 +98,14 @@ describe FoldersController do
     end
 
     describe "with invalid params" do
-      xit "assigns the folder as @folder" do
+      it "assigns the folder as @folder" do
         folder = Folder.create! valid_attributes
         Folder.any_instance.stubs(:save).returns(false)
         put :update, {:id => folder.to_param, :folder => { "title" => "invalid value" }}
         assigns(:folder).should eq(folder)
       end
 
-      xit "re-renders the 'edit' template" do
+      it "re-renders the 'edit' template" do
         folder = Folder.create! valid_attributes
         Folder.any_instance.stubs(:save).returns(false)
         put :update, {:id => folder.to_param, :folder => { "title" => "invalid value" }}
@@ -126,7 +126,7 @@ describe FoldersController do
       response.should redirect_to 'where_i_came_from'
     end
 
-    xit "redirects to the folders list" do
+    it "redirects to the folders list" do
       folder = Folder.create! valid_attributes
       delete :destroy, {:id => folder.to_param}
       response.should redirect_to(folders_url)

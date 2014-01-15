@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.build(params[:comment].merge({:user_id => current_user.id}))
-    if @comment.save      
+    if @comment.save  
       redirect_to [@commentable, :comments]
       FileManagerMailer.send_comment(@comment).deliver
     else

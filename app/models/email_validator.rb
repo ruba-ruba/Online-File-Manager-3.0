@@ -8,7 +8,11 @@ class EmailValidator
                     format: { with: VALID_EMAIL_REGEX }
   validates :subject, presence: true, length: { minimum: 1 }
 
-  def initialize(mail)
+  def initialize(mail = {})
     @recipient, @subject = mail[:recipient], mail[:subject]
+  end
+
+  def to_key
+    [42]
   end
 end

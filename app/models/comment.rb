@@ -18,4 +18,9 @@ class Comment < ActiveRecord::Base
   def author
     user.name || "anonymous"
   end
+
+  after_save do |comment|
+    payload = comment.attributes
+    Pusher["presence-" + comment.commentable_id.to_s].trigger('send_comment', payload)
+  end
 end

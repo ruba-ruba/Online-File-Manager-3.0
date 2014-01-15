@@ -8,3 +8,11 @@ $ ->
 
   $(".link_cancel_hidden_form_reply").on "click", ->
     $(".hidden_form_reply").hide()
+
+  Pusher.channel_auth_endpoint = '/pusher/auth?user_id=' + user_id;
+  socket = new Pusher("8ba0acceea1e6f267635")
+  presenceChannel = socket.subscribe('presence-' + channel)
+
+  presenceChannel.bind "send_comment", (data) ->
+    alert data.message
+

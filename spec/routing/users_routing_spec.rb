@@ -19,7 +19,7 @@ describe UsersController do
       get("/users/1/edit").should route_to("users#edit", :id => "1")
     end
 
-    xit "routes to #create" do
+    it "routes to #create" do
       post("/users").should route_to("users#create")
     end
 

@@ -1,13 +1,17 @@
-table
+table.table-condensed.user
   tr
-    th
-    th
-    th
-    th
+    th User email
+    th Show
+    th Actions
 
   - @users.each do |user|
     tr
       td = user.email
       td = link_to 'Show', user
-      td = link_to 'Edit', edit_user_path(user)
-      td = link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
+      td colspan="2"
+        span
+          = link_to edit_user_path(user), :title => 'Edit', :rel => 'tooltip'
+            span.glyphicon.glyphicon-edit
+        span
+          = link_to user, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
+            span.glyphicon.glyphicon-trash
