@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140103140915) do
+ActiveRecord::Schema.define(:version => 20140114143424) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(:version => 20140103140915) do
   add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "duplicates", :force => true do |t|
+    t.integer  "item_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "duplicates", ["item_id"], :name => "index_duplicates_on_item_id"
 
   create_table "folders", :force => true do |t|
     t.string   "title"
@@ -51,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20140103140915) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.integer  "user_id"
+    t.integer  "duplicate_id"
   end
 
   create_table "locations", :force => true do |t|

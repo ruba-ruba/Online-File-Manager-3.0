@@ -17,6 +17,7 @@ class Item < ActiveRecord::Base
 
   belongs_to :folder
   belongs_to :user
+  belongs_to :duplicate
   has_many :comments, :as => :commentable, dependent: :destroy
   has_many :locations, dependent: :destroy
 
@@ -25,7 +26,7 @@ class Item < ActiveRecord::Base
   validate :check_quota
 
   scope :root, where(:folder_id => nil)
-
+  scope :duplicates, where('`items`.`duplicate_id` IS NOT NULL').order(:file_file_name)
 
   def self.file_name(link, host)
     case
@@ -92,7 +93,7 @@ class Item < ActiveRecord::Base
   end
 
   def cropping?
-    image? ? super : false
+    image? ? false : false
   end
 
   def reprocess_file(x,y,w,h)

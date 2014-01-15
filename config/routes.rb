@@ -1,5 +1,8 @@
 FileManager::Application.routes.draw do
   
+  resources :duplicates
+
+
   resources :locations
 
 
