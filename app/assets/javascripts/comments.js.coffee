@@ -3,9 +3,16 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ -> 
-  console.log "123 123 123 123"
   $(".link_hidden_form_reply").on "click", ->
     $(this).parent().parent().parent().siblings(".hidden_form_reply").show()
 
   $(".link_cancel_hidden_form_reply").on "click", ->
     $(".hidden_form_reply").hide()
+
+  Pusher.channel_auth_endpoint = '/pusher/auth?user_id=' + user_id;
+  socket = new Pusher("8ba0acceea1e6f267635")
+  presenceChannel = socket.subscribe('presence-' + channel)
+
+  presenceChannel.bind "send_comment", (data) ->
+    alert data.message
+

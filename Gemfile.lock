@@ -443,7 +443,7 @@ DEPENDENCIES
   compass-rails
   cucumber-rails
   database_cleaner (< 1.1.0)
-  devise
+  devise (= 3.2.2)
   draper (~> 1.3)
   email_spec
   factory_girl_rails
@@ -475,7 +475,7 @@ DEPENDENCIES
   pry-debugger
   pry-rails
   pry-stack_explorer
-  pusher
+  pusher (= 0.12.0)
   quiet_assets
   rack-contrib
   rails (= 3.2.14)

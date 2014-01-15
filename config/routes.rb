@@ -34,6 +34,7 @@ FileManager::Application.routes.draw do
     end
   end
 
+  match 'pusher/auth'
 
   post "vote", to: 'votes#vote'
 
