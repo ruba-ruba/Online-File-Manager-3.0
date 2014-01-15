@@ -8,7 +8,6 @@ class Item < ActiveRecord::Base
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
-  after_update :reprocess_file, :if => :cropping?
   after_save :parse_map, :if => :is_map?
 
   has_attached_file :file,
@@ -90,10 +89,6 @@ class Item < ActiveRecord::Base
 
   def image?
     %w(jpg jpeg png).include?(extension)
-  end
-
-  def cropping?
-    image? ? false : false
   end
 
   def reprocess_file(x,y,w,h)
