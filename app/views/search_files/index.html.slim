@@ -1,20 +1,23 @@
 h4 Results for searching files:
-
-table.table-condensed
-  thead
-    tr
-      th Name
-      th Size
-      th Type
-      th Date
-      th Path
-  tbody
-    - @items.each do |item|
+- if @items.empty?
+  span
+    | There is no files matching your request
+- else
+  table.table-condensed
+    thead
       tr
-        td 
-          span
-            = link_to content_icon(item), item.file_file_name
-        td = number_to_human_size(item.file_file_size)
-        td = item.extension
-        td = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')
-        td = link_to 'Show in folder', item.folder
+        th Name
+        th Size
+        th Type
+        th Date
+        th Path
+    tbody
+      - @items.each do |item|
+        tr
+          td 
+            span
+              = link_to content_icon(item), item.file_file_name
+          td = number_to_human_size(item.file_file_size)
+          td = item.extension
+          td = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')
+          td = link_to 'Show in folder', item.folder
