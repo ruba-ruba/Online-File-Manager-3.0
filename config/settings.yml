@@ -1,6 +1,6 @@
 development:
-  admin_mail: your_admi@example.com
+  admin_mail: i10111pn@gmail.com
 test:
   admin_mail: your_admi@example.com
 production:
-  admin_mail: your_admi@example.com
+  admin_mail: i10111pn@gmail.com, maria.paschevska@gmail.com, gorbenko.vladislav@gmail.com

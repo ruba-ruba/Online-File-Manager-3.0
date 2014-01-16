@@ -39,3 +39,8 @@ ul.nav.nav-tabs.control_buttons
       || 
   li
     = link_to "#{icon(:page_white_copy)} #{content_tag(:span, "Search duplicates")}".html_safe, duplicates_path
+  li
+    span
+      ||
+  li
+     = link_to "#{icon(:email)} #{content_tag(:span, "Daily report")}".html_safe, send_daily_report_path

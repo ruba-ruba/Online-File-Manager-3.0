@@ -47,6 +47,12 @@ class FoldersController < ApplicationController
     redirect_to :back
   end
 
+  def send_daily_report
+    DailyMailer.daily_uploads.deliver
+    flash[:notice] = "Email was successfully send."
+    redirect_to :root
+  end
+
   private
 
     def find_folder_and_check_manageability

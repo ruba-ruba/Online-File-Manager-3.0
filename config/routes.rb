@@ -43,6 +43,8 @@ FileManager::Application.routes.draw do
   #grape
   mount UsersApi::API => "/"
 
+  match 'send_daily_report', to: 'folders#send_daily_report'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
