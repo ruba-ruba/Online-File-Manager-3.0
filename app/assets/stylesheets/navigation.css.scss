@@ -17,17 +17,12 @@
       padding-left: 4px;
     }
   };
-  form.navbar-form.navbar {
+  .my_search {
     display: inline-block;
     vertical-align: middle;
     width: 20%;
-    .search {      
-      display: inline-block;
-      padding-top: 8px;
-      width: 200px;
-    }
-    .search.optional.control-label {
-      display: none;
+    .item_search {
+      margin: 5px 0px 0px 10px;
     }
   }
 };
