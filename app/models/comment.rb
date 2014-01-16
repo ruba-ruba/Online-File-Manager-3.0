@@ -1,6 +1,5 @@
 class Comment < ActiveRecord::Base
   attr_accessible :commentable_id, :commentable_type, :content, :user_id, :parent_id, :votes_up, :votes_down
-  attr_accessor :session_id
 
   has_ancestry
 
@@ -19,4 +18,5 @@ class Comment < ActiveRecord::Base
   def author
     user.name || "anonymous"
   end
+
 end
