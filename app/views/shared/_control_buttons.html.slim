@@ -12,9 +12,6 @@ ul.nav.nav-tabs.control_buttons
       = icon :bullet_wrench
   li
     a href="#"
-      = icon :page_white_copy
-  li
-    a href="#"
       = icon :page_white_get
   li
     span
@@ -37,6 +34,8 @@ ul.nav.nav-tabs.control_buttons
       = icon :control_play_blue
       span
         |  Play
-
-
-   
+  li
+    span
+      || 
+  li
+    = link_to "#{icon(:page_white_copy)} #{content_tag(:span, "Search duplicates")}".html_safe, duplicates_path
