@@ -20,6 +20,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'simple_form', '2.1.0'
+gem "ransack"
 
 gem 'jquery-rails', '2.1.3'
 gem 'jquery-ui-rails'

@@ -20,9 +20,14 @@
   form.navbar-form.navbar {
     display: inline-block;
     vertical-align: middle;
-    .form-group-search {
+    width: 20%;
+    .search {      
       display: inline-block;
-      padding-top: 3px;
+      padding-top: 8px;
+      width: 200px;
+    }
+    .search.optional.control-label {
+      display: none;
     }
   }
 };

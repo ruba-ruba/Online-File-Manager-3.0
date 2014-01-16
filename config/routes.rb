@@ -1,5 +1,7 @@
 FileManager::Application.routes.draw do
   
+  get "search_files/index"
+
   resources :duplicates
 
 
