@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
 
+  before_filter  :authenticate_user!, :except => [:index]
   before_filter  :load_commentable
-  before_filter  :authenticate_user!, :except => [:index, :show]
   before_filter  :find_comment_and_check_manageability, :only => [:destroy]
   
   def index
-    @comments = @commentable.comments.order(:created_at).page(params[:page]).per(5).decorate
+    @comments = @commentable.comments.order(:created_at).page(params[:page]).per(5)
   end
 
   def new
@@ -14,13 +14,16 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.build(params[:comment].merge({:user_id => current_user.id}))
-    if @comment.save  
-      redirect_to [@commentable, :comments]
+    if @comment.save
+      response = @comment.decorate
+      data = {
+        :content => response.content,
+        :identifier => response.parent_identifier,
+      }.to_json
+      Pusher["presence-#{@comment.commentable_id}"].trigger('send_comment', data)
       FileManagerMailer.send_comment(@comment).deliver
-    else
-      redirect_to :back
-      flash[:error] = "Comment does not created."
     end
+    render :nothing => true
   end
 
   def destroy

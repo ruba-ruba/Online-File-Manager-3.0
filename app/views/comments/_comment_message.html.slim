@@ -1,7 +1,7 @@
 ul
-  - comments.decorate.each do |comment|
-    li 
-      div class="#{comment.status}"
+  - comments.each do |comment|
+    li class="comment-#{comment.id}"
+      div class="#{comment.decorate.status}"
         .comment_head
           b.autor 
             = comment.author

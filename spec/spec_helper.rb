@@ -69,9 +69,11 @@ Spork.each_run do
     config.after(:each) { GC.enable }
     config.include ActionDispatch::TestProcess
     config.include Devise::TestHelpers, :type => :controller
+    config.include Devise::TestHelpers, :type => :helper
     config.include Capybara::DSL, :type =>:request
     config.include Capybara::RSpecMatchers, :type =>:request
     config.extend ControllerMacros, :type => :controller
+    config.extend ControllerMacros, :type => :helper
     config.include Warden::Test::Helpers, :type =>:request
     config.extend RequestMacros, :type => :request
 

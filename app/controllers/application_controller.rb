@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter :current_user_quota
-  # helper_method :back_url
 
   def current_user_quota    
     if current_user
@@ -13,9 +12,5 @@ class ApplicationController < ActionController::Base
       @total = quota
     end
   end
-
-  # def back_url
-  #   request.env["HTTP_REFERER"].present? && request.env["HTTP_REFERER"] != request.env["REQUEST_URI"] ? :back : folders_path
-  # end
 
 end
