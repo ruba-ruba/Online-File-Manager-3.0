@@ -1,6 +1,6 @@
 javascript:
   var channel = "#{@commentable.id}";
-  var user_id ="#{current_user.id}";
+  var user_id ="#{current_user && current_user.id}";
 .comments_page.row
   .form-group.col-xs-6  
     h4 
@@ -8,7 +8,7 @@ javascript:
       = @commentable.class.to_s
 
     .comments
-      = render "comments/comment_message", :comments => @comments.roots.decorate
+      = render "comments/comment_message", :comments => @comments.roots
     = paginate @comments
 
   .form-group.col-xs-4

@@ -1,7 +1,7 @@
 ul
   - comments.each do |comment|
-    li 
-      div class="#{comment.status}"
+    li class="comment-#{comment.id}"
+      div class="#{comment.decorate.status}"
         .comment_head
           b.autor 
             = comment.author
@@ -21,4 +21,4 @@ ul
         = render "comments/form", comment: Comment.new(:parent_id => comment.id), commentable: comment.commentable
       br/
       - if comment.has_children?
-        = render 'comments/comment_message', :comments => comment.children.decorate
+        = render 'comments/comment_message', :comments => comment.children
