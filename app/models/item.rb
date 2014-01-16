@@ -74,7 +74,7 @@ class Item < ActiveRecord::Base
 
   def self.duplicates
     query = <<-SQL
-      Select file_file_name, file_file_size, count(file_file_name) as ct from items group by file_file_name, file_file_size HAVING ct>1
+      SELECT file_file_name, file_file_size, COUNT(file_file_name) AS ct FROM items GROUP BY file_file_name, file_file_size HAVING COUNT(file_file_name) > 1
     SQL
     rows = ActiveRecord::Base.connection.select_rows(query)
     items = []
