@@ -17,14 +17,16 @@ td
   - if item.txt_or_html?
     span
       = link_to icon(:page_white_acrobat), pdf_item_path(item, format: "pdf"), :title => 'Get PDF', :rel => 'tooltip'
-  - if item.image?
+  - if user_signed_in?
+    - if item.image?
+      span
+        = link_to icon(:picture_edit), crop_image_item_path(item), :title => 'Crop image', :rel => 'tooltip'
     span
-      = link_to icon(:picture_edit), crop_image_item_path(item), :title => 'Crop image', :rel => 'tooltip'
-  span
-    = link_to edit_item_path(item), :title => 'Edit', :rel => 'tooltip'
-      span.glyphicon.glyphicon-edit
-  span
-    = link_to item, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
-      span.glyphicon.glyphicon-trash
+      = link_to edit_item_path(item), :title => 'Edit', :rel => 'tooltip'
+        span.glyphicon.glyphicon-edit
+  - if user_signed_in? && current_user.admin?
+    span
+      = link_to item, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
+        span.glyphicon.glyphicon-trash
 td.item_info_hidden
   = render 'items/item_info', :item => item

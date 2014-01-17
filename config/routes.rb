@@ -1,8 +1,7 @@
 FileManager::Application.routes.draw do
   
-  resources :duplicates
-
-
+  get 'search', to: 'search_files#index', as: 'search'
+  
   resources :locations
 
 
@@ -19,10 +18,11 @@ FileManager::Application.routes.draw do
 
 
   resources :items do
-    resources :comments 
+    resources :comments
     collection do
       get 'import_pages', to: 'items#import_pages', as: 'import_pages'
       post 'import_page', to: 'items#import_page', as: 'import_page'
+      get 'duplicates', to: 'items#duplicates', as: 'duplicates'
     end
     member do
       get 'crop_image', to: 'items#crop_image'
@@ -40,6 +40,12 @@ FileManager::Application.routes.draw do
 
   #grape
   mount UsersApi::API => "/"
+
+  match 'send_daily_report', to: 'folders#send_daily_report'
+
+  namespace :admin do
+    resources :statistics
+  end
 
 
   # The priority is based upon order of creation:
@@ -80,13 +86,6 @@ FileManager::Application.routes.draw do
   #     resources :sales do
   #       get 'recent', :on => :collection
   #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
   #   end
 
   # You can have the root of your site routed with "root"

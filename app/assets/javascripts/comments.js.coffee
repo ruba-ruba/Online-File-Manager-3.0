@@ -11,14 +11,13 @@ $ ->
     $(".hidden_form_reply").hide()
     return false
 
-  Pusher.channel_auth_endpoint = '/pusher/auth?user_id=' + user_id + '&authenticity_token=' + encodeURIComponent($( 'meta[name="csrf-token"]' ).attr( 'content' ));
-  socket = new Pusher("8ba0acceea1e6f267635")
-  presenceChannel = socket.subscribe('presence-' + channel)
+  if window.channel?
+    Pusher.channel_auth_endpoint = '/pusher/auth?user_id=' + user_id + '&authenticity_token=' + encodeURIComponent($( 'meta[name="csrf-token"]' ).attr( 'content' ));
+    socket = new Pusher(pusher_key)
+    presenceChannel = socket.subscribe('presence-' + channel)
 
-  presenceChannel.bind "send_comment", (data) ->
-    $(data.identifier).append(data.content)
-    $("textarea").each ->
-      $(this).val ""
-    $(".hidden_form_reply").hide()
-
-
+    presenceChannel.bind "send_comment", (data) ->
+      $(data.identifier).append(data.content)
+      $("textarea").each ->
+        $(this).val ""
+      $(".hidden_form_reply").hide()

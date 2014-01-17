@@ -12,9 +12,6 @@ ul.nav.nav-tabs.control_buttons
       = icon :bullet_wrench
   li
     a href="#"
-      = icon :page_white_copy
-  li
-    a href="#"
       = icon :page_white_get
   li
     span
@@ -26,9 +23,12 @@ ul.nav.nav-tabs.control_buttons
     span
       || 
   li
-    = link_to "#{icon(:folder_add)}".html_safe, new_folder_path(:folder_id => params[:id]) 
+    = link_to new_folder_path(:folder_id => params[:id])
+      = icon :folder_add
   li
-    = link_to "#{icon(:database_go)} #{content_tag(:span, "Upload")}".html_safe, new_item_path(:folder_id => params[:id])
+    = link_to new_item_path(:folder_id => params[:id])
+      = icon :database_go
+      span.link_title Upload 
   li
     span
       || 
@@ -37,6 +37,17 @@ ul.nav.nav-tabs.control_buttons
       = icon :control_play_blue
       span
         |  Play
-
-
-   
+  li
+    span
+      || 
+  li
+    = link_to duplicates_items_path do
+      = icon :page_white_copy
+      span.link_title Search duplicates
+  li
+    span
+      ||
+  li
+    = link_to send_daily_report_path do
+      = icon :email
+      span.link_title Daily report

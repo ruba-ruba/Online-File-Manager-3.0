@@ -9,7 +9,9 @@ FactoryGirl.define do
   end
 
   factory :admin, :parent => :user do
-    role "admin"
+    after(:create) do |user|
+      user.update_attribute(:role, 'admin')
+    end
   end
   
 end

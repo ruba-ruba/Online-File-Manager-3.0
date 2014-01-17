@@ -1,6 +1,5 @@
 javascript:
   var channel = "#{@commentable.id}";
-  var user_id ="#{current_user && current_user.id}";
 .comments_page.row
   .form-group.col-xs-6  
     h4 
@@ -11,13 +10,14 @@ javascript:
       = render "comments/comment_message", :comments => @comments.roots
     = paginate @comments
 
-  .form-group.col-xs-4
-    h4 New Comment
-    = simple_form_for [@commentable, Comment.new], :remote => true do |f|
-      = f.error_notification
-      = f.input :content, :placeholder => "leave your comment", :input_html => {:rows => 5}
-      = f.hidden_field  :commentable_id
-      = f.hidden_field  :commentable_type
-      = f.input :parent_id, :as => :hidden, :input_html => { :value => params[:comment_id] }
-      .actions
-        = f.button :submit, class: 'btn btn-primary submit'
+  - if user_signed_in?
+    .form-group.col-xs-4
+      h4 New Comment
+      = simple_form_for [@commentable, Comment.new], :remote => true do |f|
+        = f.error_notification
+        = f.input :content, :placeholder => "leave your comment", :input_html => {:rows => 5}
+        = f.hidden_field  :commentable_id
+        = f.hidden_field  :commentable_type
+        = f.input :parent_id, :as => :hidden, :input_html => { :value => params[:comment_id] }
+        .actions
+          = f.button :submit, class: 'btn btn-primary submit'

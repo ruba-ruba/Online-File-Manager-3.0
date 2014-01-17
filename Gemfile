@@ -20,6 +20,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'simple_form', '2.1.0'
+gem "ransack", '1.1.0'
 
 gem 'jquery-rails', '2.1.3'
 gem 'jquery-ui-rails'
@@ -36,6 +37,7 @@ gem 'font-awesome-sass-rails'
 gem 'silk-bootstrap-rails'
 
 gem 'therubyracer'
+gem "highcharts-rails", "~> 3.0.0"
 gem 'twitter-bootswatch-rails', '~> 3.0.2'
 gem 'twitter-bootswatch-rails-helpers'
 

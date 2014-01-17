@@ -14,7 +14,7 @@ ul.btn
         |  /
     = @folder.title if @folder
 
-form.navbar-form.navbar role="search"
-  .form-group-search
-    input.form-control placeholder="Search files..." type="text"
-  button.btn.btn-search type="submit" Search
+.my_search
+  = search_form_for Item.search, {:url => search_path, :html => { method: :get }} do |f|
+    = f.text_field :file_file_name_cont, placeholder: 'Search files...'
+    = f.button :Find, class: 'btn btn-find submit'

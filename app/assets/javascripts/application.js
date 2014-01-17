@@ -22,3 +22,4 @@
 //= require comments.js.coffee
 //= require dropzone.js
 //= require locations.js.coffee
+//= require highcharts

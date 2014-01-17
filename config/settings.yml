@@ -1,6 +1,8 @@
 development:
-  admin_mail: your_admi@example.com
+  admin_mail: i10111pn@gmail.com
+  pusher_key: 8ba0acceea1e6f267635
 test:
   admin_mail: your_admi@example.com
 production:
-  admin_mail: your_admi@example.com
+  admin_mail: i10111pn@gmail.com, maria.paschevska@gmail.com, gorbenko.vladislav@gmail.com
+  pusher_key: 8ba0acceea1e6f267635

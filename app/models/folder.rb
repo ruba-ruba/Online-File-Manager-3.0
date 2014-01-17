@@ -14,5 +14,4 @@ class Folder < ActiveRecord::Base
   def size 
     children.inject(items.pluck(:file_file_size).sum){|sum, i| sum += i.size}
   end
-
 end

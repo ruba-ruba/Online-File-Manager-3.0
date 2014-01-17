@@ -116,7 +116,11 @@ class ItemsController < ApplicationController
     end
   end
 
- def destroy
+  def duplicates
+     @items = Item.duplicates
+  end
+
+  def destroy
     @item.destroy
     flash[:success] = "Items destroyed."
     redirect_to @item.folder || root_path

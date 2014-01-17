@@ -8,6 +8,9 @@ html
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = javascript_include_tag "http://js.pusher.com/2.1/pusher.min.js"
+    javascript:
+      var user_id = "#{current_user && current_user.id}";
+      var pusher_key = "#{Settings.pusher_key}";
     = yield :head
     = csrf_meta_tags
   body
