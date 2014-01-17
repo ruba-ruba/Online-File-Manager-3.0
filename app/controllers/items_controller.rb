@@ -116,6 +116,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def duplicates
+     @items = Item.duplicates
+  end
+
   def destroy
     @item.destroy
     flash[:success] = "Items destroyed."

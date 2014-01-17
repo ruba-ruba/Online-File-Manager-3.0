@@ -1,10 +1,7 @@
 FileManager::Application.routes.draw do
   
   get 'search', to: 'search_files#index', as: 'search'
-
-  resources :duplicates
-
-
+  
   resources :locations
 
 
@@ -25,6 +22,7 @@ FileManager::Application.routes.draw do
     collection do
       get 'import_pages', to: 'items#import_pages', as: 'import_pages'
       post 'import_page', to: 'items#import_page', as: 'import_page'
+      get 'duplicates', to: 'items#duplicates', as: 'duplicates'
     end
     member do
       get 'crop_image', to: 'items#crop_image'
