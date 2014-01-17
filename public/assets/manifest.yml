@@ -2029,6 +2029,8 @@ highcharts/snow.png: highcharts/snow-8014c2c10604da0d03b2a683b660b505.png
 highcharts/snow/index.png: highcharts/snow-8014c2c10604da0d03b2a683b660b505.png
 highcharts/sun.png: highcharts/sun-7c07f8a39744198247206b204628d8b0.png
 highcharts/sun/index.png: highcharts/sun-7c07f8a39744198247206b204628d8b0.png
+highcharts.js: highcharts-c254491b10d1d8b4c7908f062ccd4a15.js
+highcharts/index.js: highcharts-c254491b10d1d8b4c7908f062ccd4a15.js
 silk-icons.png: silk-icons-8dd06c10d116e27dcd516c75dfd86c70.png
 silk-icons/index.png: silk-icons-8dd06c10d116e27dcd516c75dfd86c70.png
 FontAwesome.otf: FontAwesome-468f83b63df32064983141584a19ff17.otf
