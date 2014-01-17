@@ -9,14 +9,15 @@ ul
             = comment.created_at.strftime("%b %e, %l:%M %p")
         .comment_content
           = comment.content
-        .reply_controls
-          .links
-            = link_to 'Reply', "#", :class => "link_hidden_form_reply"
-            span
-             | |
-            = link_to 'Destroy', [@commentable, comment], :confirm => 'Are you sure?', :method => :delete
-          .voiting
-            = render 'comment_votes', comment: comment
+        - if user_signed_in?
+          .reply_controls
+            .links
+              = link_to 'Reply', "#", :class => "link_hidden_form_reply"
+              span
+               | |
+              = link_to 'Destroy', [@commentable, comment], :confirm => 'Are you sure?', :method => :delete
+            .voiting
+              = render 'comment_votes', comment: comment
       .hidden_form_reply
         = render "comments/form", comment: Comment.new(:parent_id => comment.id), commentable: comment.commentable
       br/

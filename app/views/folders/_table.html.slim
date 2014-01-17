@@ -32,12 +32,14 @@ table.table-condensed
         td
           span
             = link_to icon(:comments), folder_comments_path(folder), :title => 'Comments', :rel => 'tooltip'
-          span         
-            = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
-              span.glyphicon.glyphicon-edit
-          span
-            = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
-              span.glyphicon.glyphicon-trash
+          - if user_signed_in?
+            span         
+              = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
+                span.glyphicon.glyphicon-edit
+          - if user_signed_in? && current_user.admin?
+            span
+              = link_to folder, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :rel => 'tooltip'
+                span.glyphicon.glyphicon-trash
 
     = render 'items/items', :items => items
 = render 'dropzone', :item => Item.new(:folder_id => @folder.try(:id))
