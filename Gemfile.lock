@@ -485,7 +485,7 @@ DEPENDENCIES
   quiet_assets
   rack-contrib
   rails (= 3.2.14)
-  ransack
+  ransack (= 1.1.0)
   remotipart (~> 1.2.1)
   rmagick
   rollbar
