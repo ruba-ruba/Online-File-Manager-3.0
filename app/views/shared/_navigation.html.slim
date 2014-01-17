@@ -15,6 +15,6 @@ ul.btn
     = @folder.title if @folder
 
 .my_search
-  = search_form_for Item.search, {:url => search_files_index_path, :html => { method: :get }} do |f|
+  = search_form_for Item.search, {:url => search_path, :html => { method: :get }} do |f|
     = f.text_field :file_file_name_cont, placeholder: 'Search files...'
     = f.button :Find, class: 'btn btn-find submit'

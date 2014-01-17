@@ -1,6 +1,6 @@
 FileManager::Application.routes.draw do
   
-  get "search_files/index"
+  get 'search', to: 'search_files#index', as: 'search'
 
   resources :duplicates
 
@@ -21,7 +21,7 @@ FileManager::Application.routes.draw do
 
 
   resources :items do
-    resources :comments 
+    resources :comments
     collection do
       get 'import_pages', to: 'items#import_pages', as: 'import_pages'
       post 'import_page', to: 'items#import_page', as: 'import_page'
