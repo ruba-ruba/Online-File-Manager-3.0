@@ -9,10 +9,10 @@ glyphicons-halflings.png: glyphicons-halflings-2851b489e8c39f8fad44fc10efb99c3e.
 glyphicons-halflings/index.png: glyphicons-halflings-2851b489e8c39f8fad44fc10efb99c3e.png
 rails.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 rails/index.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
-application.js: application-c3d3197f5c7b8a1233bd174ad989f4b2.js
-application/index.js: application-c3d3197f5c7b8a1233bd174ad989f4b2.js
-application.css: application-50abb31880e2d18e8eefeb87dbca326c.css
-application/index.css: application-50abb31880e2d18e8eefeb87dbca326c.css
+application.js: application-766c9060de9c5fee1c9fb51c4a62e767.js
+application/index.js: application-766c9060de9c5fee1c9fb51c4a62e767.js
+application.css: application-dde488bc96068f1009e53ce0b1956201.css
+application/index.css: application-dde488bc96068f1009e53ce0b1956201.css
 icons/fam-fam/16/accept.png: icons/fam-fam/16/accept-00974b52ddd8924c6f3b4a5b7d846056.png
 icons/fam-fam/16/accept/index.png: icons/fam-fam/16/accept-00974b52ddd8924c6f3b4a5b7d846056.png
 icons/fam-fam/16/add.png: icons/fam-fam/16/add-31e0c9c76c23e5a0d5146a7bf7a3381f.png
@@ -2023,6 +2023,12 @@ twitter/bootstrap/glyphicons-halflings-regular.ttf: twitter/bootstrap/glyphicons
 twitter/bootstrap/glyphicons-halflings-regular/index.ttf: twitter/bootstrap/glyphicons-halflings-regular-b5577a3f3fb089369af33ce56e196d02.ttf
 twitter/bootstrap/glyphicons-halflings-regular.woff: twitter/bootstrap/glyphicons-halflings-regular-0391150c52d1f65893d1d6b0d29fd0c9.woff
 twitter/bootstrap/glyphicons-halflings-regular/index.woff: twitter/bootstrap/glyphicons-halflings-regular-0391150c52d1f65893d1d6b0d29fd0c9.woff
+highcharts/skies.jpg: highcharts/skies-df932a5bb5d8db2dae6b0d79577a04d8.jpg
+highcharts/skies/index.jpg: highcharts/skies-df932a5bb5d8db2dae6b0d79577a04d8.jpg
+highcharts/snow.png: highcharts/snow-8014c2c10604da0d03b2a683b660b505.png
+highcharts/snow/index.png: highcharts/snow-8014c2c10604da0d03b2a683b660b505.png
+highcharts/sun.png: highcharts/sun-7c07f8a39744198247206b204628d8b0.png
+highcharts/sun/index.png: highcharts/sun-7c07f8a39744198247206b204628d8b0.png
 silk-icons.png: silk-icons-8dd06c10d116e27dcd516c75dfd86c70.png
 silk-icons/index.png: silk-icons-8dd06c10d116e27dcd516c75dfd86c70.png
 FontAwesome.otf: FontAwesome-468f83b63df32064983141584a19ff17.otf
