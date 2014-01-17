@@ -1,1 +1,47 @@
-h4 Hello, here is statistic page!
+
+.files_chart
+
+javascript:
+
+  $(function () {
+          $('.files_chart').highcharts({
+              chart: {
+                  type: 'bar'
+              },
+              title: {
+                  text: 'Files bar chart'
+              },
+              xAxis: {
+                  categories: ['Media files', 'Text files', 'Maps']
+              },
+              yAxis: {
+                  min: 0,
+                  title: {
+                      text: 'Total sum of files'
+                  }
+              },
+              legend: {
+                  backgroundColor: '#FFFFFF',
+                  reversed: true
+              },
+              plotOptions: {
+                  series: {
+                      stacking: 'normal'
+                  }
+              },
+                  series: [{
+                  name: 'Images',
+                  data: [5, 0, 0]
+              }, {
+                  name: 'Video',
+                  data: [2, 0, 0]
+              }, {
+                  name: 'Text',
+                  data: [0, 4, 0]
+              }, {
+                  name: 'Map',
+                  data: [0, 0, 1]
+              }]
+          });
+      });
+

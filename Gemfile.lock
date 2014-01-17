@@ -176,6 +176,8 @@ GEM
       spork (>= 0.8.4)
     hashery (2.1.1)
     hashie (2.0.5)
+    highcharts-rails (3.0.7)
+      railties (>= 3.1)
     hike (1.2.3)
     http_parser.rb (0.5.3)
     httparty (0.12.0)
@@ -460,6 +462,7 @@ DEPENDENCIES
   guard (= 2.1.0)
   guard-rspec
   guard-spork
+  highcharts-rails (~> 3.0.0)
   httparty
   jcrop-rails-v2
   jquery-fileupload-rails
