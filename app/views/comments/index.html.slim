@@ -1,6 +1,7 @@
 javascript:
   var channel = "#{@commentable.id}";
   var user_id = "#{current_user && current_user.id}";
+  var pusher_key = "#{Settings.pusher_key}";
 .comments_page.row
   .form-group.col-xs-6  
     h4 
