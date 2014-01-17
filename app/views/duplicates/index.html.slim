@@ -1,16 +1,19 @@
 h4 Listing duplicates
-
-table.table-condensed
-  thead
-    tr
-      th Item
-      th Size
-      th Actions  
-  tbody
-    - @items.each do |duplicate|
+- if @items.empty?
+  span
+    | There are no duplicate files
+- else
+  table.table-condensed
+    thead
       tr
-        td = duplicate.file_file_name
-        td = duplicate.file_file_size
-        td colspan="2"
-          = link_to 'Show', duplicate
-          = link_to 'Destroy', duplicate, data: {:confirm => 'Are you sure?'}, :method => :delete
+        th Item
+        th Size
+        th Actions
+    tbody
+      - @items.each do |duplicate|
+        tr
+          td = duplicate.file_file_name
+          td = duplicate.file_file_size
+          td colspan="2"
+            = link_to 'Show', duplicate
+            = link_to 'Destroy', duplicate, data: {:confirm => 'Are you sure?'}, :method => :delete
