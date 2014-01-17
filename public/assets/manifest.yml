@@ -2051,6 +2051,10 @@ bootstrap/glyphicons-halflings-regular.woff: bootstrap/glyphicons-halflings-regu
 bootstrap/glyphicons-halflings-regular/index.woff: bootstrap/glyphicons-halflings-regular-0391150c52d1f65893d1d6b0d29fd0c9.woff
 Jcrop.gif: Jcrop-aededb5593856fed1e870874c80c2064.gif
 Jcrop/index.gif: Jcrop-aededb5593856fed1e870874c80c2064.gif
+jquery.Jcrop.js: jquery.Jcrop-887790122b0dfcdd4ae2c6bd6d837adc.js
+jquery/index.Jcrop.js: jquery.Jcrop-887790122b0dfcdd4ae2c6bd6d837adc.js
+jquery.Jcrop.css: jquery.Jcrop-cb7b3037cb36b27531f3919701eb2711.css
+jquery/index.Jcrop.css: jquery.Jcrop-cb7b3037cb36b27531f3919701eb2711.css
 loading.gif: loading-b7ff30d20adcf2b850f420d17048930c.gif
 loading/index.gif: loading-b7ff30d20adcf2b850f420d17048930c.gif
 progressbar.gif: progressbar-bc538af0ba6ff3d792217a96651cd58a.gif
