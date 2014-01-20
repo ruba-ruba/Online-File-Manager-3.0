@@ -109,7 +109,7 @@ class Item < ActiveRecord::Base
     data[:texts_sum] = texts.sum(:file_file_size)
     data[:texts_count] = texts.count
 
-    maps = by_type(MAP_TYPES)
+    maps = where(:file_file_name => "map.csv")
     data[:maps_sum] = maps.sum(:file_file_size)
     data[:maps_count] = maps.count
 

@@ -21,18 +21,43 @@ describe Item do
   end
 
   describe 'self.duplicates' do
-    let!(:item1){FactoryGirl.create(:item, file_file_name: '1.txt', :file_file_size=>"10",:folder => FactoryGirl.create(:folder))}
-    let!(:item2){FactoryGirl.create(:item, file_file_name: '1.txt', :file_file_size=>"10",:folder => FactoryGirl.create(:folder))}
-    let!(:item3){FactoryGirl.create(:item, file_file_name: '2.txt', :file_file_size=>"10",:folder => FactoryGirl.create(:folder))}
-    let!(:item4){FactoryGirl.create(:item, file_file_name: '2.txt', :file_file_size=>"11",:folder => FactoryGirl.create(:folder))}
-    let!(:item5){FactoryGirl.create(:item, file_file_name: '3.txt', :file_file_size=>"11",:folder => FactoryGirl.create(:folder))}
-    let!(:item6){FactoryGirl.create(:item, file_file_name: '4.txt', :file_file_size=>"11",:folder => FactoryGirl.create(:folder))}
-    let!(:item7){FactoryGirl.create(:item, file_file_name: '5.txt', :file_file_size=>"12",:folder => FactoryGirl.create(:folder))}
-    let!(:item8){FactoryGirl.create(:item, file_file_name: '6.txt', :file_file_size=>"13",:folder => FactoryGirl.create(:folder))}
-    let!(:item9){FactoryGirl.create(:item, file_file_name: '7.txt', :file_file_size=>"12",:folder => FactoryGirl.create(:folder))}
-    let!(:item10){FactoryGirl.create(:item, file_file_name: '7.txt', :file_file_size=>"12",:folder => FactoryGirl.create(:folder))}
+    let!(:item1){FactoryGirl.create(:item, :file_file_name => '1.txt', :file_file_size => "10",:folder => FactoryGirl.create(:folder))}
+    let!(:item2){FactoryGirl.create(:item, :file_file_name => '1.txt', :file_file_size => "10",:folder => FactoryGirl.create(:folder))}
+    let!(:item3){FactoryGirl.create(:item, :file_file_name => '2.txt', :file_file_size => "10",:folder => FactoryGirl.create(:folder))}
+    let!(:item4){FactoryGirl.create(:item, :file_file_name => '2.txt', :file_file_size => "11",:folder => FactoryGirl.create(:folder))}
+    let!(:item5){FactoryGirl.create(:item, :file_file_name => '3.txt', :file_file_size => "11",:folder => FactoryGirl.create(:folder))}
+    let!(:item6){FactoryGirl.create(:item, :file_file_name => '4.txt', :file_file_size => "11",:folder => FactoryGirl.create(:folder))}
+    let!(:item7){FactoryGirl.create(:item, :file_file_name => '5.txt', :file_file_size => "12",:folder => FactoryGirl.create(:folder))}
+    let!(:item8){FactoryGirl.create(:item, :file_file_name => '6.txt', :file_file_size => "13",:folder => FactoryGirl.create(:folder))}
+    let!(:item9){FactoryGirl.create(:item, :file_file_name => '7.txt', :file_file_size => "12",:folder => FactoryGirl.create(:folder))}
+    let!(:item10){FactoryGirl.create(:item, :file_file_name => '7.txt', :file_file_size => "12",:folder => FactoryGirl.create(:folder))}
     it 'should find duplicates' do
       expect(Item.duplicates).to eq([item1, item2, item9, item10])
+    end
+  end
+
+  describe 'self.statistics' do
+    let!(:item1){FactoryGirl.create(:item, :file_file_name => 'text.txt', :file_file_size => "10", :file_content_type => "text/plain")}
+    let!(:item2){FactoryGirl.create(:item, :file_file_name => 'music.mp3', :file_file_size => "12", :file_content_type => "audio/mp3")}
+    let!(:item3){FactoryGirl.create(:item, :file_file_name => '123.pdf', :file_file_size => "3", :file_content_type => "application/pdf")}
+    let!(:item4){FactoryGirl.create(:item, :file_file_name => 'photo.jpg', :file_file_size => "20", :file_content_type => "image/jpeg")}
+    let!(:item5){FactoryGirl.create(:item, :file_file_name => 'video.wmv', :file_file_size => "100", :file_content_type => "video/x-ms-wmv")}
+    let!(:item6){FactoryGirl.create(:item, :file => fixture_file_upload('/map.csv'))}
+
+    it 'should show statistics' do
+      data = Item.statistics
+      expect(data[:total_count]).to eq(6)
+      expect(data[:total_sum]).to eq(165)
+      expect(data[:images_sum]).to eq(20)
+      expect(data[:images_count]).to eq(1)
+      expect(data[:video_sum]).to eq(100)
+      expect(data[:video_count]).to eq(1)
+      expect(data[:music_sum]).to eq(12)
+      expect(data[:music_count]).to eq(1)
+      expect(data[:texts_sum]).to eq(13)
+      expect(data[:texts_count]).to eq(2)
+      expect(data[:maps_sum]).to eq(20)
+      expect(data[:maps_count]).to eq(1)
     end
   end
   
