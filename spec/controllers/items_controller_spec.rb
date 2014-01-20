@@ -86,7 +86,7 @@ describe ItemsController do
         item.file.url,
         item.file_file_name
       ).returns(mailer)
-      get :send_mail, {:id => item.id, :mail => {:recipient => 'john@somedomain.com', :subject => 'Hello John!'}}
+      get :send_mail, {:id => item.id, :email_validator => {:recipient => 'john@somedomain.com', :subject => 'Hello John!'}}
       expect(response).to redirect_to(item.folder)
     end
   end

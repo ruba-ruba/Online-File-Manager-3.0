@@ -63,17 +63,17 @@ class User < ActiveRecord::Base
 
   private
 
-  def generate_token
-    begin
-      self.random_token = SecureRandom.hex
-    end while self.class.exists?(token: random_token)
-  end
- 
-  def set_expiration
-    self.expires_at = DateTime.now+365
-  end
+    def generate_token
+      begin
+        random_token = SecureRandom.hex
+      end while self.class.exists?(token: random_token)
+    end
+   
+    def set_expiration
+      self.expires_at = DateTime.now+365
+    end
 
-  def default_role
-    self.role = "user"
-  end
+    def default_role
+      self.role = "user"
+    end
 end

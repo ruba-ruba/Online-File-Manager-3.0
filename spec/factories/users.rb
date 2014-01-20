@@ -6,6 +6,7 @@ FactoryGirl.define do
     email {generate(:user_email)}
     password "my_pass"
     role "user"
+    token SecureRandom.hex
   end
 
   factory :admin, :parent => :user do
