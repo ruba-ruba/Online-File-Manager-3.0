@@ -113,8 +113,8 @@ class Item < ActiveRecord::Base
     data[:maps_sum] = maps.sum(:file_file_size)
     data[:maps_count] = maps.count
 
-    data[:total_count] = Item.pluck(:file_file_name).count
-    data[:total_sum] = Item.pluck(:file_file_size).sum
+    data[:total_count] = count
+    data[:total_sum] = pluck(:file_file_size).sum
     data
   end
 

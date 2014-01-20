@@ -24,19 +24,19 @@ $ ->
 
     series: [
       name: "Images"
-      data: [images_sum, 0, 0]
+      data: [data.images_sum, 0, 0]
     ,
       name: "Video"
-      data: [video_sum, 0, 0]
+      data: [data.video_sum, 0, 0]
     ,
       name: "Music"
-      data: [music_sum, 0, 0]
+      data: [data.music_sum, 0, 0]
     ,
       name: "Text"
-      data: [0, texts_sum, 0]
+      data: [0, data.texts_sum, 0]
     ,
       name: "Map"
-      data: [0, 0, maps_sum]
+      data: [0, 0, data.maps_sum]
     ]
 
   $(".files_chart_count").highcharts
@@ -65,5 +65,5 @@ $ ->
     series: [
       type: "pie"
       name: "Total files"
-      data: [["Images", images_count], ["Video", video_count], ["Music", music_count], ["Text", texts_count], ["Map", maps_count]]
+      data: [["Images", data.images_count], ["Video", data.video_count], ["Music", data.music_count], ["Text", data.texts_count], ["Map", data.maps_count]]
     ]

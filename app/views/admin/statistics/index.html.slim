@@ -36,13 +36,4 @@ table.table-condensed.total_files
 .files_chart_count
 
 javascript:
-  var images_sum = #{@data[:images_sum].to_i};
-  var images_count = #{@data[:images_count]};
-  var video_sum = #{@data[:video_sum].to_i};
-  var video_count = #{@data[:video_count]};
-  var music_sum = #{@data[:music_sum].to_i};
-  var music_count = #{@data[:music_count]};
-  var texts_sum = #{@data[:texts_sum].to_i};
-  var texts_count = #{@data[:texts_count]};
-  var maps_sum = #{@data[:maps_sum].to_i};
-  var maps_count = #{@data[:maps_count]};
+  var data = #{@data.to_json.html_safe};
