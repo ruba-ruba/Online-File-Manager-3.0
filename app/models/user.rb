@@ -57,12 +57,18 @@ class User < ActiveRecord::Base
     items.sum(:file_file_size)
   end
 
-  def expired?
+  def token_expired?
     DateTime.now >= self.expires_at
+  end
+
+  def update_token
+    generate_token
+    save!
   end
 
   private
 
+<<<<<<< Updated upstream
     def generate_token
       begin
         random_token = SecureRandom.hex
@@ -72,6 +78,15 @@ class User < ActiveRecord::Base
     def set_expiration
       self.expires_at = DateTime.now+365
     end
+=======
+  def generate_token
+    self.token = SecureRandom.hex
+  end
+ 
+  def set_expiration
+    self.expires_at = DateTime.now+1.hour
+  end
+>>>>>>> Stashed changes
 
     def default_role
       self.role = "user"
