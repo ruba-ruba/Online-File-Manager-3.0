@@ -4,6 +4,12 @@ class Item < ActiveRecord::Base
   include ActiveModel::Validations
   include Magick
 
+  IMAGE_TYPES = ["image/jpeg", "image/png"]
+  VIDEO_TYPES = ["video/x-ms-wmv"]
+  MUSIC_TYPES = ["audio/mp3", "audio/wav", "application/octet-stream"]
+  TEXT_TYPES = ["text/plain", "application/pdf", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"]
+  MAP_TYPES = ["application/vnd.ms-excel"]
+
   attr_accessible :description, :folder_id, :title, :file, :file_file_name, :file_content_type, :file_file_size, :file_updated_at, :created_at, :updated_at, :user_id
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h

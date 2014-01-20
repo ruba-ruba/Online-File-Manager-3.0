@@ -5,29 +5,40 @@ table.table-condensed.total_files
     tr
       th Files type
       th Files size
+      th Files amount
   tbody
     tr
       td Image
-      td = images = number_to_human_size @images_sum
+      td = number_to_human_size @images_sum
+      td = @images_count
     tr 
       td Video
-      td = videos = number_to_human_size @video_sum
+      td = number_to_human_size @video_sum
+      td = @video_count
     tr
       td Music
-      td = music = number_to_human_size @music_sum
+      td = number_to_human_size @music_sum
+      td = @music_count
     tr
       td Text
-      td = text = number_to_human_size @texts_sum
+      td = number_to_human_size @texts_sum
+      td = @texts_count
     tr
       td Map
-      td = maps = number_to_human_size @maps_sum
+      td = number_to_human_size @maps_sum
+      td = @maps_count
+    tr
+      td.b Total
+      td.b = number_to_human_size @total_sum
+      td.b = @total_count
 
-.files_chart
+.files_chart_sum
+.files_chart_count
 
 javascript:
 
   $(function () {
-          $('.files_chart').highcharts({
+          $('.files_chart_sum').highcharts({
               chart: {
                   type: 'bar'
               },
@@ -69,4 +80,43 @@ javascript:
                   data: [0, 0, #{@maps_sum.to_i}]
               }]
           });
+
+        $('.files_chart_count').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Chart of total files count in system'
+            },
+            tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Total files',
+                data: [
+                    ['Images', #{@images_count}],
+                    ['Video', #{@video_count}],
+                    ['Music', #{@music_count}],
+                    ['Text', #{@texts_count}],
+                    ['Map', #{@maps_count}]
+                ]
+            }]
+        });
       });
