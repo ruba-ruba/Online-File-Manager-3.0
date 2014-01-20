@@ -57,20 +57,17 @@ class User < ActiveRecord::Base
     items.sum(:file_file_size)
   end
 
-  def token_expired?
+  def expired?
     DateTime.now >= self.expires_at
   end
 
-  def update_token
-    generate_token
-    save!
-  end
-
   private
-
-  def generate_token
-    self.token = SecureRandom.hex
-  end
+    def generate_token
+      self.token = loop do
+        random_token = SecureRandom.urlsafe_base64(nil, false)
+        break random_token unless User.exists?(token: random_token)
+      end
+    end
  
   def set_expiration
     self.expires_at = DateTime.now+365
