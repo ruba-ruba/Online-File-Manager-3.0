@@ -16,9 +16,5 @@ module UsersApi
     get "/v1/:token" do
       current_user.as_api
     end
-
-    rescue_from NoMethodError do |e|
-      error_response({ message: "token is invalid" })  
-    end
   end
 end
