@@ -209,7 +209,7 @@ describe ItemsController do
     it "assigns all Item.duplicates as @items and find duplicates" do
       get :duplicates
       response.should be_success
-      response.body.should have_content("Item")
+      response.body.should have_content("1.txt")
     end
   end
 

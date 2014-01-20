@@ -14,7 +14,7 @@ class @FileManagerMap
     mapOptions =
       zoom: 4
       center: myLatlng
-    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions)  
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions)
     marker = new google.maps.Marker(
       position: myLatlng
       map: map
