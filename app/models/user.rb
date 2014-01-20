@@ -68,25 +68,13 @@ class User < ActiveRecord::Base
 
   private
 
-<<<<<<< Updated upstream
-    def generate_token
-      begin
-        random_token = SecureRandom.hex
-      end while self.class.exists?(token: random_token)
-    end
-   
-    def set_expiration
-      self.expires_at = DateTime.now+365
-    end
-=======
   def generate_token
     self.token = SecureRandom.hex
   end
  
   def set_expiration
-    self.expires_at = DateTime.now+1.hour
+    self.expires_at = DateTime.now+365
   end
->>>>>>> Stashed changes
 
     def default_role
       self.role = "user"
