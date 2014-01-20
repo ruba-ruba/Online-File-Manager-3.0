@@ -9,40 +9,40 @@ table.table-condensed.total_files
   tbody
     tr
       td Image
-      td = number_to_human_size @images_sum
-      td = @images_count
+      td = number_to_human_size @data[:images_sum]
+      td = @data[:images_count]
     tr 
       td Video
-      td = number_to_human_size @video_sum
-      td = @video_count
+      td = number_to_human_size @data[:video_sum]
+      td = @data[:video_count]
     tr
       td Music
-      td = number_to_human_size @music_sum
-      td = @music_count
+      td = number_to_human_size @data[:music_sum]
+      td = @data[:music_count]
     tr
       td Text
-      td = number_to_human_size @texts_sum
-      td = @texts_count
+      td = number_to_human_size @data[:texts_sum]
+      td = @data[:texts_count]
     tr
       td Map
-      td = number_to_human_size @maps_sum
-      td = @maps_count
+      td = number_to_human_size @data[:maps_sum]
+      td = @data[:maps_count]
     tr
       td.b Total
-      td.b = number_to_human_size @total_sum
-      td.b = @total_count
+      td.b = number_to_human_size @data[:total_sum]
+      td.b = @data[:total_count]
 
 .files_chart_sum
 .files_chart_count
 
 javascript:
-  var images_sum = #{@images_sum.to_i};
-  var images_count = #{@images_count};
-  var video_sum = #{@video_sum.to_i};
-  var video_count = #{@video_count};
-  var music_sum = #{@music_sum.to_i};
-  var music_count = #{@music_count};
-  var texts_sum = #{@texts_sum.to_i};
-  var texts_count = #{@texts_count};
-  var maps_sum = #{@maps_sum.to_i};
-  var maps_count = #{@maps_count};
+  var images_sum = #{@data[:images_sum].to_i};
+  var images_count = #{@data[:images_count]};
+  var video_sum = #{@data[:video_sum].to_i};
+  var video_count = #{@data[:video_count]};
+  var music_sum = #{@data[:music_sum].to_i};
+  var music_count = #{@data[:music_count]};
+  var texts_sum = #{@data[:texts_sum].to_i};
+  var texts_count = #{@data[:texts_count]};
+  var maps_sum = #{@data[:maps_sum].to_i};
+  var maps_count = #{@data[:maps_count]};

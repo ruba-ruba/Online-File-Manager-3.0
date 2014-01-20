@@ -30,6 +30,7 @@ class Item < ActiveRecord::Base
   validate :check_quota
 
   scope :root, where(:folder_id => nil)
+  scope :by_type, lambda { |types| where("file_content_type in (?)", types)}
 
   def self.file_name(link, host)
     case
@@ -88,6 +89,33 @@ class Item < ActiveRecord::Base
       items << Item.where('file_file_name = ? and file_file_size = ?', row[0], row[1])
     end
     items.flatten
+  end
+
+  def self.statistics
+    data = {}
+    images = by_type(IMAGE_TYPES)
+    data[:images_sum] = images.sum(:file_file_size)
+    data[:images_count] = images.count
+
+    video = by_type(VIDEO_TYPES)
+    data[:video_sum]  = video.sum(:file_file_size)
+    data[:video_count] = video.count
+
+    music = by_type(MUSIC_TYPES)
+    data[:music_sum] = music.sum(:file_file_size)
+    data[:music_count] = music.count
+
+    texts = by_type(TEXT_TYPES)
+    data[:texts_sum] = texts.sum(:file_file_size)
+    data[:texts_count] = texts.count
+
+    maps = by_type(MAP_TYPES)
+    data[:maps_sum] = maps.sum(:file_file_size)
+    data[:maps_count] = maps.count
+
+    data[:total_count] = Item.pluck(:file_file_name).count
+    data[:total_sum] = Item.pluck(:file_file_size).sum
+    data
   end
 
   def extension
