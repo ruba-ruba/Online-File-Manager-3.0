@@ -1,2 +1,0 @@
-module SearchFilesHelper
-end

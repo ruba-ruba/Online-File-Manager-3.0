@@ -1,3 +1,26 @@
+h4 Total amount of files in system:
+
+table.table-condensed.total_files
+  thead
+    tr
+      th Files type
+      th Files size
+  tbody
+    tr
+      td Image
+      td = images = number_to_human_size @images_sum
+    tr 
+      td Video
+      td = videos = number_to_human_size @video_sum
+    tr
+      td Music
+      td = music = number_to_human_size @music_sum
+    tr
+      td Text
+      td = text = number_to_human_size @texts_sum
+    tr
+      td Map
+      td = maps = number_to_human_size @maps_sum
 
 .files_chart
 
@@ -9,7 +32,7 @@ javascript:
                   type: 'bar'
               },
               title: {
-                  text: 'Files bar chart'
+                  text: 'Chart of total files sum in system'
               },
               xAxis: {
                   categories: ['Media files', 'Text files', 'Maps']
@@ -31,17 +54,19 @@ javascript:
               },
                   series: [{
                   name: 'Images',
-                  data: [5, 0, 0]
+                  data: [#{@images_sum.to_i}, 0, 0]
               }, {
                   name: 'Video',
-                  data: [2, 0, 0]
+                  data: [#{@video_sum.to_i}, 0, 0]
+              }, {
+                  name: 'Music',
+                  data: [#{@music_sum.to_i}, 0, 0]
               }, {
                   name: 'Text',
-                  data: [0, 4, 0]
+                  data: [0, #{@texts_sum.to_i}, 0]
               }, {
                   name: 'Map',
-                  data: [0, 0, 1]
+                  data: [0, 0, #{@maps_sum.to_i}]
               }]
           });
       });
-
