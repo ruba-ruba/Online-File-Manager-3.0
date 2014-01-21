@@ -14,6 +14,13 @@ describe FoldersController do
     end
   end
 
+  describe "download_folder" do
+    it "should respond to dowload fplder" do
+      get :download_folder, {}
+      expect(response).to be_success
+    end
+  end
+
   describe "GET show" do
     it "assigns the requested folder as @folder" do
       folder = Folder.create! valid_attributes

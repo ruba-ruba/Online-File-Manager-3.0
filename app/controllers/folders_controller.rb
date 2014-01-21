@@ -53,6 +53,10 @@ class FoldersController < ApplicationController
     redirect_to :root
   end
 
+  def download_folder
+        
+  end
+
   private
 
     def find_folder_and_check_manageability

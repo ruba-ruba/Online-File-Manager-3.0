@@ -11,6 +11,9 @@ FileManager::Application.routes.draw do
 
   resources :folders do
     resources :comments
+    member do
+     get 'download_folder', to: 'folders#download_folder' 
+    end
   end
 
   resources :users
