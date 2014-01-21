@@ -62,7 +62,7 @@ class FoldersController < ApplicationController
                     Time.now.strftime('%Y-%m-%d-%H%M%S-%N').to_s <<   
                     ".zip"
     zip = Zip::File.open(tmp_filename, Zip::File::CREATE) 
-    zip.add("#{title}/")
+    zip.mkdir(title)
     zip.close
     send_data(File.open(tmp_filename, "rb+").read, :type => 'application/zip', :disposition => 'attachment', :filename => tmp_filename.to_s)
     File.delete tmp_filename
