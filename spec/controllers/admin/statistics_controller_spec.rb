@@ -20,7 +20,8 @@ describe Admin::StatisticsController do
                                "maps_count" => 0,
                                "total_count" => 2,
                                "total_sum" => 110})
-      response.body.should have_content("Total amount of files in system", "total files sum", "total files count", "Text: 50 %", "Music: 50 %")
+      expect(response).to be_success
+      expect(response.body).to have_content("Total amount of files in system", "total files sum", "total files count", "Text: 50 %", "Music: 50 %")
     end
   end
 
@@ -28,8 +29,8 @@ describe Admin::StatisticsController do
     login_user
     it "returns http success and no statistic information" do
       get "index"
-      response.should be_success
-      response.body.should have_content("Total amount of files in system:", "There are no files in system")
+      expect(response).to be_success
+      expect(response.body).to have_content("Total amount of files in system:", "There are no files in system")
     end
   end
 end

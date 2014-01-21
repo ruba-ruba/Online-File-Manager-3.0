@@ -39,4 +39,4 @@ h4 Total amount of files in system:
 .files_chart_count
 
 javascript:
-  var data = #{@data.to_json.html_safe};
+  new FilesCharts(#{@data.to_json.html_safe})

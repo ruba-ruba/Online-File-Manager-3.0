@@ -10,6 +10,7 @@ class @FileManagerMap
     @pointers
 
   drawMap: ->
+    # google map is being drawn here
     myLatlng = new google.maps.LatLng(@pointers[0].latitude, @pointers[0].longitude)
     mapOptions =
       zoom: 4
@@ -21,3 +22,11 @@ class @FileManagerMap
       title: "New marker"
     )
     marker.setMap map
+
+    # yandex map is being drawn here
+    ymaps.ready ->
+      yMap = new ymaps.Map(document.getElementById("yandex-map"),
+        center: [55.87, 37.66]
+        zoom: 4
+        behaviors: ['default', 'scrollZoom']
+      )
