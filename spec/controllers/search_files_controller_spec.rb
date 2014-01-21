@@ -10,7 +10,7 @@ describe SearchFilesController do
     it "returns http success and founed items" do
       get 'index', :q => {"file_file_name_cont" => "olo"}
       expect(assigns(:q).result).to eq([item1])
-      response.body.should have_content("Name")
+      response.body.should have_content("olo")
     end
   end
 

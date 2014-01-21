@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   ROLES = %w[user admin]
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :provider, :uid, :name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :provider, :uid, :name, :token, :expires_at, :active
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   before_validation :default_role, :on => :create
   before_create :generate_token
-
+  before_create :set_expiration
   after_validation :report_validation_errors_to_rollbar
 
 
@@ -57,18 +57,23 @@ class User < ActiveRecord::Base
     items.sum(:file_file_size)
   end
 
-  protected
-
-  def generate_token
-    self.token = loop do
-      random_token = SecureRandom.urlsafe_base64(nil, false)
-      break random_token unless User.exists?(token: random_token)
-    end
+  def expired?
+    DateTime.now >= self.expires_at
   end
 
   private
-
-  def default_role
-    self.role = "user"
+    def generate_token
+      self.token = loop do
+        random_token = SecureRandom.urlsafe_base64(nil, false)
+        break random_token unless User.exists?(token: random_token)
+      end
+    end
+ 
+  def set_expiration
+    self.expires_at = DateTime.now+365
   end
+
+    def default_role
+      self.role = "user"
+    end
 end

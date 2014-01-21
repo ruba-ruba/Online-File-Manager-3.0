@@ -3,6 +3,7 @@ development:
   pusher_key: 8ba0acceea1e6f267635
 test:
   admin_mail: your_admi@example.com
+  pusher_key: your_key_should_be_here
 production:
   admin_mail: i10111pn@gmail.com, maria.paschevska@gmail.com, gorbenko.vladislav@gmail.com
   pusher_key: 8ba0acceea1e6f267635

@@ -1,5 +1,18 @@
-.files_chart {
+.files_chart_sum {
   min-width: 310px;
   height: 400px;
   margin: 0 auto;
+}
+
+.files_chart_count {
+  min-width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+table.table-condensed.total_files {
+  width: 300px;
+  td.b {
+    font-weight: bold;
+  }
 }

@@ -1,47 +1,42 @@
+h4 Total amount of files in system:
+- if @data.empty?
+  span
+    | There are no files in system
+- else
+  table.table-condensed.total_files
+    thead
+      tr
+        th Files type
+        th Files size
+        th Files amount
+    tbody
+      tr
+        td Image
+        td = number_to_human_size @data[:images_sum]
+        td = @data[:images_count]
+      tr 
+        td Video
+        td = number_to_human_size @data[:video_sum]
+        td = @data[:video_count]
+      tr
+        td Music
+        td = number_to_human_size @data[:music_sum]
+        td = @data[:music_count]
+      tr
+        td Text
+        td = number_to_human_size @data[:texts_sum]
+        td = @data[:texts_count]
+      tr
+        td Map
+        td = number_to_human_size @data[:maps_sum]
+        td = @data[:maps_count]
+      tr
+        td.b Total
+        td.b = number_to_human_size @data[:total_sum]
+        td.b = @data[:total_count]
 
-.files_chart
+.files_chart_sum
+.files_chart_count
 
 javascript:
-
-  $(function () {
-          $('.files_chart').highcharts({
-              chart: {
-                  type: 'bar'
-              },
-              title: {
-                  text: 'Files bar chart'
-              },
-              xAxis: {
-                  categories: ['Media files', 'Text files', 'Maps']
-              },
-              yAxis: {
-                  min: 0,
-                  title: {
-                      text: 'Total sum of files'
-                  }
-              },
-              legend: {
-                  backgroundColor: '#FFFFFF',
-                  reversed: true
-              },
-              plotOptions: {
-                  series: {
-                      stacking: 'normal'
-                  }
-              },
-                  series: [{
-                  name: 'Images',
-                  data: [5, 0, 0]
-              }, {
-                  name: 'Video',
-                  data: [2, 0, 0]
-              }, {
-                  name: 'Text',
-                  data: [0, 4, 0]
-              }, {
-                  name: 'Map',
-                  data: [0, 0, 1]
-              }]
-          });
-      });
-
+  new FilesCharts(#{@data.to_json.html_safe})

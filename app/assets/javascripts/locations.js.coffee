@@ -10,14 +10,28 @@ class @FileManagerMap
     @pointers
 
   drawMap: ->
+    # google map is being drawn here
     myLatlng = new google.maps.LatLng(@pointers[0].latitude, @pointers[0].longitude)
     mapOptions =
       zoom: 4
       center: myLatlng
-    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions)  
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions)
     marker = new google.maps.Marker(
       position: myLatlng
       map: map
       title: "New marker"
     )
     marker.setMap map
+
+    # yandex map is being drawn here
+    ymaps.ready =>
+      yMap = new ymaps.Map(document.getElementById("yandex-map"),
+        center: [@pointers[0].latitude, @pointers[0].longitude]
+        zoom: 4
+        behaviors: ['default', 'scrollZoom']
+      )
+      geoPlacemark = new ymaps.Placemark([@pointers[0].latitude, @pointers[0].longitude],
+        draggable: 1,
+        style: "default#blueSmallPoint"
+      )
+      yMap.geoObjects.add(geoPlacemark)

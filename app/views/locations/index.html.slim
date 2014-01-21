@@ -1,7 +1,10 @@
 - content_for (:head) do
   script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"
+  script src="//api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU&onload=init" type="text/javascript"
+
 = render 'locations/list'
 
 #map-canvas
+#yandex-map
 javascript:
   new FileManagerMap(#{raw @locations.to_json})
