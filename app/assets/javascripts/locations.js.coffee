@@ -24,9 +24,16 @@ class @FileManagerMap
     marker.setMap map
 
     # yandex map is being drawn here
-    ymaps.ready ->
+    ymaps.ready =>
       yMap = new ymaps.Map(document.getElementById("yandex-map"),
-        center: [55.87, 37.66]
+        center: [@pointers[0].latitude, @pointers[0].longitude]
         zoom: 4
         behaviors: ['default', 'scrollZoom']
       )
+      geoPlacemark = new ymaps.Placemark([@pointers[0].latitude, @pointers[0].longitude],
+        draggable: 1,
+        style: "default#blueSmallPoint"
+      )
+      console.log("Placemark")
+      console.log(geoPlacemark)
+      yMap.geoObjects.add(geoPlacemark)
