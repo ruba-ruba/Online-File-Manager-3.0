@@ -4,26 +4,29 @@ describe FoldersController do
 
   login_user
 
+  let(:folder) {FactoryGirl.create(:folder_with_user)}
   let(:valid_attributes) { { "title" => "MyString" } }
+
+  before do
+    request.env["HTTP_REFERER"] = 'where_i_came_from'
+  end
 
   describe "GET index" do
     it "assigns all folders as @folders" do
-      folder = Folder.create! valid_attributes
       get :index, {}
       assigns(:folders).should eq([folder])
     end
   end
 
   describe "download_folder" do
-    it "should respond to dowload folder" do
-      get :download_folder, {}
+    it "should respond to dowload fplder" do
+      get :download_folder, {:id => folder.to_param}
       expect(response).to be_success
     end
   end
 
   describe "GET show" do
     it "assigns the requested folder as @folder" do
-      folder = Folder.create! valid_attributes
       get :show, {:id => folder.to_param}
       assigns(:folder).should eq(folder)
     end
@@ -38,7 +41,6 @@ describe FoldersController do
 
   describe "GET edit" do
     it "assigns the requested folder as @folder" do
-      folder = Folder.create! valid_attributes
       get :edit, {:id => folder.to_param}
       assigns(:folder).should eq(folder)
     end
@@ -91,7 +93,6 @@ describe FoldersController do
       end
 
       it "assigns the requested folder as @folder" do
-        folder = Folder.create! valid_attributes
         put :update, {:id => folder.to_param, :folder => valid_attributes}
         assigns(:folder).should eq(folder)
       end
@@ -106,16 +107,16 @@ describe FoldersController do
 
     describe "with invalid params" do
       it "assigns the folder as @folder" do
-        folder = Folder.create! valid_attributes
         Folder.any_instance.stubs(:save).returns(false)
         put :update, {:id => folder.to_param, :folder => { "title" => "invalid value" }}
         assigns(:folder).should eq(folder)
       end
 
       it "re-renders the 'edit' template" do
-        folder = Folder.create! valid_attributes
-        Folder.any_instance.stubs(:save).returns(false)
-        put :update, {:id => folder.to_param, :folder => { "title" => "invalid value" }}
+        folder = FactoryGirl.create(:folder_with_user, :title => 'sometitle')
+        folder2 = FactoryGirl.create(:folder, :title => 'anothertitle')
+        sign_in :user, folder.user
+        put :update, {:id => folder.to_param, :folder => { "title" => 'anothertitle'}}
         response.should render_template("edit")
       end
     end
@@ -134,9 +135,8 @@ describe FoldersController do
     end
 
     it "redirects to the folders list" do
-      folder = Folder.create! valid_attributes
       delete :destroy, {:id => folder.to_param}
-      response.should redirect_to(folders_url)
+      response.should redirect_to("where_i_came_from")
     end
   end
 
