@@ -15,7 +15,7 @@ describe FoldersController do
   end
 
   describe "download_folder" do
-    it "should respond to dowload fplder" do
+    it "should respond to dowload folder" do
       get :download_folder, {}
       expect(response).to be_success
     end
