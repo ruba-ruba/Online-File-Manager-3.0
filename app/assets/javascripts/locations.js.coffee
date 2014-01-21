@@ -34,6 +34,4 @@ class @FileManagerMap
         draggable: 1,
         style: "default#blueSmallPoint"
       )
-      console.log("Placemark")
-      console.log(geoPlacemark)
       yMap.geoObjects.add(geoPlacemark)
