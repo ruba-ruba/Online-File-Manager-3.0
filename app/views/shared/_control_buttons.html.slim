@@ -1,45 +1,18 @@
 ul.nav.nav-tabs.control_buttons
   li
-    a href="#"
-      span.glyphicon.glyphicon-refresh
-      span
-        |  Refresh
-  li
-    span
-      ||
-  li
-    a href="#"
-      = icon :bullet_wrench
-  li
-    a href="#"
-      = icon :page_white_get
-  li
-    span
-      ||
-  li
-    a href="#"
-      = icon :page_white_delete
-  li
-    span
-      || 
-  li
     = link_to new_folder_path(:folder_id => params[:id])
       = icon :folder_add
+      span.link_title New folder
+  li
+    span
+      ||
   li
     = link_to new_item_path(:folder_id => params[:id])
       = icon :database_go
-      span.link_title Upload 
+      span.link_title Upload
   li
     span
-      || 
-  li
-    a href="#"
-      = icon :control_play_blue
-      span
-        |  Play
-  li
-    span
-      || 
+      ||
   li
     = link_to duplicates_items_path do
       = icon :page_white_copy
