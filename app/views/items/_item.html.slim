@@ -1,8 +1,6 @@
 td
   - if item.is_map?
     = link_to content_icon(item), locations_path(:item_id => item.id), :target => '_blank'
-  - elsif item.is_mp3?
-    = render 'items/player', :item => item
   - else
     = link_to content_icon(item), item.file.url, :target => '_blank'
 td = item.description

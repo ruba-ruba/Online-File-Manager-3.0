@@ -1,6 +1,4 @@
 $ -> 
-  $('audio').mediaelementplayer()
-  
   $(".alert > div > span").click ->
     $(".alert").hide()
 
@@ -16,3 +14,4 @@ $ ->
 
   $(".items").on "click", ->
     $(".item_details").html($(this).children(".item_info_hidden").html())
+    $('.item_details .player_placeholder audio').mediaelementplayer()
