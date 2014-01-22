@@ -26,3 +26,7 @@ ul.nav.nav-pills.nav-stacked.val
   li
     span
       = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')
+
+- if item.is_mp3?
+  .player_placeholder
+    = render 'items/player', :item => item

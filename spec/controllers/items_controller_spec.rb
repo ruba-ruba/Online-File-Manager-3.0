@@ -195,14 +195,6 @@ describe ItemsController do
     end
   end
 
-  describe 'GET show' do
-    it 'should render show' do
-      get :show, id: item.id
-      response.should be_success
-      response.should render_template :show
-    end
-  end
-
   describe "GET duplicates with duplicate files" do
     let!(:item1){FactoryGirl.create(:item, file_file_name: '1.txt',:folder => FactoryGirl.create(:folder))}
     let!(:item2){FactoryGirl.create(:item, file_file_name: '1.txt',:folder => FactoryGirl.create(:folder))}

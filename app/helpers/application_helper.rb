@@ -22,9 +22,9 @@ module ApplicationHelper
       "#{icon(:folder)} #{content_tag(:span, target.title, class: "text")}".html_safe
     else
       case target.file_content_type
-      when "image/jpeg" 
+      when /jpeg|png/
         "#{icon(:picture)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
-      when "audio/mp3"
+      when /mp3|wav|octet-stream/
         "#{icon(:music)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
       when "application/pdf"
         "#{icon(:page_white_acrobat)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
@@ -35,6 +35,6 @@ module ApplicationHelper
       else
         "#{icon(:page)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
       end
-    end    
+    end
   end
 end

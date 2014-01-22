@@ -127,6 +127,10 @@ class Item < ActiveRecord::Base
     file_name_array.count >= 2 ? file_name_array.shift.to_s : file_name_array.to_s
   end
 
+  def is_mp3?
+    %w(mp3).include?(extension)
+  end
+
   def txt_or_html?
     %w(html txt).include?(self.extension)
   end
@@ -175,4 +179,14 @@ class Item < ActiveRecord::Base
   def is_map?
     extension.downcase == "csv" && file_name.downcase == "map"
   end
+
+  def add_to_zip(zip_name, path)
+    zip = Zip::File.open(zip_name)
+    temp_file = "#{Rails.root}/tmp/#{SecureRandom.hex}"
+    file.copy_to_local_file(:original, temp_file)
+    zip.add("#{path}/#{file_file_name}", temp_file)
+    zip.close
+    File.delete temp_file
+  end  
+
 end
