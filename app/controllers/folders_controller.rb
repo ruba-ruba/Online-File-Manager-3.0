@@ -56,7 +56,8 @@ class FoldersController < ApplicationController
   end
 
   def download_folder
-    title = Folder.find_by_id(params[:id]).title
+    folder = Folder.find_by_id(params[:id])
+    title = folder.title
     headers['Cache-Control'] = 'no-cache'  
     tmp_filename = "#{Rails.root}/tmp/tmp_zip_" <<
                     Time.now.strftime('%Y-%m-%d-%H%M%S-%N').to_s <<   
@@ -64,6 +65,16 @@ class FoldersController < ApplicationController
     zip = Zip::File.open(tmp_filename, Zip::File::CREATE) 
     zip.mkdir(title)
     zip.close
+    folder.items.each { |e|
+      zip = Zip::File.open(tmp_filename)
+      # binding.pry
+      temp_file = "#{Rails.root}/tmp/#{SecureRandom.hex}"
+      file = File.new(temp_file, 'wb:ASCII-8BIT')
+      File.open(temp_file, 'wb:ASCII-8BIT')  { |f| f.write(HTTParty.get(e.file.url).body)}
+      zip.add("#{title}/#{e.file_file_name}", temp_file)
+      zip.close
+      File.delete temp_file
+    }
     send_data(File.open(tmp_filename, "rb+").read, :type => 'application/zip', :disposition => 'attachment', :filename => tmp_filename.to_s)
     File.delete tmp_filename
   end
