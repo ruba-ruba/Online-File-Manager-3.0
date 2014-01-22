@@ -16,22 +16,24 @@ class Folder < ActiveRecord::Base
   end
 
   def zip_archive author
-    tmp_filename = "#{Rails.root}/tmp/#{title}_archive" <<
-                    Time.now.strftime('%Y-%m-%d-%H%M%S-%N').to_s <<   
-                    ".zip"
-    zip = Zip::File.open(tmp_filename, Zip::File::CREATE) 
-    zip.mkdir(title)
+    zip_filename = "#{Rails.root}/tmp/#{title}_archive_#{Time.now.strftime('%Y-%m-%d-%H%M%S-%N')}.zip"
+    zip = Zip::File.open(zip_filename, Zip::File::CREATE) 
     zip.close
-    items.each { |e|
-      zip = Zip::File.open(tmp_filename)
-      temp_file = e.local_copy
-      zip.add("#{title}/#{e.file_file_name}", temp_file)
-      zip.close
-      File.delete temp_file
-    }
-    data = File.new(tmp_filename)  
+    add_to_zip(zip_filename)
+    data = File.new(zip_filename)  
     result = Item.create_record({:user_id => author}, data)
-    File.delete tmp_filename
+    File.delete zip_filename
     result.file.url
+  end
+
+  def add_to_zip(zip_name, path = nil)
+    zip = Zip::File.open(zip_name)
+    new_path = path ? "#{path}/#{title}" : title
+    zip.mkdir(new_path)
+    zip.close
+    if has_children?
+      children.each { |e| e.add_to_zip(zip_name, new_path)}
+    end
+    items.each { |e| e.add_to_zip(zip_name, new_path)}
   end
 end

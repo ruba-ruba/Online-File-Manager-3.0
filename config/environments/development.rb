@@ -28,13 +28,13 @@ FileManager::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
-  # BetterErrors::Middleware.allow_ip! '192.168.232.1'
+  BetterErrors::Middleware.allow_ip! '192.168.232.1'
 
   # Do not compress assets
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  # config.assets.debug = true
 
   # Finally, you need to set up default url options for the mailer in each environment.
 

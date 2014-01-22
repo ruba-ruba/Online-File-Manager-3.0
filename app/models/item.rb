@@ -180,10 +180,13 @@ class Item < ActiveRecord::Base
     extension.downcase == "csv" && file_name.downcase == "map"
   end
 
-  def local_copy
+  def add_to_zip(zip_name, path)
+    zip = Zip::File.open(zip_name)
     temp_file = "#{Rails.root}/tmp/#{SecureRandom.hex}"
-    file = File.new(temp_file, 'wb:ASCII-8BIT')
-    File.open(temp_file, 'wb:ASCII-8BIT')  { |f| f.write(HTTParty.get(e.file.url).body)}
-    temp_file 
-  end
+    file.copy_to_local_file(:original, temp_file)
+    zip.add("#{path}/#{file_file_name}", temp_file)
+    zip.close
+    File.delete temp_file
+  end  
+
 end
