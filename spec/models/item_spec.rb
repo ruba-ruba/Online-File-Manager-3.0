@@ -20,6 +20,13 @@ describe Item do
     end
   end
 
+  describe "is_mp3" do
+    let(:item_with_file_true) { FactoryGirl.create(:item, :file => fixture_file_upload('/test.mp3'))}
+    it 'should find file' do
+      expect(item_with_file_true.is_mp3?).to eq(true)
+    end
+  end
+
   describe 'self.duplicates' do
     let!(:item1){FactoryGirl.create(:item, :file_file_name => '1.txt', :file_file_size => "10",:folder => FactoryGirl.create(:folder))}
     let!(:item2){FactoryGirl.create(:item, :file_file_name => '1.txt', :file_file_size => "10",:folder => FactoryGirl.create(:folder))}
