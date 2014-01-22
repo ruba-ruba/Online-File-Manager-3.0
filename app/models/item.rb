@@ -127,6 +127,10 @@ class Item < ActiveRecord::Base
     file_name_array.count >= 2 ? file_name_array.shift.to_s : file_name_array.to_s
   end
 
+  def is_mp3?
+    %w(mp3).include?(extension)
+  end
+
   def txt_or_html?
     %w(html txt).include?(self.extension)
   end

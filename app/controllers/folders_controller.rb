@@ -67,7 +67,6 @@ class FoldersController < ApplicationController
     zip.close
     folder.items.each { |e|
       zip = Zip::File.open(tmp_filename)
-      # binding.pry
       temp_file = "#{Rails.root}/tmp/#{SecureRandom.hex}"
       file = File.new(temp_file, 'wb:ASCII-8BIT')
       File.open(temp_file, 'wb:ASCII-8BIT')  { |f| f.write(HTTParty.get(e.file.url).body)}

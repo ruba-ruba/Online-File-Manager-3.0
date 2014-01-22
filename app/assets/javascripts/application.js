@@ -24,3 +24,4 @@
 //= require locations.js.coffee
 //= require highcharts
 //= require charts.js.coffee
+//= require mediaelement_rails

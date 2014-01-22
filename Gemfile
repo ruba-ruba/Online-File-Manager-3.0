@@ -41,6 +41,7 @@ gem 'therubyracer'
 gem "highcharts-rails", "~> 3.0.0"
 gem 'twitter-bootswatch-rails', '~> 3.0.2'
 gem 'twitter-bootswatch-rails-helpers'
+gem "mediaelement_rails", "0.5.1"
 
 gem 'paperclip', '3.4.2'
 gem 'slim-rails'
