@@ -57,6 +57,7 @@ class FoldersController < ApplicationController
 
   def download_folder
     folder = Folder.find_by_id(params[:id])
+<<<<<<< Updated upstream
     title = folder.title
     headers['Cache-Control'] = 'no-cache'  
     tmp_filename = "#{Rails.root}/tmp/tmp_zip_" <<
@@ -76,6 +77,9 @@ class FoldersController < ApplicationController
     }
     send_data(File.open(tmp_filename, "rb+").read, :type => 'application/zip', :disposition => 'attachment', :filename => tmp_filename.to_s)
     File.delete tmp_filename
+=======
+    redirect_to folder.zip_archive(current_user.id), :target => :blank
+>>>>>>> Stashed changes
   end
 
   private
