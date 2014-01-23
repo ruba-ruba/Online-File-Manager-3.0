@@ -8,12 +8,18 @@ h4 Listing duplicates
       tr
         th Item
         th Size
+        th Date of creation
         th Actions
     tbody
       - @items.each do |duplicate|
         tr
           td = duplicate.file_file_name
           td = duplicate.file_file_size
+          td = duplicate.created_at
           td colspan="2"
-            = link_to 'Show', duplicate
-            = link_to 'Destroy', duplicate, data: {:confirm => 'Are you sure?'}, :method => :delete
+            span
+              = link_to duplicate, :title => 'Show item', :rel => 'tooltip'
+                span.glyphicon.glyphicon-eye-open
+            span
+              = link_to duplicate, data: {:confirm => 'Are you sure?'}, :method => :delete, :title => 'Delete', :rel => 'tooltip'
+                span.glyphicon.glyphicon-trash

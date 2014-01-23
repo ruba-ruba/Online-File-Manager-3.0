@@ -1,4 +1,9 @@
-h4 Results for searching files:
+.panel.panel-default
+  .panel-heading
+    h4 Results for searching files:
+  .panel-body
+    = params[:q][:file_file_name_cont]
+
 - if @items.empty?
   span
     | There is no files matching your request
