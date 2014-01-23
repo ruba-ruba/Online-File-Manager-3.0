@@ -37,6 +37,8 @@ gem 'bootswatch-rails'
 gem 'font-awesome-sass-rails'
 gem 'silk-bootstrap-rails'
 
+gem "rails-backbone", "0.9.10"
+
 gem 'therubyracer'
 gem "highcharts-rails", "~> 3.0.0"
 gem 'twitter-bootswatch-rails', '~> 3.0.2'

@@ -14,6 +14,8 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require jquery-fileupload
+//= require underscore
+//= require backbone
 //= require cosmo/loader.js
 //= require cosmo/bootswatch.js
 //= require items.js.coffee
@@ -25,3 +27,5 @@
 //= require highcharts
 //= require charts.js.coffee
 //= require mediaelement_rails
+//= require ./backbone/file_manager.js.coffee
+//= require_tree ./backbone
