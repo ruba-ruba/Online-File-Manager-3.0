@@ -21,5 +21,9 @@ http://i.stack.imgur.com/n5KIJ.png
 - <tt>git commit -a -m "message"</tt>
 - <tt>git push</tt>
 - <tt>git push heroku production:master</tt>
-- <tt>heroku logs --tail</tt>
+- <tt>heroku run rake db:migrate</tt> (if you have new migrations)
+- <tt>heroku restart</tt> (if you have new migrations)
 
+== useful commands for Htroku:
+- <tt>heroku logs --tail</tt>
+- <tt>heroku run rails console</tt>
