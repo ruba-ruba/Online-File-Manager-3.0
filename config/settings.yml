@@ -1,9 +1,13 @@
 development:
   admin_mail: i10111pn@gmail.com
   pusher_key: 8ba0acceea1e6f267635
+  access_key_id: 'AKIAJV435CSJ4QM7VG6A'
+  secret_access_key: 'XwRLNrM1GeGMqxbwoZnsCB8k0aNJ3qPC6ReJzaXg'
+
 test:
   admin_mail: your_admi@example.com
-  pusher_key: your_key_should_be_here
+  access_key_id: 'AKIAJV435CSJ4QM7VG6A'
+  secret_access_key: 'XwRLNrM1GeGMqxbwoZnsCB8k0aNJ3qPC6ReJzaXg'
 production:
   admin_mail: i10111pn@gmail.com, maria.paschevska@gmail.com, gorbenko.vladislav@gmail.com
   pusher_key: 8ba0acceea1e6f267635

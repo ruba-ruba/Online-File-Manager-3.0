@@ -1,0 +1,13 @@
+development:
+  admin_mail: i10111pn@gmail.com
+  pusher_key: rreyrrtyty666666y6ytt
+  access_key_id: 'rreyrrtyty666666y6ytt'
+  secret_access_key: 'rreyrrtyty666666y6ytt'
+
+test:
+  admin_mail: your_admi@example.com
+  access_key_id: 'rreyrrtyty666666y6ytt'
+  secret_access_key: 'rreyrrtyty666666y6ytt'
+production:
+  admin_mail: your_admi@example.com
+  pusher_key: rreyrrtyty666666y6ytt

@@ -40,8 +40,8 @@ FileManager::Application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => 'file-manager-test',
-      :access_key_id => 'AKIAJV435CSJ4QM7VG6A',
-      :secret_access_key => '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',
+      :access_key_id => Settings.access_key_id,
+      :secret_access_key => Settings.secret_access_key,
       :s3_host_name => 's3-eu-west-1.amazonaws.com'
     }
   }
