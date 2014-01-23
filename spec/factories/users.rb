@@ -15,7 +15,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :user_wiht_token, :parent => :user do
+  factory :user_with_token, :parent => :user do
     after(:create) do |user|
       user.update_attribute(:token, 'baM80EgOTSifODeo8TxgyA')
     end

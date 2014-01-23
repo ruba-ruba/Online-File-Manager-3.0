@@ -1,0 +1,22 @@
+p#notice = notice
+- if @item.is_map?
+  = @item.locations
+- else
+
+  table.table-condensed
+    thead
+      tr
+        th Title
+        th Description
+        th Size
+        th Date of creation
+    tbody
+      tr
+        td = @item.file_file_name
+        td = @item.description
+        td = @item.file_file_size
+        td = @item.created_at
+
+  = image_tag @item.file.url
+
+  = link_to 'Item folder', @item.folder

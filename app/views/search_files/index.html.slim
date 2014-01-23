@@ -1,4 +1,9 @@
-h4 Results for searching files:
+.panel.panel-default
+  .panel-heading
+    h4 Results for searching files:
+  .panel-body
+    = params[:q][:file_file_name_cont]
+
 - if @items.empty?
   span
     | There is no files matching your request
@@ -20,4 +25,4 @@ h4 Results for searching files:
           td = number_to_human_size(item.file_file_size)
           td = item.extension
           td = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')
-          td = link_to 'Show in folder', item.folder
+          td = link_to 'Show in folder', item.folder  || root_path

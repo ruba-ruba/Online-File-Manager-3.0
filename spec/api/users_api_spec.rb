@@ -12,7 +12,7 @@ describe UsersApi::API do
   end
 
   describe "def current user" do
-    let(:user){FactoryGirl.create(:user_wiht_token)}
+    let(:user){FactoryGirl.create(:user_with_token)}
     it "returns current_user" do
       get "/api/v1/#{user.token}"
       expect(user.token).to eq('baM80EgOTSifODeo8TxgyA')
