@@ -33,6 +33,8 @@ table.table-condensed
           span
             = link_to icon(:comments), folder_comments_path(folder), :title => 'Comments', :rel => 'tooltip'
           - if user_signed_in?
+            span
+              = link_to icon(:folder_go), download_folder_folder_path(folder), :title => 'Get ZIP', :rel => 'tooltip'
             span         
               = link_to edit_folder_path(folder), :title => 'Edit', :rel => 'tooltip'
                 span.glyphicon.glyphicon-edit
