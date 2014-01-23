@@ -25,4 +25,4 @@
           td = number_to_human_size(item.file_file_size)
           td = item.extension
           td = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')
-          td = link_to 'Show in folder', item.folder
+          td = link_to 'Show in folder', item.folder  || root_path
