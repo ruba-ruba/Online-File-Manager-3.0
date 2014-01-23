@@ -50,6 +50,7 @@ FileManager::Application.routes.draw do
     resources :statistics
   end
 
+  get 'home-new', to: 'home#home_new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
