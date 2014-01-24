@@ -11,9 +11,11 @@ describe Folder do
   describe "#zip_archive" do
     let(:folder){FactoryGirl.create(:folder_with_title)}
     let(:user){FactoryGirl.create(:user)}
+
     it "should return url" do
       expect(folder.zip_archive(user.id)).should_not be_nil
     end
+
     it "should return true url" do
       fake_file = stub(:url => 'resulting_url')
       fake_item = stub(:file =>fake_file)
@@ -28,5 +30,15 @@ describe Folder do
       expect(folder.zip_archive(user.id)).to eq('resulting_url')
     end
 
+    it "#add_to_zip" do
+      fake_zip = stub(:close => true, :mkdir => true)
+      fake_item = stub(:each => true)
+
+      Zip::File.expects(:open).returns(fake_zip)
+      folder.expects(:has_children?).returns(false)
+      folder.expects(:items).returns(fake_item)
+
+      folder.add_to_zip("mnt/jhdf.zip")
+    end
   end
 end

@@ -93,6 +93,13 @@ describe Item do
       file3.extension.should eq('txt')
       file4.extension.should eq('')
     end
+
+    it "#add_to_zip" do
+      fake_zip = stub(:add => true, :close => true)
+      Zip::File.expects(:open).returns(fake_zip)
+      File.expects(:delete).returns(true)
+      item_with_file_false.add_to_zip("mnt/jhdf.zip", "abc")
+    end
   end
 
 end
