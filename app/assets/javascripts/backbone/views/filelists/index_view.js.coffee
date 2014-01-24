@@ -6,6 +6,6 @@ class FileManager.Views.Filelists.IndexView extends Backbone.View
   initialize: ->
     @collection.on('reset', @render, this)
 
-  render: ->          
+  render: ->
     $(@el).html(@template(filelists: @collection))
-    this 
+    this

@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   respond_to :json
 
-  def index    
+  def index
   end
 
   def home_new
