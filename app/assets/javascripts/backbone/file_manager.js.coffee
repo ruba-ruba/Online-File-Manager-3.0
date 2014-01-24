@@ -10,3 +10,9 @@ window.FileManager =
   Routers: {}
   Views: {}
 
+  init: -> 
+        new FileManager.Routers.FilelistsRouter
+        Backbone.history.start()
+
+$(document).ready ->
+  FileManager.init()
