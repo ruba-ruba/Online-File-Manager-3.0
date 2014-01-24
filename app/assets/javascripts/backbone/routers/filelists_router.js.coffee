@@ -1,18 +1,12 @@
 class FileManager.Routers.FilelistsRouter extends Backbone.Router
-  # initialize: (options) ->
-  #   @filelists = new FileManager.Collections.FilelistsCollection()
-  #   @filelists.reset options.filelists
-
-  # routes:
-  #   "new"      : "newFilelist"
-  #   "index"    : "index"
-  #   ":id/edit" : "edit"
-  #   ":id"      : "show"
-  #   ".*"        : "index"
 
   routes:
     'home-new': 'index'
- 
+
+  initialize: ->
+    @collection = new FileManager.Collections.FilelistsCollection()
+    @collection.fetch()
+    
   index: ->
-    view = new FileManager.Views.Filelists.IndexView()
+    view = new FileManager.Views.Filelists.IndexView(collection: @collection)
     $(".main_content.col-xs-10").html(view.render().el)

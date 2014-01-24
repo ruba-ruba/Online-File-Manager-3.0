@@ -4,7 +4,7 @@ table.table-condensed {
   border: 1px solid #dddddd;
   border-collapse: collapse;
   width: 100%;
-  thead {
+  thead, .listhead {
     @include background-image(linear-gradient(white, #cccccc, #aaaaaa));
     color: black;
     th {

@@ -11,8 +11,8 @@ window.FileManager =
   Views: {}
 
   init: -> 
-        new FileManager.Routers.FilelistsRouter
-        Backbone.history.start()
+    new FileManager.Routers.FilelistsRouter
+    Backbone.history.start()
 
 $(document).ready ->
   FileManager.init()
