@@ -1,0 +1,18 @@
+<div class="item_details">
+  <ul class="nav nav-pills nav-stacked title">
+    <li><span class="title">Title: </span></li>
+    <li><span class="title">Format: </span></li>
+  </ul>
+  <ul class="nav nav-pills nav-stacked val">
+    <li><%= model.get("file_file_name") %></li>
+    <li><%= model.get("file_content_type") %></li>
+  </ul>
+  <ul class="nav nav-pills nav-stacked title">
+    <li><span class="title">Size: </span></li>
+    <li><span class="title">Date: </span></li>
+  </ul>
+  <ul class="nav nav-pills nav-stacked val">
+    <li><%= model.get("file_file_size") %></li>
+    <li><%= model.get("created_at") %></li>
+  </ul>
+</div>

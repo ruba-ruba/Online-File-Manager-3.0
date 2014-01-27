@@ -13,4 +13,4 @@ class FileManager.Views.Filelists.IndexView extends Backbone.View
 
   appendItem: (filelist) ->
     view = new FileManager.Views.Filelists.ItemView(model: filelist)
-    $('#filelist').append(view.render().el)
+    $('#filelist-t').append(view.render().el)
