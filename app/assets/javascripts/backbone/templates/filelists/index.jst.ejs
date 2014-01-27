@@ -1,14 +1,11 @@
 <h4>Listing files</h4>
 
-<table class="table-condensed">
+<table class="table-condensed" id="filelist">
   <tr class="listhead">
     <th> Name </th>
     <th> Description </th>
     <th> Size </th>
     <th> Type </th>
     <th> Date </th>
-  </tr>  
-  <% for(var i=0; i<filelists.length; i++) {%>
-    <tr><td><%= filelists.models[i].get("file_file_name") %></td><td><%= filelists.models[i].get("description") %></td><td><%= filelists.models[i].get("file_file_size") %><td><%= filelists.models[i].get("file_content_type") %></td></td><td><%= filelists.models[i].get("created_at") %></td></tr>
-  <% } %>  
+  </tr>
 </table>
