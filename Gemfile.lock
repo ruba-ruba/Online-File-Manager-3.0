@@ -162,6 +162,9 @@ GEM
       rack-accept
       rack-mount
       virtus (>= 1.0.0)
+    grape-entity (0.3.0)
+      activesupport
+      multi_json (>= 1.3.2)
     guard (2.1.0)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -469,6 +472,7 @@ DEPENDENCIES
   famfamfam
   font-awesome-sass-rails
   grape
+  grape-entity
   guard (= 2.1.0)
   guard-rspec
   guard-spork

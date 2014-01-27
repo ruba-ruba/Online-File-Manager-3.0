@@ -188,5 +188,4 @@ class Item < ActiveRecord::Base
     zip.close
     File.delete temp_file
   end  
-
 end

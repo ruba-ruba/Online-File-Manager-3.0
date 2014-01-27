@@ -9,10 +9,10 @@ module FileManager
 
     resource :items do
       get do
-        Item.all
+        present Item.all, with: ItemEntity
       end
       get ":id" do
-        Item.find(params[:id])
+        present Item.find(params[:id]), with: ItemEntity
       end 
     end
 
