@@ -49,8 +49,5 @@ FileManager::Application.routes.draw do
     resources :statistics
   end
 
-  scope "api/v3" do
-    get 'items', to: 'home#home_new'    
-  end
   match '*path', to: 'folders#index'
 end
