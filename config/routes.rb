@@ -4,7 +4,6 @@ FileManager::Application.routes.draw do
   
   resources :locations
 
-
   root :to => 'folders#index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -18,7 +17,6 @@ FileManager::Application.routes.draw do
 
   resources :users
   get 'api/v2/:token', to: 'users#show_user_info', as: 'info', :defaults => { :format => 'json' }
-
 
   resources :items do
     resources :comments
@@ -52,6 +50,7 @@ FileManager::Application.routes.draw do
   end
 
   scope "api" do
-    get 'filelists', to: 'home#home_new'
+    get 'filelists', to: 'home#home_new'    
   end
+  match '*path', to: 'folders#index'
 end

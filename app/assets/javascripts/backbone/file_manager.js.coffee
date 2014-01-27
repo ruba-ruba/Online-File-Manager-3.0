@@ -12,7 +12,7 @@ window.FileManager =
 
   init: -> 
     new FileManager.Routers.FilelistsRouter
-    Backbone.history.start()
+    Backbone.history.start(pushState: true)
 
 $(document).ready ->
   FileManager.init()
