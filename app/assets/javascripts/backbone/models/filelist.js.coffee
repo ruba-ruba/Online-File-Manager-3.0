@@ -3,4 +3,4 @@ class FileManager.Models.Filelist extends Backbone.Model
 
 class FileManager.Collections.FilelistsCollection extends Backbone.Collection
   model: FileManager.Models.Filelist
-  url: '/api/filelists'
+  url: '/api/v3/items'
