@@ -1,0 +1,30 @@
+<div class = "main_content col-xs-10">
+  <div class = "comments_page row">
+    <div class = "form-group col-xs-6">
+    </div>
+    <div class = "form-group col-xs-4">
+      <h4> New Comment </h4>
+      <form accept-charset="UTF-8" action="/folders/59/comments" class="simple_form new_comment" data-remote="true" id="new_comment" method="post" novalidate="novalidate">
+        <div style="margin:0;padding:0;display:inline">
+          <input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="SBgVOdaVp2+eQQTTeNq5bOx8L6DcRfap9zLPpvb73jU=">
+        </div>
+        <div class="control-group text required comment_content">
+          <label class="text required control-label" for="comment_content">
+            <abbr title="required">*</abbr> Content
+          </label>
+          <div class="controls">
+            <textarea class="text required" cols="40" id="comment_content" name="comment[content]" placeholder="leave your comment" rows="5"></textarea>
+          </div>
+        </div>
+        <input id="comment_commentable_id" name="comment[commentable_id]" type="hidden"><input id="comment_commentable_type" name="comment[commentable_type]" type="hidden">
+        <div class="control-group hidden comment_parent_id">
+          <div class="controls"><input class="hidden" id="comment_parent_id" name="comment[parent_id]" type="hidden">
+          </div>
+        </div>
+        <div class="actions">
+          <input class="btn btn btn-primary submit" name="commit" type="submit" value="Create Comment">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -16,6 +16,13 @@ module FileManager
       end 
     end
 
-    
+    resource :comments do
+      get do
+        present Comment.all, with: CommentEntity
+      end
+      get ":id" do
+        present Comment.find(params[:id]), with: CommentEntity
+      end 
+    end
   end
 end
