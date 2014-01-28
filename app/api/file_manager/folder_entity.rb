@@ -10,7 +10,10 @@ module FileManager
     expose :ancestry
     expose :description
     expose :folder_size do |folder, options|
-      folder.size
+      number_to_human_size(folder.size)
+    end
+    expose :updated_at do |folder, options|
+      folder.updated_at.strftime('%d/%m/%y %I:%M%p')
     end
   end
 end
