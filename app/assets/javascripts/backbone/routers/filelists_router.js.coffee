@@ -4,10 +4,6 @@ class FileManager.Routers.FilelistsRouter extends Backbone.Router
     'home-new': 'index'
     'comments': 'comments'
 
-  initialize: ->
-    @collection = new FileManager.Collections.FilelistsCollection()
-    @collection.fetch()
-
   comments: ->
     @comments = new FileManager.Collections.CommentsCollection()
     @comments.fetch()
@@ -15,7 +11,5 @@ class FileManager.Routers.FilelistsRouter extends Backbone.Router
     $(".main_content.col-xs-10").html(view.render().el)
     
   index: ->
-    view = new FileManager.Views.Filelists.IndexView(collection: @collection)
+    view = new FileManager.Views.Filelists.IndexView()
     $(".main_content.col-xs-10").html(view.render().el)
-
-
