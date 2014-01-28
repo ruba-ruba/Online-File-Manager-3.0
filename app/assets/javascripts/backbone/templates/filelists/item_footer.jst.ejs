@@ -15,4 +15,7 @@
     <li><%= model.get("size") %></li>
     <li><%= model.get("file_updated_at") %></li>
   </ul>
+  <% if (model.get("mp3?") == true) {%>
+    <div class="player_placeholder"><audio controls="controls"><source src="file_path" type="audio/mp3"></audio></div>
+  <% } %>
 </div>

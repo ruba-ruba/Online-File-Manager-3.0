@@ -10,6 +10,7 @@ class FileManager.Views.Filelists.ItemView extends Backbone.View
     event.preventDefault()
     content = JST["backbone/templates/filelists/item_footer"](model: @model)
     $("footer").html(content)
+    $('audio').mediaelementplayer()
 
   render: ->
     $(@el).html(@template(filelist: @model))
