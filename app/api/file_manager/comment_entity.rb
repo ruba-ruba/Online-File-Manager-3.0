@@ -15,6 +15,8 @@ module FileManager
     expose :author do |comment, options|
       comment.author
     end
-    # expose :parent-identifier ......
+    expose :parent_identifier do |comment, options|
+      comment.parent ? ".comment-#{comment.parent.id}" : '.comments>ul'
+    end
   end
 end

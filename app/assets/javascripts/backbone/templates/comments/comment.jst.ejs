@@ -1,3 +1,18 @@
-<%= comment.get("content") %>
+<div class = "comment_head">
+  <b class="autor"> 
+    <%= comment.get("author") %>
+  </b>
+  <span class = "timestamp" >
+    <%= comment.get("strftime") %>
+  </span>
+</div>
+<div class = "comment_content">
+  <%= comment.get("content") %>
+  <div class = "reply_controls">
+    <div class = "voiting">
+    </div>
+  </div>
+</div>
+
 
 
