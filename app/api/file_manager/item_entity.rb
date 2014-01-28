@@ -9,6 +9,7 @@ module FileManager
     expose :id
     expose :file_file_name
     expose :description
+    expose :file_content_type
     expose :file_updated_at do |item, options|
       item.file_updated_at.strftime('%d/%m/%y %I:%M%p')
     end
@@ -20,6 +21,23 @@ module FileManager
     end
     expose :mp3? do |item, options|
       item.is_mp3?
+    end
+
+    expose :content_icon_name do |item, options|
+      case item.file_content_type
+      when /jpeg|png/
+        "picture.png"
+      when /mp3|wav|octet-stream/
+        "music.png"
+      when "application/pdf"
+        "page_white_acrobat.png"
+      when "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        "page_excel.png"
+      when "application/vnd.ms-excel"
+        "map.png"
+      else
+        "page.png"
+      end
     end
   end
 end
