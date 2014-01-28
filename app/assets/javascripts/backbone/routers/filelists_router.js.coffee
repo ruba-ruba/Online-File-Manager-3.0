@@ -7,7 +7,7 @@ class FileManager.Routers.FilelistsRouter extends Backbone.Router
   comments: ->
     @comments = new FileManager.Collections.CommentsCollection()
     @comments.fetch()
-    view = new FileManager.Views.Comments.IndexView(collection: @comments)
+    view = new FileManager.Views.Comments.CommentsView(collection: @comments)
     $(".main_content.col-xs-10").html(view.render().el)
     
   index: ->
