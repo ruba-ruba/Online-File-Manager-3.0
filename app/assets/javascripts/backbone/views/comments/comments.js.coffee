@@ -2,6 +2,7 @@ FileManager.Views.Comments ||= {}
 
 class FileManager.Views.Comments.CommentsView extends Backbone.View
   template: JST["backbone/templates/comments/comments"]
+  className: "comments_page row"
 
   initialize: ->
     @collection.on('reset', @renderComments, this)

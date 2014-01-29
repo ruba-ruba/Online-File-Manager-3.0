@@ -10,7 +10,7 @@ module FileManager
       comment_id: vote.comment.id
       vote_type: true
     end
-    expose :false do |vote, options|
+    expose :vote_path_false do |vote, options|
       comment_id: vote.comment.id
       vote_type: false
     end
