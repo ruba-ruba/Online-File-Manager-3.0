@@ -15,6 +15,6 @@ class FileManager.Views.Comments.CommentsView extends Backbone.View
     @collection.each(@addComment)
 
   addComment: (comment) ->
+    console.log(comment.get("parent_identifier"))
     view = new FileManager.Views.Comments.CommentView(model: comment)
     $(comment.get("parent_identifier")).append(view.render().el)
-    $('.comments ul').append(view.render().el)
