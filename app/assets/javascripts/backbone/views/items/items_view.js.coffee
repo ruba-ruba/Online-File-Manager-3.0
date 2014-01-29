@@ -2,8 +2,8 @@ FileManager.Views.Folders ||= {}
 
 class FileManager.Views.Items.ItemsView extends Backbone.View
 
-  initialize: ->
-    @collection = new FileManager.Collections.ItemsCollection()
+  initialize: (opts) ->
+    @collection = new FileManager.Collections.ItemsCollection(opts)
     @collection.fetch()
     @collection.on('reset', @render, this)
 

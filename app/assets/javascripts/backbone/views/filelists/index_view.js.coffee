@@ -3,9 +3,9 @@ FileManager.Views.Filelists ||= {}
 class FileManager.Views.Filelists.IndexView extends Backbone.View
   template: JST["backbone/templates/filelists/index"]
 
-  initialize: ->
-    new FileManager.Views.Folders.FoldersView()
-    new FileManager.Views.Items.ItemsView()
+  initialize: (opts) ->
+    new FileManager.Views.Folders.FoldersView(opts)
+    new FileManager.Views.Items.ItemsView(opts)
 
   render: ->
     $(@el).html(@template())

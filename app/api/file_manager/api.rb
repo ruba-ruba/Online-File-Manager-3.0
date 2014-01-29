@@ -13,7 +13,7 @@ module FileManager
       end
       get ":id" do
         present Item.find(params[:id]), with: ItemEntity
-      end 
+      end
     end
 
     resource :comments do
@@ -22,7 +22,7 @@ module FileManager
       end
       get ":id" do
         present Comment.find(params[:id]), with: CommentEntity
-      end 
+      end
     end
 
     resource :folders do
@@ -31,7 +31,23 @@ module FileManager
       end
       get ":id" do
         present Folder.find(params[:id]), with: FolderEntity
-      end 
+      end
+      get ":id/folders" do        
+        folders = if params[:id] == "root"
+          Folder.roots
+        else
+          Folder.find(params[:id]).children
+        end
+        present folders, with: FolderEntity
+      end
+      get ":id/items" do
+        items = if params[:id] == "root"
+          Item.root
+        else
+          Folder.find(params[:id]).items
+        end
+        present items, with: ItemEntity
+      end
     end
 
     resource :votes do

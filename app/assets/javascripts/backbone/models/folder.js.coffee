@@ -13,4 +13,16 @@ class FileManager.Models.Folder extends Backbone.Model
 
 class FileManager.Collections.FoldersCollection extends Backbone.Collection
   model: FileManager.Models.Folder
-  url: '/api/v3/folders'
+
+  initialize: (opts) ->
+    if opts.tree
+      @treeView = true
+    else
+      @treeView = false
+    @urlRoot = opts.id
+
+  url: ->
+    if @treeView
+      '/api/v3/folders'
+    else
+      '/api/v3/folders/' + @urlRoot + "/folders"
