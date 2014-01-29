@@ -15,5 +15,8 @@ module FileManager
     expose :updated_at do |folder, options|
       folder.updated_at.strftime('%d/%m/%y %I:%M%p')
     end
+    expose :has_children? do |folder, options|
+      folder.has_children?
+    end    
   end
 end

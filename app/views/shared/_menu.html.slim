@@ -1,6 +1,6 @@
 .tree_menu
   .panel
     .panel-heading
-      h4 Folders 
+      h4 Folders
     .list-group 
       = render 'shared/tree', :folders => Folder.roots.order("title asc")
