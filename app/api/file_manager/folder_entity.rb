@@ -17,6 +17,9 @@ module FileManager
     end
     expose :has_children? do |folder, options|
       folder.has_children?
-    end    
+    end
+    expose :tree_class do |folder, options|
+      folder && folder.ancestor_ids.include?(folder.id) ? 'glyphicon-minus' : "glyphicon-plus"
+    end
   end
 end

@@ -1,6 +1,9 @@
-<li>
-  <% if (folder.get("has_children?") == true) {%>
-    <span class="glyphicon glyphicon-plus"></span>
-  <% } %>
-  <a href='#'><img align="bottom" border="0" class="icon" src="/assets/icons/fam-fam/16/folder.png"><span class="near_icon"><%= folder.get("title") %></span></a>
-</li>
+<% if (folder.get("has_children?") == true) {%>
+  <span class="glyphicon toggleable_folder <%= folder.get('tree_class') %>"></span>
+<% }
+  else {%>
+  <span class="glyphicon"></span>
+<% }
+%>
+<a href='#'><img align="bottom" border="0" class="icon" src="/assets/icons/fam-fam/16/folder.png"><span class="near_icon"><%= folder.get("title") %></span></a>
+<ul class="<%= folder.childrenUlId() %>"></ul>

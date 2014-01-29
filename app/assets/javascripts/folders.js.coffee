@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $(".toggleable_folder").on "click", ->
+  $('.tree_menu').delegate ".toggleable_folder", "click", ->
     target = $(this)
     if target.hasClass('glyphicon-plus')
       target.removeClass('glyphicon-plus').addClass('glyphicon-minus')

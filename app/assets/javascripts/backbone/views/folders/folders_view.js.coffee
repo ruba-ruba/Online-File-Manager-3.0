@@ -7,15 +7,11 @@ class FileManager.Views.Folders.FoldersView extends Backbone.View
     @collection = new FileManager.Collections.FoldersCollection()
     @collection.fetch()
     @collection.on('reset', @render, this)
-    @collection.on('reset', @renderTree, this)
 
   render: ->
+    new FileManager.Views.Folders.FolderTreeView().render()
     @collection.each (folder) ->
       view = new FileManager.Views.Folders.FolderView(model: folder)
       $('#filelist-t').append(view.render().el)
-
-  renderTree: ->
-    new FileManager.Views.Folders.FolderTreeView().render()
-    @collection.each (folder) ->
       view = new FileManager.Views.Folders.TreeView(model: folder)
-      $('#folders_tree').append(view.render().el)
+      $(folder.parentUlId()).append(view.render().el)
