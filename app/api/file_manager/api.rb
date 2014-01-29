@@ -33,5 +33,14 @@ module FileManager
         present Folder.find(params[:id]), with: FolderEntity
       end 
     end
+
+    resource :votes do
+      get do
+        present Vote.all, with: VoteEntity
+      end
+      get ":id" do
+        present Vote.find(params[:id]), with: VoteEntity
+      end 
+    end
   end
 end

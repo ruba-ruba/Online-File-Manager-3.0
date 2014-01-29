@@ -10,3 +10,7 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
 
   className: ->
     'comment-' + @model.get("id")
+
+  addVote: (vote) ->
+    view = new FileManager.Views.Comments.VoteView(model: vote)
+    $('.voiting').append(view.render().el)
