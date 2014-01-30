@@ -12,5 +12,5 @@ class FileManager.Views.Folders.TreeView extends Backbone.View
     this
 
   renderClickedFolder: (event) ->
-    event.preventDefault()    
+    event.preventDefault()
     FileManager.app.navigate("folders-new/" + @model.get("id"), {trigger: true}) if event.target is @$('.near_icon')[0]
