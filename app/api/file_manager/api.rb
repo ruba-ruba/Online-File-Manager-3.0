@@ -23,6 +23,9 @@ module FileManager
       get ":id" do
         present Comment.find(params[:id]), with: CommentEntity
       end
+      post do
+        binding.pry
+      end
     end
 
     resource :folders do
