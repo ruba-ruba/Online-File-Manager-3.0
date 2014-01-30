@@ -6,8 +6,7 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
 
   events:
     'click .link_hidden_form_reply': 'renderReplyForm'
-    'click .actions_reply': 'renderClickedFormReply'
-
+    'click .submit': 'renderClickedFormReply'
 
   render: ->
     $(@el).html(@template(comment: @model))
@@ -18,8 +17,14 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
     $('.voiting').append(view.render().el)
 
   renderReplyForm: (event) ->
-    console.log(event.target is @$('.link_hidden_form_reply')[0])
-    $(".hidden_form_reply").show() if event.target is @$('.link_hidden_form_reply')[0]
+    event.preventDefault()
+    $('textarea').val ""
+    if event.target is @$('.link_hidden_form_reply')[0]
+      target = @$(".hidden_form_reply").first()
+      $(".hidden_form_reply").not(target).hide()
+      target.toggle()
 
   renderClickedFormReply: (event) ->
-    alert $('#new_comment_reply #comment_content').val() if event.target is @$('#new_comment_reply #comment_content')[0]
+    event.preventDefault()
+    if  event.target is @$('.submit')[0]
+      alert $(event.target).parent().siblings('.form-inputs').children('.comment_content').children('.controls').children('textarea').val()
