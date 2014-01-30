@@ -13,8 +13,5 @@ class FileManager.Views.Folders.TreeView extends Backbone.View
 
   renderClickedFolder: (event) ->
     event.preventDefault()
-    console.log("Click on tree link")
     @model.get("id")
-    console.log(@model.get("id"))
-
     FileManager.app.navigate("folders-new/" + @model.get("id"), {trigger: true})
