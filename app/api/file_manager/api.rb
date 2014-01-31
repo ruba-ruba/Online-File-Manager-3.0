@@ -7,59 +7,58 @@ module FileManager
     default_format :json
     version "v3"
 
-    resource :items do
-      get do
-        present Item.all, with: ItemEntity
-      end
-      get ":id" do
-        present Item.find(params[:id]), with: ItemEntity
-      end
-    end
-
-    resource :comments do
-      get do
-        present Comment.all, with: CommentEntity
-      end
-      get ":id" do
-        present Comment.find(params[:id]), with: CommentEntity
-      end
-      post do
-        binding.pry
-      end
-    end
-
     resource :folders do
       get do
-        present Folder.all, with: FolderEntity
+        present Folder.roots, with: FolderEntity
       end
-      get ":id" do
-        present Folder.find(params[:id]), with: FolderEntity
-      end
-      get ":id/folders" do        
-        folders = if params[:id] == "root"
-          Folder.roots
-        else
-          Folder.find(params[:id]).children
+
+      resource ":folder_id" do
+        get  do
+          present Folder.find(params[:folder_id]).children, with: FolderEntity
         end
-        present folders, with: FolderEntity
-      end
-      get ":id/items" do
-        items = if params[:id] == "root"
-          Item.root
-        else
-          Folder.find(params[:id]).items
+
+        resource :items do
+          get  do  
+            present Folder.find(params[:folder_id]).items, with: ItemEntity
+          end
+
+          resource ":item_id" do
+            get  do 
+              present Item.find(params[:item_id]), with: ItemEntity
+            end
+
+            resource :comments do
+              get do
+                present Item.find(params[:item_id]).comments, with: CommentEntity
+              end
+
+              resource ":comment_id" do
+                get do
+                  present Comment.find(params[:comment_id]), with: CommentEntity
+                end
+              end
+            end
+          end
         end
-        present items, with: ItemEntity
+
+        resource :comments do
+          get do
+            present Folder.find(params[:folder_id]).comments, with: CommentEntity
+          end
+
+          resource ":comment_id" do
+            get do
+              present Comment.find(params[:comment_id]), with: CommentEntity
+            end
+          end
+        end
       end
     end
 
-    resource :votes do
-      get do
-        present Vote.all, with: VoteEntity
+      resource :items do
+        get  do  
+          present Item.root, with: ItemEntity
+        end
       end
-      get ":id" do
-        present Vote.find(params[:id]), with: VoteEntity
-      end 
-    end
   end
 end
