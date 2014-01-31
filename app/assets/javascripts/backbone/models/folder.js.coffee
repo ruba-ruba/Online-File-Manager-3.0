@@ -8,4 +8,7 @@ class FileManager.Collections.FoldersCollection extends Backbone.Collection
     @folder_id = opts.folder_id
 
   url: ->
-    '/api/v3/folders/' + @folder_id
+    if @folder_id == null
+      '/api/v3/folders'
+    else
+      '/api/v3/folders/' + @folder_id

@@ -9,7 +9,11 @@ module FileManager
 
     resource :folders do
       get do
-        present Folder.roots, with: FolderEntity
+        if params[:include_subfolders]
+          present Folder.all, with: FolderEntity
+        else
+          present Folder.roots, with: FolderEntity
+        end
       end
 
       resource ":folder_id" do
