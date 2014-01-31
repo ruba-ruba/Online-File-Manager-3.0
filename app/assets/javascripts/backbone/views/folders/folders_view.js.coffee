@@ -11,4 +11,4 @@ class FileManager.Views.Folders.FoldersView extends Backbone.View
   render: ->    
     @collection.each (folder) ->
       view = new FileManager.Views.Folders.FolderView(model: folder)
-      $('#filelist-t').append(view.render().el)
+      $('#filelist-t').prepend(view.render().el)

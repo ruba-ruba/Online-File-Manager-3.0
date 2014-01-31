@@ -49,5 +49,5 @@ FileManager::Application.routes.draw do
     resources :statistics
   end
 
-  match '*path', to: 'folders#index'
+  match '/manager/*path', to: 'folders#index'
 end

@@ -12,5 +12,5 @@ class FileManager.Views.Folders.FolderTreeView extends Backbone.View
     $(".tree_menu").html(@template())
     @collection.each (folder) ->
       view = new FileManager.Views.Folders.TreeView(model: folder)
-      $(folder.parentUlId()).append(view.render().el)
+      $(folder.parentUlSelector()).append(view.render().el)
     this

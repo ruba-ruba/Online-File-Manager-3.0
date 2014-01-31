@@ -1,14 +1,14 @@
 class FileManager.Models.Folder extends Backbone.Model
   paramRoot: 'folder'
 
-  parentUlId: ->
+  parentUlSelector: ->
     parent_id = @get("parent_id")
     if parent_id == null
       ".folders_tree"
     else
       ".folder-" + parent_id
 
-  childrenUlId: ->
+  childrenUlClass: ->
     "folder-" + @get("id")
 
 class FileManager.Collections.FoldersCollection extends Backbone.Collection
