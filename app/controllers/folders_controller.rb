@@ -1,5 +1,3 @@
-require 'zip'
-
 class FoldersController < ApplicationController
   
   helper_method  :sort_column, :item_sort_column, :sort_direction
@@ -58,6 +56,9 @@ class FoldersController < ApplicationController
   def download_folder
     folder = Folder.find_by_id(params[:id])
     redirect_to folder.zip_archive(current_user.id), :target => :blank
+  end
+
+  def manager
   end
 
   private

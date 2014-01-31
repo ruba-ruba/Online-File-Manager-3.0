@@ -17,6 +17,3 @@ window.FileManager =
       pushState: true,
       silent: false
     )
-
-$(document).ready ->
-  FileManager.init()
