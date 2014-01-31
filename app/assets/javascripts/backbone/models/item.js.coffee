@@ -5,7 +5,10 @@ class FileManager.Collections.ItemsCollection extends Backbone.Collection
   model: FileManager.Models.Item
 
   initialize: (opts) ->
-    @urlRoot = opts.id
+    @folder_id = opts.folder_id
 
   url: ->
-    '/api/v3/folders/' + @urlRoot + "/items"
+    if @folder_id == null
+      '/api/v3/items'
+    else
+      '/api/v3/folders/' + @folder_id + "/items"

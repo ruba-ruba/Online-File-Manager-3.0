@@ -15,9 +15,9 @@ class FileManager.Routers.FilelistsRouter extends Backbone.Router
     $(".main_content.col-xs-10").html(view.render().el)
     
   index: ->
-    view = new FileManager.Views.Filelists.IndexView(id: "root")
+    view = new FileManager.Views.Filelists.IndexView(folder_id: null)
     $(".main_content.col-xs-10").html(view.render().el)
 
   folderId: (folder_id) ->
-    view = new FileManager.Views.Filelists.IndexView(id: folder_id)
+    view = new FileManager.Views.Filelists.IndexView(folder_id: folder_id)
     $(".main_content.col-xs-10").html(view.render().el)

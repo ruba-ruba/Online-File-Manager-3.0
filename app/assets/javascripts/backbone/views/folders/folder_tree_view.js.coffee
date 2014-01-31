@@ -4,7 +4,7 @@ class FileManager.Views.Folders.FolderTreeView extends Backbone.View
   template: JST["backbone/templates/folders/tree_menu"]
 
   initialize: ->
-    @collection = new FileManager.Collections.FoldersCollection(tree: true, id: null)
+    @collection = new FileManager.Collections.Navigation()
     @collection.fetch()
     @collection.on('reset', @render, this)
 
