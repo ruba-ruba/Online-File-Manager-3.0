@@ -11,6 +11,6 @@ class Vote < ActiveRecord::Base
     self.where(:user_id => user_id, :comment_id => comment_id).delete_all
     vote = self.create(:user_id => user_id, :comment_id => comment_id, :vote_type => vote_type)
     comment.update_counters
-    [comment, vote]
+    comment
   end
 end

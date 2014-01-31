@@ -11,7 +11,7 @@ FileManager::Application.routes.draw do
   resources :folders do
     resources :comments
     member do
-     get 'download_folder', to: 'folders#download_folder' 
+     get 'download_folder', to: 'folders#download_folder'
     end
   end
 
@@ -35,9 +35,12 @@ FileManager::Application.routes.draw do
     end
   end
 
-  match 'pusher/auth'
+  resources :comments do
+    post "vote_up", to: 'votes#vote', :vote_type => true
+    post "vote_down", to: 'votes#vote', :vote_type => false
+  end
 
-  post "vote", to: 'votes#vote'
+  match 'pusher/auth'
 
   #grape
   mount UsersApi::API => "/"
