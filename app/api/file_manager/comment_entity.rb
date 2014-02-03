@@ -7,7 +7,6 @@ module FileManager
     expose :votes_up
     expose :votes_down
     expose :user_id
-    expose :parent_id
     expose :content
     expose :created_date_time do |comment, options|
       comment.created_at.strftime("%b %e, %l:%M %p")
