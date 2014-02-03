@@ -18,7 +18,7 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
 
   renderReplyForm: (event) ->
     event.preventDefault()
-    $('textarea').val ""
+    @$('textarea').val ""
     if event.target is @$('.link_hidden_form_reply')[0]
       target = @$(".hidden_form_reply").first()
       $(".hidden_form_reply").not(target).hide()
@@ -27,4 +27,4 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
   renderClickedFormReply: (event) ->
     event.preventDefault()
     if  event.target is @$('.submit')[0]
-      alert $(event.target).parent().siblings('.form-inputs').children('.comment_content').children('.controls').children('textarea').val()
+      alert @$('textarea').val()
