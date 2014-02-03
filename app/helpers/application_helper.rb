@@ -16,25 +16,4 @@ module ApplicationHelper
     title += content_tag(:span, nil, :class => css_class)
     link_to title.html_safe, {:sort => column, :direction => direction}
   end
-
-  def content_icon(target)
-    if target.class == Folder
-      "#{icon(:folder)} #{content_tag(:span, target.title, class: "text")}".html_safe
-    else
-      case target.file_content_type
-      when /jpeg|png/
-        "#{icon(:picture)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
-      when /mp3|wav|octet-stream/
-        "#{icon(:music)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
-      when "application/pdf"
-        "#{icon(:page_white_acrobat)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
-      when "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        "#{icon(:page_excel)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
-      when "application/vnd.ms-excel"
-        "#{icon(:map)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
-      else
-        "#{icon(:page)} #{content_tag(:span, target.file_file_name, class: "text")}".html_safe
-      end
-    end
-  end
 end

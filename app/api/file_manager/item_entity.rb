@@ -23,21 +23,8 @@ module FileManager
       item.is_mp3?
     end
 
-    expose :content_icon_name do |item, options|
-      case item.file_content_type
-      when /jpeg|png/
-        "picture.png"
-      when /mp3|wav|octet-stream/
-        "music.png"
-      when "application/pdf"
-        "page_white_acrobat.png"
-      when "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        "page_excel.png"
-      when "application/vnd.ms-excel"
-        "map.png"
-      else
-        "page.png"
-      end
+    expose :content_icon do |item, options|
+      item.decorate.content_icon
     end
   end
 end

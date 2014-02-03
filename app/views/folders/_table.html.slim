@@ -24,7 +24,11 @@ table.table-condensed
               | ..
     - folders.each do |folder|
       tr
-        td = link_to content_icon(folder), folder
+        td
+          = link_to folder do
+            = icon :folder
+            span
+              = folder.title
         td = folder.description
         td = number_to_human_size(folder.size)
         td Folder

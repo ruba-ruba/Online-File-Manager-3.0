@@ -2,7 +2,10 @@ td
   - if item.is_map?
     = link_to content_icon(item), locations_path(:item_id => item.id), :target => '_blank'
   - else
-    = link_to content_icon(item), item.file.url, :target => '_blank'
+    = link_to item.file.url, :target => '_blank' do
+      = item.decorate.content_icon
+      span
+        = item.file_file_name
 td = item.description
 td = number_to_human_size(item.file_file_size)
 td = item.extension
