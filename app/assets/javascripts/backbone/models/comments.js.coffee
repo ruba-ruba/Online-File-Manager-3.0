@@ -4,8 +4,13 @@ class FileManager.Models.Comment extends Backbone.Model
 class FileManager.Collections.CommentsCollection extends Backbone.Collection
   model: FileManager.Models.Comment
 
+  initialize: (opts) ->
+    @commentable_type = opts.commentable_type
+    @commentable_id = opts.commentable_id
+    console.log(@commentable_type)
+    console.log(@commentable_id)
+
+
+
   url: ->
-      if @folder_id
-        '/api/v3/folders/' + @folder_id + "/comments"
-      else
-        '/api/v3/items/' + @item_id + "/comments"
+    '/api/v3/' + @commentable_type + "/" + @commentable_id + "/comments"

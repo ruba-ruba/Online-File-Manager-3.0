@@ -2,14 +2,21 @@ class FileManager.Routers.FilelistsRouter extends Backbone.Router
 
   routes:
     'folders': 'index'
-    'comments': 'comments'
     'folders/:id': 'folderId'
+    'folders/:id/comments': 'folderComments'
+    'items/:id/comments': 'itemComments'
 
   initialize: ->
     new FileManager.Views.Folders.FolderTreeView().render()
 
-  comments: ->
-    @comments = new FileManager.Collections.CommentsCollection()
+  folderComments: (folder_id)->
+    @comments = new FileManager.Collections.CommentsCollection(commentable_type: "folders", commentable_id: folder_id)
+    @comments.fetch()
+    view = new FileManager.Views.Comments.CommentsView(collection: @comments)
+    $(".main_content.col-xs-10").html(view.render().el)
+
+  itemComments: (item_id) ->
+    @comments = new FileManager.Collections.CommentsCollection(commentable_type: "items", commentable_id: item_id)
     @comments.fetch()
     view = new FileManager.Views.Comments.CommentsView(collection: @comments)
     $(".main_content.col-xs-10").html(view.render().el)
