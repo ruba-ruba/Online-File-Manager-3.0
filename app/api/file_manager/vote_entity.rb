@@ -6,11 +6,11 @@ module FileManager
     expose :comment_id
     expose :user_id
     expose :vote_type
-    expose :vote_path_true do |vote, options|
+    expose :vote_up_path do |vote, options|
       comment_id: vote.comment.id
       vote_type: true
     end
-    expose :vote_path_false do |vote, options|
+    expose :vote_down_path do |vote, options|
       comment_id: vote.comment.id
       vote_type: false
     end

@@ -1,11 +1,11 @@
 <%= comment.get("votes_up") %>
-<a href ='<%= vote.get("vote_path_true") %>'>
+<a href ='<%= vote.get("vote_up_path") %>'>
   <span class = "glyphicon glyphicon-thumbs-up">
   </span>
 </a>
 <span>|</span>
 <%= comment.get("votes_down") %>
-<a href ='<%= vote.get("vote_path_false") %>'>
+<a href ='<%= vote.get("vote_down_path") %>'>
   <span class = "glyphicon glyphicon-thumbs-down">
   </span>
 </a>

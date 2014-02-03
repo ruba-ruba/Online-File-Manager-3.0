@@ -9,7 +9,7 @@ module FileManager
     expose :user_id
     expose :parent_id
     expose :content
-    expose :strftime do |comment, options|
+    expose :created_date_time do |comment, options|
       comment.created_at.strftime("%b %e, %l:%M %p")
     end
     expose :author do |comment, options|
