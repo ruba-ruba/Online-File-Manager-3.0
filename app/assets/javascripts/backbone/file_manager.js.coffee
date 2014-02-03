@@ -12,8 +12,7 @@ window.FileManager =
 
   init: -> 
     @app = new FileManager.Routers.FilelistsRouter
-    Backbone.history.start(
+    Backbone.history.start
       root: '/manager/',
       pushState: true,
       silent: false
-    )
