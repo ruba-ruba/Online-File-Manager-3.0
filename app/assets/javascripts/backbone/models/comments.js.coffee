@@ -3,4 +3,9 @@ class FileManager.Models.Comment extends Backbone.Model
 
 class FileManager.Collections.CommentsCollection extends Backbone.Collection
   model: FileManager.Models.Comment
-  url: '/api/v3/comments'
+
+  url: ->
+      if @folder_id
+        '/api/v3/folders/' + @folder_id + "/comments"
+      else
+        '/api/v3/items/' + @folder_id + "/comments"
