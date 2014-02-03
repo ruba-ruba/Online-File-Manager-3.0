@@ -1,7 +1,7 @@
+require 'zip'
 class Item < ActiveRecord::Base
   require 'RMagick'
   require 'csv'
-  include ActiveModel::Validations
   include Magick
 
   IMAGE_TYPES = ["image/jpeg", "image/png"]

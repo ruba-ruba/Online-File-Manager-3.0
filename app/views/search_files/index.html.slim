@@ -21,7 +21,7 @@
         tr
           td 
             span
-              = link_to content_icon(item), item.file_file_name
+              = link_to item.decorate.content_icon, item.file_file_name
           td = number_to_human_size(item.file_file_size)
           td = item.extension
           td = item.file_updated_at.strftime('%d/%m/%y %I:%M%p')

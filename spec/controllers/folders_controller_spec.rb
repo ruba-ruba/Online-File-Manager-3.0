@@ -130,8 +130,8 @@ describe FoldersController do
       expect {
         delete :destroy, {:id => folder.to_param}
       }.to change(Folder, :count).by(-1)
-      flash.should_not be_nil
-      response.should redirect_to 'where_i_came_from'
+      expect(flash).not_to be_nil
+      expect(response).to redirect_to 'where_i_came_from'
     end
 
     it "redirects to the folders list" do

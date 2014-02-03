@@ -161,8 +161,8 @@ describe ItemsController do
         put :update, {id: old_item.id, item: item}
         old_item.reload
         old_item.file_file_name.should eq("test.csv")
-        flash.should_not be_nil
-        response.should redirect_to(old_item.folder)
+        expect(flash).not_to be_nil
+        expect(response).to redirect_to old_item.folder
       end
     end
 

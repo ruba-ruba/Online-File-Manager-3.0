@@ -1,6 +1,6 @@
 td
   - if item.is_map?
-    = link_to content_icon(item), locations_path(:item_id => item.id), :target => '_blank'
+    = link_to item.decorate.content_icon, locations_path(:item_id => item.id), :target => '_blank'
   - else
     = link_to item.file.url, :target => '_blank' do
       = item.decorate.content_icon

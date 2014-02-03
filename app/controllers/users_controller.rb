@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 
   def correct_user
     user = User.find(params[:id])
-    unless admin? || current_user == user  
+    unless admin? || current_user == user
       redirect_to root_path
       flash[:error] = "you are not allowed to this action"
     end

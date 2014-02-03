@@ -41,8 +41,8 @@ describe CommentsController do
       expect{
         post :create, comment: FactoryGirl.attributes_for(:folder_comment, content: nil), folder_id: folder.id
       }.to change(Comment,:count).by(0)
-      flash.should_not be_nil
-      response.should redirect_to 'where_i_came_from'
+      expect(flash).not_to be_nil
+      expect(response).to redirect_to 'where_i_came_from'
     end
   end
 
@@ -63,8 +63,8 @@ describe CommentsController do
       expect{
         delete :destroy, id: comment.id, folder_id: comment.commentable.id
       }.to change(Comment,:count).by(0) 
-      flash.should_not be_nil
-      response.should redirect_to 'where_i_came_from'
+      expect(flash).not_to be_nil
+      expect(response).to redirect_to 'where_i_came_from'
     end
   end
 end
