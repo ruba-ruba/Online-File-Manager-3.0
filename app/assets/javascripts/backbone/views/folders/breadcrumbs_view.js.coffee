@@ -10,9 +10,7 @@ class FileManager.Views.Folders.BreadcrumbsView extends Backbone.View
 
   render: ->    
     $(".nav-path").html(@template())
-    @collection.each(@addBr)
+    @collection.each (folder) ->
+      content = JST["backbone/templates/folders/breadcrumb"](folder: folder)
+      $(".nav-path").append(content)
     this
-
-    addBr: (folder) ->
-    content = JST["backbone/templates/folders/breadcrumb"](folder: folder)
-    $(".nav-path").append(content)
