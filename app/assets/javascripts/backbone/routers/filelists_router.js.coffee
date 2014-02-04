@@ -8,6 +8,7 @@ class FileManager.Routers.FilelistsRouter extends Backbone.Router
 
   initialize: ->
     new FileManager.Views.Folders.FolderTreeView().render()
+    new FileManager.Views.Folders.BreadcrumbsView()
 
   folderComments: (folder_id)->
     @comments = new FileManager.Collections.CommentsCollection(commentable_type: "folders", commentable_id: folder_id)
