@@ -34,7 +34,7 @@ describe CommentsController do
       mailer = stub(:deliver => true)
       FileManagerMailer.expects(:send_comment).returns(mailer)
       post :create, comment: FactoryGirl.attributes_for(:folder_comment), folder_id: folder.id
-      expect(response).to redirect_to folder_comments_path(folder)
+      expect(response).to be_success
     end
     it 'should not create comment' do
       request.env["HTTP_REFERER"] = 'where_i_came_from'
@@ -42,7 +42,7 @@ describe CommentsController do
         post :create, comment: FactoryGirl.attributes_for(:folder_comment, content: nil), folder_id: folder.id
       }.to change(Comment,:count).by(0)
       expect(flash).not_to be_nil
-      expect(response).to redirect_to 'where_i_came_from'
+      expect(response).to be_success
     end
   end
 

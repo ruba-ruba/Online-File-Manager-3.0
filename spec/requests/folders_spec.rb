@@ -7,16 +7,9 @@ describe "Folders" do
   let(:folder){FactoryGirl.create(:folder)}
 
   describe "Index page" do
-    it "should have the content 'Listing folders'" do
+    it "should have the content 'rOnline File manager 3.0'" do
       visit '/folders'
-      page.should have_content('Listing folders')
-    end
-  end
-
-  describe "Edit page" do
-    it "should have the content 'Editing folder'" do
-      visit edit_folder_path(folder)
-      page.should have_content('Editing folder')
+      page.should have_content('Online File manager 3.0')
     end
   end
 
@@ -28,9 +21,9 @@ describe "Folders" do
   end
 
   describe "Show page" do
-    it "should have the content 'Title'" do
+    it "should have the content 'title'" do
       visit folder_path(folder)
-      page.should have_content('Title')
+      page.should have_content('title')
     end
   end
 end

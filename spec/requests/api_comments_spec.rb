@@ -27,7 +27,7 @@ describe FileManager::API do
       comment = FactoryGirl.create :item_comment, :user_id => @current_user.id   
       get "/api/v3/items/#{comment.commentable_id}/comments"
       response_hash = JSON.parse(response.body)[0]
-      expect(response_hash["id"]).to eq(comment.commentable_id)
+      expect(response_hash["id"]).to eq(comment.id)
     end
   end
 
