@@ -14,4 +14,5 @@ class FileManager.Models.Navigation extends Backbone.Model
 class FileManager.Collections.Navigation extends Backbone.Collection
   model: FileManager.Models.Navigation
 
-  url: '/api/v3/folders?include_subfolders=true'
+  url: ->
+    '/api/v3/folders?include_subfolders=true&token=' + FileManager.token

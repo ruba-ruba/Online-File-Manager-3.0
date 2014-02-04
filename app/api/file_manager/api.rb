@@ -7,7 +7,12 @@ module FileManager
     default_format :json
     version "v3"
 
-    resource :folders do
+    helpers ApiHelpers
+    before do
+      error! "token is invalid" if current_user.nil?
+    end
+
+    resource :folders do      
       get do
         if params[:include_subfolders]
           present Folder.all, with: FolderEntity
@@ -34,7 +39,10 @@ module FileManager
 
           resource ":comment_id" do
             get do
-              present Comment.find(params[:comment_id]), with: CommentEntity
+              present Comment.where(:commentable_type => "Folder", 
+                :commentable_id => params[:folder_id], 
+                :id => params[:comment_id]
+              ).first, with: CommentEntity
             end
           end
         end
@@ -58,7 +66,10 @@ module FileManager
 
           resource ":comment_id" do
             get do
-              present Comment.find(params[:comment_id]), with: CommentEntity
+              present Comment.where(:commentable_type => "Item", 
+                :commentable_id => params[:item_id], 
+                :id => params[:comment_id]
+              ).first, with: CommentEntity
             end
           end
         end

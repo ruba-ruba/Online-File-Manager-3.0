@@ -10,7 +10,8 @@ window.FileManager =
   Routers: {}
   Views: {}
 
-  init: -> 
+  init: (opts) -> 
+    @token = opts.token
     @app = new FileManager.Routers.FilelistsRouter
     Backbone.history.start
       root: '/manager/',

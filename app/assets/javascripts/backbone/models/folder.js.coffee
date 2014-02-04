@@ -9,6 +9,6 @@ class FileManager.Collections.FoldersCollection extends Backbone.Collection
 
   url: ->
     if @folder_id == null
-      '/api/v3/folders'
+      '/api/v3/folders?token=' + FileManager.token
     else
-      '/api/v3/folders/' + @folder_id
+      '/api/v3/folders/' + @folder_id + "?token=" + FileManager.token

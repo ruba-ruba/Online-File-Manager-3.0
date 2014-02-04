@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe FileManager::API do
 
-  login_user
+  let(:user){FactoryGirl.create :user}
 
   describe "GET /api/v3/items" do
     it "returns an empty array of items" do
-      get "/api/v3/items"
+      get "/api/v3/items?token=#{user.token}"
       response.status.should == 200
       JSON.parse(response.body).should == []
     end

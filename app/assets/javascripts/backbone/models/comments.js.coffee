@@ -9,4 +9,4 @@ class FileManager.Collections.CommentsCollection extends Backbone.Collection
     @commentable_id = opts.commentable_id
 
   url: ->
-    '/api/v3/' + @commentable_type + "/" + @commentable_id + "/comments"
+    '/api/v3/' + @commentable_type + "/" + @commentable_id + "/comments?token=" + FileManager.token

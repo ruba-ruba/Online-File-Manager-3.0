@@ -3,5 +3,5 @@
 
 javascript:
   $(document).ready(function(){
-    FileManager.init()
-  })
+    FileManager.init({token: "#{current_user.token}"})
+  });
