@@ -16,7 +16,7 @@ describe User do
     end
 
     it "toren not be nil" do
-      expect(user.send :generate_token).should_not be_nil
+      expect(user.send :generate_token).not_to be_nil
     end
 
     it "return true toren" do
@@ -29,7 +29,7 @@ describe User do
   describe "#set_expiration" do
     let(:user){FactoryGirl.create(:user)}
     it "return expires_at" do
-      expect(user.send :set_expiration).should_not be_nil
+      expect(user.send :set_expiration).not_to be_nil
     end
     it "return expires_at" do
       expect(user.expires_at.to_date).to eq((DateTime.now+365).to_date)

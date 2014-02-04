@@ -21,7 +21,7 @@ describe FoldersController do
   describe "download_folder" do
     it "should respond to dowload fplder" do
       get :download_folder, {:id => folder.to_param}
-      expect(response).to be_success
+      expect(response).to be_redirect
     end
   end
 

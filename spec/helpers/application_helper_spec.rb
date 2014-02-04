@@ -12,7 +12,7 @@ describe ApplicationHelper do
  
   describe 'true pdf' do
     it 'should find file' do 
-      expect(helper.pdf(item_with_file_true)).to eq("<a href=\"/items/1/show_pdf\" alt=\"Open PDF\" rel=\"tooltip\" target=\"_blank\" title=\"Open PDF\"><img align=\"bottom\" border=\"0\" class=\"icon \" src=\"/assets/icons/fam-fam/16/page_go.png\" /></a>")
+      expect(helper.pdf(item_with_file_true)).to eq("<a href=\"/items/#{item_with_file_true.id}/show_pdf\" alt=\"Open PDF\" rel=\"tooltip\" target=\"_blank\" title=\"Open PDF\"><img align=\"bottom\" border=\"0\" class=\"icon \" src=\"/assets/icons/fam-fam/16/page_go.png\" /></a>")
     end
   end
 end

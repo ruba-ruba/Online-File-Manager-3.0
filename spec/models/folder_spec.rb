@@ -13,7 +13,7 @@ describe Folder do
     let(:user){FactoryGirl.create(:user)}
 
     it "should return url" do
-      expect(folder.zip_archive(user.id)).should_not be_nil
+      expect(folder.zip_archive(user.id)).not_to be_nil
     end
 
     it "should return true url" do
