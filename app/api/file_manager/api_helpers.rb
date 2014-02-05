@@ -6,5 +6,11 @@ module FileManager
       error!("token is expired", 401) if @current_user.expired?
       @current_user
     end
+
+    def commentable
+        @commentable ||= Folder.find(params[:folder_id]) if params[:folder_id]
+        @commentable ||= Item.find(params[:item_id]) if params[:item_id]
+        @commentable
+    end
   end
 end

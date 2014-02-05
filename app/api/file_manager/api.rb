@@ -22,7 +22,7 @@ module FileManager
       end
 
       resource ":folder_id" do
-        mount CommentAPI
+        include CommentAPI
         get do
           present Folder.find(params[:folder_id]).children, with: FolderEntity
         end
@@ -41,7 +41,7 @@ module FileManager
       end
       
       resource ":item_id" do
-        mount CommentAPI
+        include CommentAPI
         get do 
           present Item.find(params[:item_id]), with: ItemEntity
         end
