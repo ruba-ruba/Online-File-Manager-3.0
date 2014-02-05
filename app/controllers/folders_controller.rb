@@ -12,7 +12,7 @@ class FoldersController < ApplicationController
   def show
     @folder = Folder.find(params[:id])
     @folders = @folder.children.order(sort_column + ' ' + sort_direction)
-    @items = @folder.items.order(item_sort_column + ' ' + sort_direction)    
+    @items = @folder.items.order(item_sort_column + ' ' + sort_direction)
   end
 
   def new

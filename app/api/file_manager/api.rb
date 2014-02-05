@@ -12,6 +12,19 @@ module FileManager
       error! "token is invalid" if current_user.nil?
     end
 
+    resource :comments do
+      post do
+        commentable = Folder.find(params[:commentable_id]) if params[:commentable_type] == "folders"
+        commentable = Item.find(params[:commentable_id]) if params[:commentable_type] == "items"
+        comment = commentable.comments.build(user_id: current_user.id, content: params[:content])
+        if comment.save
+         present comment, with: CommentEntity
+        else
+          error!("can't save comment")
+        end
+      end
+    end
+
     resource :folders do      
       get do
         if params[:include_subfolders]
@@ -22,7 +35,7 @@ module FileManager
       end
 
       resource ":folder_id" do
-        get  do
+        get do
           present Folder.find(params[:folder_id]).children, with: FolderEntity
         end
 
@@ -50,12 +63,12 @@ module FileManager
     end
 
     resource :items do
-      get  do  
+      get do  
         present Item.root, with: ItemEntity
       end
       
       resource ":item_id" do
-        get  do 
+        get do 
           present Item.find(params[:item_id]), with: ItemEntity
         end
 
