@@ -22,6 +22,7 @@ module FileManager
       end
 
       resource ":folder_id" do
+        mount CommentAPI
         get do
           present Folder.find(params[:folder_id]).children, with: FolderEntity
         end
@@ -29,30 +30,6 @@ module FileManager
         resource :items do
           get  do  
             present Folder.find(params[:folder_id]).items, with: ItemEntity
-          end
-        end
-
-        resource :comments do
-          get do
-            present Folder.find(params[:folder_id]).comments, with: CommentEntity
-          end
-          post do
-            commentable = Folder.find(params[:folder_id])
-            comment = commentable.comments.build(user_id: current_user.id, content: params[:content], parent_id: params[:parent_id])
-            if comment.save
-             present comment, with: CommentEntity
-            else
-              error!("can't save comment")
-            end
-          end
-
-          resource ":comment_id" do
-            get do
-              present Comment.where(:commentable_type => "Folder", 
-                :commentable_id => params[:folder_id], 
-                :id => params[:comment_id]
-              ).first, with: CommentEntity
-            end
           end
         end
       end
@@ -64,32 +41,9 @@ module FileManager
       end
       
       resource ":item_id" do
+        mount CommentAPI
         get do 
           present Item.find(params[:item_id]), with: ItemEntity
-        end
-
-        resource :comments do
-          get do
-            present Item.find(params[:item_id]).comments, with: CommentEntity
-          end
-          post do
-            commentable = Item.find(params[:item_id])
-            comment = commentable.comments.build(user_id: current_user.id, content: params[:content], parent_id: params[:parent_id])
-            if comment.save
-             present comment, with: CommentEntity
-            else
-              error!("can't save comment")
-            end
-          end
-
-          resource ":comment_id" do
-            get do
-              present Comment.where(:commentable_type => "Item", 
-                :commentable_id => params[:item_id], 
-                :id => params[:comment_id]
-              ).first, with: CommentEntity
-            end
-          end
         end
       end
     end
