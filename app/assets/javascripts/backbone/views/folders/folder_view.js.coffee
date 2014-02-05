@@ -13,4 +13,5 @@ class FileManager.Views.Folders.FolderView extends Backbone.View
 
   openFolder: (event) ->
     event.preventDefault()
+    @$el.parents(".container-fluid").trigger("folderChanged", [@])
     FileManager.app.navigate("folders/" + @model.get("id"), {trigger: true})

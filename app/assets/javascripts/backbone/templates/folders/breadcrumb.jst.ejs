@@ -1,4 +1,4 @@
-<% if (folder.get("id") !== null && folder.get("ancestors") !== null) { %>
+<% if (folder.get("id") !== null && folder.get("parent_id") !== null) { %>
   <span> / </span>
   <a href='#'><span class="text"><%= folder.get("title") %></span></a>
 <% } %>

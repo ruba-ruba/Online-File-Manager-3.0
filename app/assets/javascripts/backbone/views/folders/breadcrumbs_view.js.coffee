@@ -4,18 +4,18 @@ class FileManager.Views.Folders.BreadcrumbsView extends Backbone.View
   template: JST["backbone/templates/folders/breadcrumbs"]
   el: '.nav-path'
 
-  initialize: ->    
-    @collection = new FileManager.Collections.Navigation()
-    @collection.fetch()
+  initialize: ->
     @collection.on('reset', @render, this)
 
   render: ->
     @$el.html(@template())
-    @collection.each (folder) ->
-      view = new FileManager.Views.Folders.BreadcrumbView(model: folder)
-      $('.nav-path').append(view.render().el)
-    this
-    @$el.parents(".container-fluid").on("click", '.tree_link', @drawPath)
+    @$el.parents(".container-fluid").on("folderChanged", {el: @$el, self: @}, @drawPath)
 
-  drawPath: ->
-    $('.breadcr').show()
+  drawPath: (ev) ->
+    collection = ev.data.self.collection  
+    current_folder = collection.get(FileManager.app.current_folder_id)
+    collection.each (folder) =>
+      if folder.isParent(current_folder)
+        view = new FileManager.Views.Folders.BreadcrumbView(model: folder)
+        ev.data.el.append(view.render().el)
+    ev.data.el.find('.breadcr').show()

@@ -11,6 +11,18 @@ class FileManager.Models.Navigation extends Backbone.Model
   childrenUlClass: ->
     "folder-" + @get("id")
 
+  ancestryArray: ->
+    ancestry = @get("ancestry")
+    if ancestry != null
+      ancestry.split "/"
+    else 
+      []
+
+  isParent: (current_folder) ->
+    c_id = current_folder.get("id")
+    anc_index = @ancestryArray().indexOf(c_id+'')
+
+
 class FileManager.Collections.Navigation extends Backbone.Collection
   model: FileManager.Models.Navigation
 

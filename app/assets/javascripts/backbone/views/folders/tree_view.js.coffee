@@ -12,6 +12,7 @@ class FileManager.Views.Folders.TreeView extends Backbone.View
     this
 
   renderClickedFolder: (event) ->
-    @$el.parents(".container-fluid").trigger("treeClicked", [@])
     event.preventDefault()
-    FileManager.app.navigate("folders/" + @model.get("id"), {trigger: true}) if event.target is @$('.near_icon')[0]
+    if event.target is @$('.near_icon')[0] 
+      FileManager.app.navigate("folders/" + @model.get("id"), {trigger: true}) 
+      @$el.parents(".container-fluid").trigger("folderChanged", [@])

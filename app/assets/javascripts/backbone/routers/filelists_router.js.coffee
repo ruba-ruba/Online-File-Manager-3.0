@@ -8,7 +8,6 @@ class FileManager.Routers.FilelistsRouter extends Backbone.Router
 
   initialize: ->
     new FileManager.Views.Folders.FolderTreeView().render()
-    new FileManager.Views.Folders.BreadcrumbsView()
 
   folderComments: (folder_id)->
     @comments = new FileManager.Collections.CommentsCollection(commentable_type: "folders", commentable_id: folder_id)
@@ -25,7 +24,9 @@ class FileManager.Routers.FilelistsRouter extends Backbone.Router
   index: ->
     view = new FileManager.Views.Filelists.IndexView(folder_id: null)
     $(".main_content.col-xs-10").html(view.render().el)
+    @current_folder_id = null
 
   folderId: (folder_id) ->
     view = new FileManager.Views.Filelists.IndexView(folder_id: folder_id)
     $(".main_content.col-xs-10").html(view.render().el)
+    @current_folder_id = folder_id

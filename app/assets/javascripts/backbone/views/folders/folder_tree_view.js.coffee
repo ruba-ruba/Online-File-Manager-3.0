@@ -6,6 +6,7 @@ class FileManager.Views.Folders.FolderTreeView extends Backbone.View
   initialize: ->
     @collection = new FileManager.Collections.Navigation()
     @collection.fetch()
+    new FileManager.Views.Folders.BreadcrumbsView(collection: @collection)
     @collection.on('reset', @render, this)
 
   render: ->
