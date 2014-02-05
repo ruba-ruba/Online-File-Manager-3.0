@@ -1,7 +1,5 @@
 class FileManager.Models.Comment extends Backbone.Model
   paramRoot: 'comment'
-  url: ->
-    '/api/v3/comments?token=' + FileManager.token
 
 
 class FileManager.Collections.CommentsCollection extends Backbone.Collection

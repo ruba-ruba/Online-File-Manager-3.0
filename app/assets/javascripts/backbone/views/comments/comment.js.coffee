@@ -27,4 +27,9 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
   renderClickedFormReply: (event) ->
     event.preventDefault()
     if  event.target is @$('.submit')[0]
-      alert @$('textarea').val()
+      formFields = @$el.find('#new_comment_global').serializeArray()
+      value = @$('textarea').val()
+      parent_id = @model.get("id")
+      @model.collection.create(content: value, parent_id: parent_id, {wait: true})
+      @$('textarea').val ""
+      @$(".hidden_form_reply").hide()

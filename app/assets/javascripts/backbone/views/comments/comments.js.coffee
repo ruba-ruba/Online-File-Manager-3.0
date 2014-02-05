@@ -5,10 +5,11 @@ class FileManager.Views.Comments.CommentsView extends Backbone.View
   className: "comments_page row"
 
   events:
-    'click .actions_global': 'renderClickedForm'
+    'click .actions_global': 'createComment'
 
   initialize: ->
     @collection.on('reset', @renderComments, this)
+    @collection.on('add', @addComment, this)
 
   render: ->
     $(@el).html(@template())
@@ -21,9 +22,9 @@ class FileManager.Views.Comments.CommentsView extends Backbone.View
     view = new FileManager.Views.Comments.CommentView(model: comment)
     $(comment.get("parent_identifier")).append(view.render().el)
 
-  renderClickedForm: (event)->
+  createComment: (event)->
     formFields = @$el.find('#new_comment_global').serializeArray()
     value = formFields[1].value
-    id = @collection.commentable_id
-    type = @collection.commentable_type
-    comment = new FileManager.Models.Comment(commentable_type: type, commentable_id: id, content: value).save()
+    @collection.create(content: value, {wait: true})
+    @$el.find('#new_comment_global textarea').val("")
+
