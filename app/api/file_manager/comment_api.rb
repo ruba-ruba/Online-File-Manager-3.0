@@ -24,9 +24,13 @@ module FileManager
           delete do
             commentable.comments.find(params[:comment_id]).destroy
           end
+
+          resource :vote do
+            post do
+            end
+          end
         end
       end
-
     end
   end
 end

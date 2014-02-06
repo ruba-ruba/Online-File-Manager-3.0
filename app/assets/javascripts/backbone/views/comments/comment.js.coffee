@@ -15,10 +15,6 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
     $(@el).html(@template(comment: @model))
     this
 
-  addVote: (vote) ->
-    view = new FileManager.Views.Comments.VoteView(model: vote)
-    $('.voiting').append(view.render().el)
-
   renderReplyForm: (event) ->
     event.preventDefault()
     @$('textarea').val ""
@@ -46,10 +42,10 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
 
   upVote: (event) ->
     event.preventDefault()
-    if  event.target is @$('.glyphicon-thumbs-up')[0]
+    if event.target is @$('.glyphicon-thumbs-up')[0]
       alert "upVote"
 
   downVote: (event) ->
     event.preventDefault()
-    if  event.target is @$('.glyphicon-thumbs-down')[0]
+    if event.target is @$('.glyphicon-thumbs-down')[0]
       alert "downVote"
