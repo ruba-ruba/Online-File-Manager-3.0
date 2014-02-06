@@ -8,3 +8,4 @@ class FileManager.Views.Folders.BreadcrumbView extends Backbone.View
   render: ->
     $(@el).html(@template(folder: @model))
     this
+# add event on click breadcrumb

@@ -15,4 +15,3 @@ class FileManager.Views.Folders.TreeView extends Backbone.View
     event.preventDefault()
     if event.target is @$('.near_icon')[0] 
       FileManager.app.navigate("folders/" + @model.get("id"), {trigger: true}) 
-      @$el.parents(".container-fluid").trigger("folderChanged", [@])

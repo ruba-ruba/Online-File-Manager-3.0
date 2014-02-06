@@ -11,11 +11,13 @@ class FileManager.Views.Folders.BreadcrumbsView extends Backbone.View
     @$el.html(@template())
     @$el.parents(".container-fluid").on("folderChanged", {el: @$el, self: @}, @drawPath)
 
-  drawPath: (ev) ->
+  drawPath: (ev, folder_id) ->
     collection = ev.data.self.collection  
-    current_folder = collection.get(FileManager.app.current_folder_id)
+    current_folder = collection.get(folder_id)
+    ev.data.self.$el.html(ev.data.self.template())
     collection.each (folder) =>
-      if folder.isParent(current_folder)
+      if folder.isParentOf(current_folder)
         view = new FileManager.Views.Folders.BreadcrumbView(model: folder)
         ev.data.el.append(view.render().el)
+    # to add template of current folder title
     ev.data.el.find('.breadcr').show()

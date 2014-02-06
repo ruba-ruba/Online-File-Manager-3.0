@@ -18,10 +18,15 @@ class FileManager.Models.Navigation extends Backbone.Model
     else 
       []
 
-  isParent: (current_folder) ->
-    c_id = current_folder.get("id")
-    anc_index = @ancestryArray().indexOf(c_id+'')
-
+  isParentOf: (current_folder) ->
+    folder_id = @get("id")
+    ancestry_of_current_folder = current_folder.ancestryArray()
+    anc_index = ancestry_of_current_folder.indexOf(folder_id+'')
+    if anc_index is -1
+      isParentOfCurrentFolder = false
+    else
+      isParentOfCurrentFolder = true
+    isParentOfCurrentFolder
 
 class FileManager.Collections.Navigation extends Backbone.Collection
   model: FileManager.Models.Navigation
