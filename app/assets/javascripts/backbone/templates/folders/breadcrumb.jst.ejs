@@ -1,7 +1,1 @@
-<% if (folder.get("id") !== null && folder.get("parent_id") !== null) { %>
-  <span> / </span>
-  <a href='#'><span class="text"><%= folder.get("title") %></span></a>
-<% } %>
-<% if (folder.get("id") !== null) { %>
-  <span><%= folder.get("title") %></span>
-<% } %>
+<span> / <a href='#'><%= folder.get("title") %></a></span>

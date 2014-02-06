@@ -19,5 +19,6 @@ class FileManager.Views.Folders.BreadcrumbsView extends Backbone.View
       if folder.isParentOf(current_folder)
         view = new FileManager.Views.Folders.BreadcrumbView(model: folder)
         ev.data.el.append(view.render().el)
-    # to add template of current folder title
+    current_folder_tmpl = JST["backbone/templates/folders/breadcrumb_current"](folder: current_folder)
+    ev.data.el.append(current_folder_tmpl)
     ev.data.el.find('.breadcr').show()
