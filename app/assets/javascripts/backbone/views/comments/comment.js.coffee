@@ -8,6 +8,8 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
     'click .link_hidden_form_reply': 'renderReplyForm'
     'click .submit': 'createCommentReply'
     'click .link_form_delete': 'deleteComment'
+    'click .up-vote': 'upVote'
+    'click .down-vote': 'downVote'
 
   render: ->
     $(@el).html(@template(comment: @model))
@@ -42,3 +44,12 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
       @$(".hidden_form_reply").hide()
       $(@el).html("comment was deleted")
 
+  upVote: (event) ->
+    event.preventDefault()
+    if  event.target is @$('.glyphicon-thumbs-up')[0]
+      alert "upVote"
+
+  downVote: (event) ->
+    event.preventDefault()
+    if  event.target is @$('.glyphicon-thumbs-down')[0]
+      alert "downVote"
