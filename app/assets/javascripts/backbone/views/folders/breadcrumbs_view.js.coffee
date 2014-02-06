@@ -4,6 +4,9 @@ class FileManager.Views.Folders.BreadcrumbsView extends Backbone.View
   template: JST["backbone/templates/folders/breadcrumbs"]
   el: '.nav-path'
 
+  events:
+    'click .root_link': 'renderRootManagerFolder'
+
   initialize: ->
     @collection.on('reset', @render, this)
 
@@ -22,3 +25,7 @@ class FileManager.Views.Folders.BreadcrumbsView extends Backbone.View
     current_folder_tmpl = JST["backbone/templates/folders/breadcrumb_current"](folder: current_folder)
     ev.data.el.append(current_folder_tmpl)
     ev.data.el.find('.breadcr').show()
+
+  renderRootManagerFolder: (event) ->
+    event.preventDefault()
+    FileManager.app.navigate("folders", {trigger: true})
