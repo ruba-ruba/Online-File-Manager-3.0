@@ -1,6 +1,11 @@
 class FileManager.Models.Comment extends Backbone.Model
   paramRoot: 'comment'
-
+  url: ->
+    model_id = @get("id")
+    if typeof(model_id) == "undefined"
+      @collection.url()
+    else
+      @collection.base_url() + "/" + model_id + @collection.token_param()
 
 class FileManager.Collections.CommentsCollection extends Backbone.Collection
   model: FileManager.Models.Comment
@@ -10,4 +15,10 @@ class FileManager.Collections.CommentsCollection extends Backbone.Collection
     @commentable_id = opts.commentable_id
 
   url: ->
-    '/api/v3/' + @commentable_type + "/" + @commentable_id + "/comments?token=" + FileManager.token
+    @base_url() + @token_param()
+
+  base_url: ->
+    '/api/v3/' + @commentable_type + "/" + @commentable_id + "/comments"
+
+  token_param: ->
+    "?token=" + FileManager.token

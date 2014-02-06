@@ -16,9 +16,13 @@ module FileManager
             error!("can't save comment")
           end
         end
+
         resource ":comment_id" do
           get do
-            present commentable.comments.find (params[:comment_id]), with: CommentEntity
+            present commentable.comments.find(params[:comment_id]), with: CommentEntity
+          end
+          delete do
+            commentable.comments.find(params[:comment_id]).destroy
           end
         end
       end

@@ -6,7 +6,8 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
 
   events:
     'click .link_hidden_form_reply': 'renderReplyForm'
-    'click .submit': 'renderClickedFormReply'
+    'click .submit': 'createCommentReply'
+    'click .link_form_delete': 'deleteComment'
 
   render: ->
     $(@el).html(@template(comment: @model))
@@ -24,7 +25,7 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
       $(".hidden_form_reply").not(target).hide()
       target.toggle()
 
-  renderClickedFormReply: (event) ->
+  createCommentReply: (event) ->
     event.preventDefault()
     if  event.target is @$('.submit')[0]
       formFields = @$el.find('#new_comment_global').serializeArray()
@@ -33,3 +34,11 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
       @model.collection.create(content: value, parent_id: parent_id, {wait: true})
       @$('textarea').val ""
       @$(".hidden_form_reply").hide()
+
+  deleteComment: (event) ->
+    event.preventDefault()
+    if  event.target is @$('.link_form_delete')[0]
+      @model.destroy()
+      @$(".hidden_form_reply").hide()
+      $(@el).html("comment was deleted")
+

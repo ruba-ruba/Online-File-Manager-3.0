@@ -23,6 +23,7 @@ class FileManager.Views.Comments.CommentsView extends Backbone.View
     $(comment.get("parent_identifier")).append(view.render().el)
 
   createComment: (event)->
+    event.preventDefault()
     formFields = @$el.find('#new_comment_global').serializeArray()
     value = formFields[1].value
     @collection.create(content: value, {wait: true})
