@@ -26,5 +26,6 @@ class FileManager.Views.Folders.FolderTreeView extends Backbone.View
     @breadcrumbs.reset(parents)
 
   render_current_folder: ->
-    parents = @collection.get(@current_folder_id).get("parents_info")
-    @breadcrumbs.reset(parents)
+    if @current_folder_id isnt undefined
+      parents = @collection.get(@current_folder_id).get("parents_info")
+      @breadcrumbs.reset(parents)
