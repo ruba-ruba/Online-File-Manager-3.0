@@ -7,7 +7,7 @@ class FileManager.Routers.FilelistsRouter extends Backbone.Router
     'items/:id/comments': 'itemComments'
 
   initialize: ->
-    new FileManager.Views.Folders.FolderTreeView().render()
+    @navigation = new FileManager.Views.Folders.FolderTreeView()
 
   folderComments: (folder_id)->
     @comments = new FileManager.Collections.CommentsCollection(commentable_type: "folders", commentable_id: folder_id)
@@ -28,4 +28,4 @@ class FileManager.Routers.FilelistsRouter extends Backbone.Router
   folderId: (folder_id) ->
     view = new FileManager.Views.Filelists.IndexView(folder_id: folder_id)
     $(".main_content.col-xs-10").html(view.render().el)
-    $(".container-fluid").trigger("folderChanged", [folder_id])
+    @navigation.set_current_folder_id(folder_id)

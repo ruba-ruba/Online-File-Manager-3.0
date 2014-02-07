@@ -9,7 +9,7 @@ class FileManager.Views.Folders.BreadcrumbView extends Backbone.View
     'click .breadcr_link': 'renderClickedFolder'
   
   render: ->
-    $(@el).html(@template(folder: @model))
+    $(@el).html(@template(title: @model.get("title"), id: @model.get("id")))
     this
 
   renderClickedFolder: (event) ->

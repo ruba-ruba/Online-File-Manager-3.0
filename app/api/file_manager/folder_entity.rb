@@ -7,7 +7,9 @@ module FileManager
     expose :title
     expose :parent_id
     expose :parent
-    expose :ancestry
+    expose :parents_info do |folder, options|
+      folder.ancestors.map(){|i| {:id => i.id, :title =>i.title} }
+    end
     expose :description
     expose :folder_size do |folder, options|
       number_to_human_size(folder.size)
