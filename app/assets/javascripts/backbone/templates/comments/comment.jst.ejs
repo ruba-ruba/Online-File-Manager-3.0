@@ -17,13 +17,13 @@
       <a href="#" class="link_form_delete">Destroy</a>
     </div>
     <div class="voiting">
-      <div>0
-        <a href="#" class="up-vote" data-method="post" data-remote="true" rel="nofollow">
+      <div><%= comment.get("votes_up") %>
+        <a href="#" class="up-vote">
           <span class="glyphicon glyphicon-thumbs-up">
          </span>
         </a>
-        <span>|</span>0
-        <a href="#" class="down-vote" data-method="post" data-remote="true" rel="nofollow">
+        <span>|</span><%= comment.get("votes_down") %>
+        <a href="#" class="down-vote">
           <span class="glyphicon glyphicon-thumbs-down"></span>
         </a>
       </div>

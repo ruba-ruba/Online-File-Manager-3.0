@@ -27,6 +27,8 @@ module FileManager
 
           resource :vote do
             post do
+              comment = Vote.revote(params[:vote_type], params[:comment_id], current_user.id)
+              present comment, with: CommentEntity
             end
           end
         end

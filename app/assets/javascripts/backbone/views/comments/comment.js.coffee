@@ -4,6 +4,9 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
   template: JST["backbone/templates/comments/comment"]
   tagName: 'li'
 
+  initialize: ->
+    @model.on("change", @render, this)
+
   events:
     'click .link_hidden_form_reply': 'renderReplyForm'
     'click .submit': 'createCommentReply'
@@ -43,9 +46,9 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
   upVote: (event) ->
     event.preventDefault()
     if event.target is @$('.glyphicon-thumbs-up')[0]
-      alert "upVote"
+      new FileManager.Models.VotedComment(vote_type: true).set_comment(@model).save()
 
   downVote: (event) ->
     event.preventDefault()
     if event.target is @$('.glyphicon-thumbs-down')[0]
-      alert "downVote"
+      new FileManager.Models.VotedComment(vote_type: false).set_comment(@model).save()
