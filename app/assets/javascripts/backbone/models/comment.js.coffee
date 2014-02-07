@@ -24,7 +24,6 @@ class FileManager.Models.VotedComment extends Backbone.Model
   updateCollection: (changes) ->
     @comment.collection.add(changes, {merge: true})
 
-
 class FileManager.Collections.CommentsCollection extends Backbone.Collection
   model: FileManager.Models.Comment
 
