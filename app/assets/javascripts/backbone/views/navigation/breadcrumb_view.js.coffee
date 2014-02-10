@@ -13,5 +13,5 @@ class FileManager.Views.Navigation.BreadcrumbView extends Backbone.View
 
   renderClickedFolder: (event) ->
     event.preventDefault()
-    FileManager.app.navigation.render_folder_breadcrumbs(@model.get("id"))
-    FileManager.app.navigate("folders/" + @model.get("id"), {trigger: true})
+    FileManager.app.navigation.render_folder_breadcrumbs(@model.get("id"))    
+    FileManager.app.navigate(@model.generate_route(), {trigger: true})
