@@ -1,1 +1,7 @@
-<span>/ <a href='#' class="breadcr_link"> <%= title %></a></span>
+<span>/ 
+  <% if (model.get("current") == true) { %>
+    <%= model.get("title") %>
+  <% } else { %>
+    <a href='#'> <%= model.get("title") %></a>
+  <% } %>
+</span>

@@ -1,7 +1,7 @@
 FileManager.Views.Navigation ||= {}
 
 class FileManager.Views.Navigation.BreadcrumbsView extends Backbone.View
-  template: JST["backbone/templates/navigation/breadcrumbs"]
+  template: JST["backbone/templates/navigation/breadcrumbs_container"]
   el: '.nav-path'
 
   initialize: ->

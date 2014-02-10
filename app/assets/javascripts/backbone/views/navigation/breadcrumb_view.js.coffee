@@ -5,10 +5,10 @@ class FileManager.Views.Navigation.BreadcrumbView extends Backbone.View
   tagName: 'span'
 
   events:
-    'click .breadcr_link': 'renderClickedFolder'
+    'click a': 'renderClickedFolder'
   
   render: ->
-    @$el.html(@template(title: @model.get("title"), id: @model.get("id")))
+    @$el.html(@template(model: @model))
     this
 
   renderClickedFolder: (event) ->

@@ -20,8 +20,7 @@ class FileManager.Views.Navigation.NavigationView extends Backbone.View
       current_folder = @collection.get(folder_id)
       parents = current_folder.get("parents_info")
       title = current_folder.get("title")
-      @breadcrumbs.reset_bradcr_path(parents)
-      @draw_current_folder_breadcrumb(title)
+      @breadcrumbs.reset_bradcr_path(parents, current_folder)
     else
       @breadcrumbs.reset_bradcr_path([])
 
@@ -30,11 +29,6 @@ class FileManager.Views.Navigation.NavigationView extends Backbone.View
       current_folder = @collection.get(@current_folder_id)
       parents = current_folder.get("parents_info")
       title = current_folder.get("title")
-      @breadcrumbs.reset_bradcr_path(parents)
-      @draw_current_folder_breadcrumb(title)
+      @breadcrumbs.reset_bradcr_path(parents, current_folder)
     else
       @breadcrumbs.reset_bradcr_path([])
-
-  draw_current_folder_breadcrumb: (title) ->
-    content = JST["backbone/templates/navigation/breadcrumb_current"]
-    @$el.append(content(title: title))
