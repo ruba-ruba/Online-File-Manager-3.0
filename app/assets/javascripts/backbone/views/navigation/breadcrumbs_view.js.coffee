@@ -1,7 +1,7 @@
-FileManager.Views.Folders ||= {}
+FileManager.Views.Navigation ||= {}
 
-class FileManager.Views.Folders.BreadcrumbsView extends Backbone.View
-  template: JST["backbone/templates/folders/breadcrumbs"]
+class FileManager.Views.Navigation.BreadcrumbsView extends Backbone.View
+  template: JST["backbone/templates/navigation/breadcrumbs"]
   el: '.nav-path'
 
   events:
@@ -13,10 +13,11 @@ class FileManager.Views.Folders.BreadcrumbsView extends Backbone.View
   render: ->
     @$el.html(@template())
     @collection.each (breadcrumb) =>
-      view = new FileManager.Views.Folders.BreadcrumbView(model: breadcrumb)
+      view = new FileManager.Views.Navigation.BreadcrumbView(model: breadcrumb)
       @$el.append(view.render().el)
     this
 
   renderRootManagerFolder: (event) ->
     event.preventDefault()
+    @collection.reset([])
     FileManager.app.navigate("folders", {trigger: true})

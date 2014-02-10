@@ -1,24 +1,16 @@
-FileManager.Views.Folders ||= {}
+FileManager.Views.Navigation ||= {}
 
-class FileManager.Views.Folders.FolderTreeView extends Backbone.View
-  template: JST["backbone/templates/folders/tree_menu"]
+class FileManager.Views.Navigation.NavigationView extends Backbone.View
 
-  el: '.nav-path'  
+  el: '.nav-path'
 
   initialize: ->
     @collection = new FileManager.Collections.Navigation()
     @breadcrumbs = new FileManager.Collections.Breadcrumbs()
-    new FileManager.Views.Folders.BreadcrumbsView(collection: @breadcrumbs)
+    new FileManager.Views.Navigation.BreadcrumbsView(collection: @breadcrumbs)
+    new FileManager.Views.Navigation.TreeMenuView(collection: @collection)
     @collection.fetch()
-    @collection.on('reset', @render, this)
-
-  render: ->
-    $(".tree_menu").html(@template())
-    @render_current_folder_breadcrumbs()    
-    @collection.each (folder) ->
-      view = new FileManager.Views.Folders.TreeView(model: folder)
-      $(folder.parentUlSelector()).append(view.render().el)
-    this
+    @collection.on('reset', @render_current_folder_breadcrumbs, this)
 
   set_current_folder_id: (folder_id) ->
     @current_folder_id = folder_id
@@ -37,7 +29,9 @@ class FileManager.Views.Folders.FolderTreeView extends Backbone.View
       title = current_folder.get("title")
       @breadcrumbs.reset(parents)
       @draw_current_folder_breadcrumb(title)
+    else
+      @breadcrumbs.reset([])
 
   draw_current_folder_breadcrumb: (title) ->
-    content = JST["backbone/templates/folders/breadcrumb_current"]
+    content = JST["backbone/templates/navigation/breadcrumb_current"]
     @$el.append(content(title: title))

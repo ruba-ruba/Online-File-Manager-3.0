@@ -1,7 +1,7 @@
-FileManager.Views.Folders ||= {}
+FileManager.Views.Navigation ||= {}
 
-class FileManager.Views.Folders.TreeView extends Backbone.View
-  template: JST["backbone/templates/folders/tree"]
+class FileManager.Views.Navigation.TreeView extends Backbone.View
+  template: JST["backbone/templates/navigation/tree"]
   tagName: 'li'
 
   events:
