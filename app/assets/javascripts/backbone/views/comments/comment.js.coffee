@@ -5,7 +5,7 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
   tagName: 'li'
 
   initialize: ->
-    @model.on("change", @render, this)
+    @model.on("change", @reRender, this)
 
   events:
     'click .link_hidden_form_reply': 'renderReplyForm'
@@ -17,6 +17,11 @@ class FileManager.Views.Comments.CommentView extends Backbone.View
   render: ->
     $(@el).html(@template(comment: @model))
     this
+
+  reRender: ->
+    oldContent = $(@el).find(".positive")[0]
+    newContent = $(@template(comment: @model))[0]
+    $(oldContent).replaceWith(newContent)
 
   renderReplyForm: (event) ->
     event.preventDefault()
