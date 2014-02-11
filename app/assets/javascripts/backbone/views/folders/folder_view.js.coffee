@@ -8,7 +8,7 @@ class FileManager.Views.Folders.FolderView extends Backbone.View
     'click .folder_link': 'openFolder'
 
   render: ->
-    $(@el).html(@template(folder: @model))
+    @$el.html(@template(folder: @model))
     this
 
   openFolder: (event) ->

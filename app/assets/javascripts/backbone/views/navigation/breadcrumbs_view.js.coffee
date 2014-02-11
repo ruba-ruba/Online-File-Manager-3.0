@@ -6,7 +6,7 @@ class FileManager.Views.Navigation.BreadcrumbsView extends Backbone.View
 
   initialize: ->
     @collection.on('reset', @render, this)
-  
+
   render: ->
     @$el.html(@template())
     @collection.each (breadcrumb) =>
