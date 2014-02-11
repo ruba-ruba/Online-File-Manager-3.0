@@ -24,6 +24,7 @@ class FileManager.Routers.FilelistsRouter extends Backbone.Router
   index: ->
     view = new FileManager.Views.Filelists.IndexView(folder_id: null)
     $(".main_content.col-xs-10").html(view.render().el)
+    @navigation.set_current_folder_id(null)
 
   folderId: (folder_id) ->
     view = new FileManager.Views.Filelists.IndexView(folder_id: folder_id)

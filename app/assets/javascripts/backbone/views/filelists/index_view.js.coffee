@@ -21,6 +21,7 @@ class FileManager.Views.Filelists.IndexView extends Backbone.View
     @folders_collection.each (folder) =>
       view = new FileManager.Views.Folders.FolderView(model: folder)
       @$table_el.prepend(view.render().el)
+    FileManager.app.navigation.render_folder_up()
 
   renderItem: ->
     @items_collection.each (item) =>

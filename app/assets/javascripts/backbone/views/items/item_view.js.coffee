@@ -5,7 +5,7 @@ class FileManager.Views.Items.ItemView extends Backbone.View
   tagName: 'tr'
   events:
     'click': 'drawFooter'
-  
+
   drawFooter: (event) ->
     event.preventDefault()
     content = JST["backbone/templates/items/item_footer"](model: @model)
